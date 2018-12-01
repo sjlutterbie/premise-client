@@ -11,11 +11,15 @@ class UserMenu extends Component {
     
   }
   
+  toggleMenu() {
+    this.setState({showMenu: !this.state.showMenu});
+  }
   
   render() {
     return (
       <div className="user-menu">
-        <i class="material-icons">settings</i>
+        <i className="material-icons"
+           onClick={() => this.toggleMenu()}>settings</i>
         
         {
           this.state.showMenu
