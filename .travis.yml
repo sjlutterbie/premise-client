@@ -10,3 +10,5 @@ deploy:
   app: guarded-thicket-25077
   on:
     repo: sjlutterbie/premise-client
+env:
+  - CI=true
