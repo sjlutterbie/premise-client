@@ -10,7 +10,7 @@ export default function Header(props) {
     <header>
       <h1>Premise</h1>
       <HeaderNav />
-      <LocationBar />
+      <LocationBar location="Location Bar"/>
     </header>
   );
   

@@ -1,6 +1,9 @@
 .header-nav {
   display: flex;
   flex-flow: row nowrap;
+  
+  background: #eee;
+  
 }
 
 .header-nav li {
