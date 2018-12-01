@@ -1,5 +1,12 @@
 language: node_js
 node_js: node
 cache:
- directories:
-   - node_modules
+  directories:
+  - node_modules
+deploy:
+  provider: heroku
+  api_key:
+    secure: gnV7cO02mzud423+h8Am4RZQIo/d1Ebl24/UjTvmejbmKp+snSJuKXmgK4/c9soejCk5bL5yhWxspi85Rped7Tb5RVgshvjU1+qJtCXA2c/dZllcxF3x8KgvKKK3sUb91SsPGOzz9tQ1MlggTMRYV9gW3Dtm5G47sheA+xUyJMFqxRbirMu2MDglLN3AUpitTHnxZ+BFI8OPyGjiPtPPQHKFMy4PZ0hvM65ti6mFyc0VA8KrlgGBfWewqV8HYiMHXBPFoCMiWHXj5ldOTNWNA2HpYGjREOH9oRgiP29/Sb2Pv4Jma/VqK1aDnuVnx0ZcFlF8BVVypPVVomz7YnsFNzPmSlA5KA7E4iryydIP/k8qtxtYWyezISmXxgDcrvt/3R+EgwB5YkNOveX3jMZf4Gb9x9x09PGa1s2Kd64P++BMChM4u+inDUh9Gd1wclxRJu13b31CKM/GuOk9D4qbRXSvFpBK6B9KQ8dO83xj2jw8RCBL0naXFDw4KGLpsJGHCIMTgGn06B441K7VoGehLYLSrDIa89srM6KEF07RZd0PhPpAHfYznn5SWbLU7uvJIrBTKiSzXezq64e6GdaqMZ0asmRTzQW/xkk2ibwm/hDXX0gFaTv/6nGtnaTLN+dWmIjwnsd2/fuBlH7tLEYrTFhBTxfiBDt+Zgg8exroBlA=
+  app: guarded-thicket-25077
+  on:
+    repo: sjlutterbie/premise-client
