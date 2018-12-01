@@ -5,7 +5,14 @@ export default function Header(props) {
   
   return (
     <div className="header-nav">
-      <p>Header Navigation</p>
+      <ul>
+        <li>
+          <i class="material-icons">help</i>
+        </li>
+        <li>
+          <i class="material-icons">settings</i>
+        </li>
+      </ul>
     </div>
   );
   

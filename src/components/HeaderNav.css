@@ -1,0 +1,8 @@
+.header-nav {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.header-nav li {
+  display: inline-block;
+}
