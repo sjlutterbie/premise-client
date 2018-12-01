@@ -1,6 +1,8 @@
 import React from 'react';
 import './HeaderNav.css';
 
+import UserMenu from './UserMenu';
+
 export default function Header(props) {
   
   return (
@@ -10,7 +12,7 @@ export default function Header(props) {
           <i class="material-icons">help</i>
         </li>
         <li>
-          <i class="material-icons">settings</i>
+          <UserMenu />
         </li>
       </ul>
     </div>
