@@ -1,15 +1,15 @@
 import React from 'react';
-import './Reader.css'
+import './ReaderPane.css'
 
-// <Reader /> represents the "Reading View", where the current story branch is
+// <ReaderPane /> represents the "Reading View", where the current story branch is
 //  presented as a series of text snippets, and in which the 'moment actions'
 //  are possible
 
-export default function Reader(props) {
+export default function ReaderPane(props) {
   
   return (
     <div className="reader">
-      <p>Reader view</p>
+      <p>Reader Pane</p>
     </div>
   );
 

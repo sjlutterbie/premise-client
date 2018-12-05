@@ -2,12 +2,12 @@ import React from 'react';
 import {shallow} from 'enzyme';
 
 
-import Reader from './index';
+import ReaderPane from './index';
 
-describe('<Reader />', () => {
+describe('<ReaderPane />', () => {
   
   it('Renders without crashing', () => {
-    shallow(<Reader />);
+    shallow(<ReaderPane />);
   });
   
 });
