@@ -9,7 +9,7 @@ export default function Header(props) {
     <div className="header-nav">
       <ul>
         <li>
-          <i class="material-icons">help</i>
+          <i className="material-icons">help</i>
         </li>
         <li>
           <UserMenu />

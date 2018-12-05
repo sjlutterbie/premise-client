@@ -21,5 +21,7 @@ export default (state = initialState, action) => {
       showUserMenu: false
     });
   }
+  
+  return state;
 
 };
