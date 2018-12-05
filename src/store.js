@@ -1,6 +1,12 @@
-import {createStore} from 'redux';
+import {combineReducers, createStore} from 'redux';
 
 // Reducers
 import {navReducer} from './reducers';
 
-export default createStore(navReducer);
+// Build central reducer
+const centralReducer = combineReducers({
+  navState: navReducer
+});
+
+// Export store
+export default createStore(centralReducer);

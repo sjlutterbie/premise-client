@@ -30,7 +30,7 @@ export function UserMenu(props) {
 }
 
 const mapStateToProps = state => ({
-  showUserMenu: state.showUserMenu
+  showUserMenu: state.navState.showUserMenu
 });
 
 export default connect(mapStateToProps)(UserMenu);
