@@ -1,19 +1,12 @@
-import {CLOSE_USER_MENU, closeUserMenu,
-        OPEN_USER_MENU, openUserMenu} from './navActions';
+import {SET_USER_MENU_VIEW, setUserMenuView} from './navActions';
 
 describe('Navigation Actions', () => {
   
-  describe('openUserMenu', () => {
-    const action = openUserMenu();
-    expect(action.type).toEqual(OPEN_USER_MENU)
-  });
-  
-  describe('closeUserMenu', () => {
+  describe('setUserMenuView', () => {
     it('Should return the action', () => {
-      const action = closeUserMenu();
-      expect(action.type).toEqual(CLOSE_USER_MENU);
+      const action = setUserMenuView();
+      expect(action.type).toEqual(SET_USER_MENU_VIEW)
     });
-    
   });
   
 });
