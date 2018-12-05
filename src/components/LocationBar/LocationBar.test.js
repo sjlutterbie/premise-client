@@ -2,7 +2,7 @@ import React from 'react';
 import {shallow, mount} from 'enzyme';
 import faker from 'faker';
 
-import LocationBar from './LocationBar';
+import LocationBar from './index';
 
 describe('<LocationBar />', () => {
   

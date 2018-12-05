@@ -1,7 +1,7 @@
 import React from 'react';
 import './HeaderNav.css';
 
-import UserMenu from './UserMenu';
+import UserMenu from '../UserMenu';
 
 export default function Header(props) {
   

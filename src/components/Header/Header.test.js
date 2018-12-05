@@ -1,12 +1,12 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import HeaderNav from './HeaderNav';
+import Header from './index';
 
-describe('<HeaderNav />', () => {
+describe('<Header />', () => {
   
   it('Renders without crashing', () => {
-    shallow(<HeaderNav />);
+    shallow(<Header />);
   });
   
 });

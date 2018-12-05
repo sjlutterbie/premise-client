@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
 
-import UserMenu from './UserMenu';
+import UserMenu from './index';
 
 describe('<UserMenu />', () => {
   

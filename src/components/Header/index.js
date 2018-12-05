@@ -1,8 +1,8 @@
 import React from 'react';
 import './Header.css';
 
-import HeaderNav from './HeaderNav';
-import LocationBar from './LocationBar';
+import HeaderNav from '../HeaderNav';
+import LocationBar from '../LocationBar';
 
 export default function Header(props) {
   
