@@ -1,5 +1,6 @@
 import {createStore} from 'redux';
 
 // Reducers
+import {navReducer} from './reducers';
 
-export default createStore();
+export default createStore(navReducer);
