@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import { connect }  from 'react-redux';
 
 import Header from './Header';
-import ReaderPane from './ReaderPane';
-import NetworkPane from './NetworkPane';
+import PremiseArea from './PremiseArea';
 
 import {updateWindowWidth} from '../actions';
 import {getResponsiveBracket} from '../selectors/navSelectors';
@@ -24,8 +23,7 @@ export class PremiseApp extends Component{
     return (
       <div className="premise-app">
         <Header />
-        <ReaderPane />
-        <NetworkPane />
+        <PremiseArea />
       </div>
     );
   }
