@@ -3,6 +3,7 @@ import { connect }  from 'react-redux';
 
 import Header from './Header';
 import PremiseArea from './PremiseArea';
+import UserGuide from './UserGuide';
 
 import {updateWindowWidth} from '../actions';
 import {getResponsiveBracket} from '../selectors/navSelectors';
@@ -24,6 +25,7 @@ export class PremiseApp extends Component{
       <div className="premise-app">
         <Header />
         <PremiseArea />
+        <UserGuide />
       </div>
     );
   }
