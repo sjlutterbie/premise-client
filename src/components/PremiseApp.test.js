@@ -33,6 +33,28 @@ describe('<PremiseApp />', () => {
       const wrapper = shallow(<PremiseApp {...props}/>);
       expect(updateWindowWidth).toHaveBeenCalled();
     });
+    
+    it('Adds an event listener', () => {
+      // Create mock addEventListener
+      window.addEventListener = jest.fn();
+      // Load component
+      const wrapper = shallow(<PremiseApp {...props}/>);
+      // Run Test
+      expect(window.addEventListener).toHaveBeenCalled();
+    });
+    
+    it('The eventListener fires when necessary', () => {
+      // Set up mock eventListener
+      const map = {};
+      window.addEventListener = jest.fn((event, callback) => {
+        map[event] = callback;
+      });
+      // Load component
+      const wrapper = shallow(<PremiseApp {...props}/>);
+      // Run test
+      map.resize();
+      expect(updateWindowWidth).toHaveBeenCalled();
+    });
 
   });
   
