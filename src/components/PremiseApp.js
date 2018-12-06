@@ -10,9 +10,6 @@ import {updateWindowWidth} from '../actions';
 import {getResponsiveBracket} from '../selectors/navSelectors';
 
 export class PremiseApp extends Component{
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
     this.props.updateWindowWidth(window.innerWidth);
