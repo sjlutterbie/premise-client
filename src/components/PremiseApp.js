@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import { connect }  from 'react-redux';
 
 import Header from './Header';
@@ -22,11 +23,15 @@ export class PremiseApp extends Component{
 
   render() {
     return (
-      <div className="premise-app">
-        <Header />
-        <PremiseArea />
-        <UserGuide />
-      </div>
+      <Router>
+        <div className="premise-app">
+          <Header />
+          <main>
+            <Route path="/premise" component={PremiseArea} />
+            <Route path="/userguide" component={UserGuide} />
+          </main>
+        </div>
+      </Router>
     );
   }
 }
