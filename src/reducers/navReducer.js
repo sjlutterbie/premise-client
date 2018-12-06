@@ -5,7 +5,6 @@ export const initialState = {
 
   // Responsive handling
   windowWidth: 0,
-  responsiveBracket: 'mobile',
 
   // Element visibility
   showUserMenu: false

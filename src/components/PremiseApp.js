@@ -6,6 +6,7 @@ import ReaderPane from './ReaderPane';
 import NetworkPane from './NetworkPane';
 
 import {updateWindowWidth} from '../actions';
+import {getResponsiveBracket} from '../selectors/navSelectors';
 
 export class PremiseApp extends Component{
   constructor(props) {
@@ -30,6 +31,8 @@ export class PremiseApp extends Component{
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  responsiveBracket: getResponsiveBracket(state)
+});
 
 export default connect(mapStateToProps, {updateWindowWidth})(PremiseApp);

@@ -6,8 +6,7 @@ import {SET_USER_MENU_VIEW, setUserMenuView,
 describe('navState', () => {
   
   it('Should contain the expected defaults', () => {
-    const expectedKeys = ['windowWidth', 'responsiveBracket',
-                          'showUserMenu'];
+    const expectedKeys = ['windowWidth','showUserMenu'];
     expect(Object.keys(initialState)).toEqual(expectedKeys);
   });
   
