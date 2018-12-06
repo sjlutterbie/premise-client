@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import { connect }  from 'react-redux';
 
 import Header from './Header';
@@ -23,15 +23,15 @@ export class PremiseApp extends Component{
 
   render() {
     return (
-      <Router>
         <div className="premise-app">
           <Header />
           <main>
-            <Route path="/premise" component={PremiseArea} />
-            <Route path="/userguide" component={UserGuide} />
+            <Switch>
+              <Route path="/premise" component={PremiseArea} />
+              <Route path="/userguide" component={UserGuide} />
+            </Switch>
           </main>
         </div>
-      </Router>
     );
   }
 }

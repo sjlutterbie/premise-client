@@ -1,5 +1,6 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import {shallow, mount} from 'enzyme';
+import {MemoryRouter} from 'react-router';
 import sinon from 'sinon';
 
 import {PremiseApp} from './PremiseApp';
@@ -57,5 +58,10 @@ describe('<PremiseApp />', () => {
     });
 
   });
+  
+  // TODO: Testing React Router routes
+    // path "/premise" should load <PremiseArea />
+    // path "/userguide" should load <UserGuide />
+    // Establish & test error handling
   
 });
