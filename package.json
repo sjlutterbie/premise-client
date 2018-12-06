@@ -28,6 +28,7 @@
     "enzyme-adapter-react-16": "^1.7.0",
     "faker": "^4.1.0",
     "jest": "^23.6.0",
-    "react-dom": "^16.6.3"
+    "react-dom": "^16.6.3",
+    "sinon": "^7.1.1"
   }
 }
