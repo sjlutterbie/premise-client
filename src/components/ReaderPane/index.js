@@ -1,15 +1,27 @@
 import React from 'react';
 import './ReaderPane.css'
 
-// <ReaderPane /> represents the "Reading View", where the current story branch is
-//  presented as a series of text snippets, and in which the 'moment actions'
-//  are possible
+// <ReaderPane /> presents the current storyChain as a series of <Moment/>
+//  components.
+
+import {default as Moment} from '../Moment';
 
 export default function ReaderPane(props) {
+  // Expected props:
+  //  moments: Array of moment objects
+  
+  const momentComps = props.moments.map((moment, index) => {
+    return (
+        <Moment key={index} mode="read" moment={moment}/>
+    );
+  });
   
   return (
     <div className="reader">
-      <p>Reader Pane</p>
+      { momentComps.length > 0
+        ? momentComps
+        : <p>Whoops,something went wrong!</p>
+      }
     </div>
   );
 

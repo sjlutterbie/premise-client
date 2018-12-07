@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 
 // Every <Moment/> has three modes: 'read', 'actions', and 'create'.
@@ -13,7 +13,12 @@ import {connect} from 'react-redux';
 //  to be triggered above the component level.
 
 export function Moment(props){
-
+  // Expected Props:
+  //  mode: 'read', 'actions', or 'create'
+  //  moment: Object
+  //    id: Unique identifier
+  //    text: Moment content
+  
     return (
       <div className="moment">
         <p className="moment-text">{props.moment.text}</p>
