@@ -3,7 +3,7 @@ import {shallow} from 'enzyme';
 import faker from 'faker';
 
 
-import ReaderPane from './index';
+import {ReaderPane} from './index';
 
 describe('<ReaderPane />', () => {
   
