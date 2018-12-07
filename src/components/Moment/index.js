@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
+import './Moment.css';
+
 // Every <Moment/> has three modes: 'read', 'actions', and 'create'.
 //  'read' mode is default, and just displays the moment text.
 //  'action' mode is triggered by clicking on the moment when in 'read' mode,

@@ -1,12 +1,15 @@
 import React from 'react';
-import './ReaderPane.css'
+import {connect} from 'react-redux';
+
+import './ReaderPane.css';
+
 
 // <ReaderPane /> presents the current storyChain as a series of <Moment/>
 //  components.
 
 import {default as Moment} from '../Moment';
 
-export default function ReaderPane(props) {
+export function ReaderPane(props) {
   // Expected props:
   //  moments: Array of moment objects
   
@@ -26,3 +29,9 @@ export default function ReaderPane(props) {
   );
 
 }
+
+const mapStateToProps = state => ({
+  moments: state.storyBranch.currentBranch
+});
+
+export default connect(mapStateToProps)(ReaderPane);
