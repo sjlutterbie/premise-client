@@ -9,7 +9,8 @@ describe('<PremiseApp />', () => {
   
   it('Renders without crashing', () => {
     const props = {
-      updateWindowWidth: jest.fn()
+      updateWindowWidth: jest.fn(),
+      loadDefaultBranch: jest.fn()
     };
     shallow(<PremiseApp {...props}/>);
   });
@@ -17,11 +18,13 @@ describe('<PremiseApp />', () => {
   describe('ComponentDidMount', () => {
     
     let updateWindowWidth;
+    let loadDefaultBranch;
     let props;
     
     beforeEach(() => {
       updateWindowWidth = jest.fn();
-      props = {updateWindowWidth};
+      loadDefaultBranch = jest.fn();
+      props = {updateWindowWidth, loadDefaultBranch};
     })
     
     it('Calls the lifecycle method', ()=> {
