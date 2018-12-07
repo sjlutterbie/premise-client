@@ -13,12 +13,14 @@ const testMoment = {
   id: faker.random.alphaNumeric(10)
 };
 
-const testOnClick = jest.fn();
+const handleMomentTextClick_test = jest.fn();
+const updateFocalMomentMode_test = jest.fn();
 
 const testProps = {
   moment: testMoment,
   mode: 'read',
-  handleMomentTextClick: testOnClick
+  handleMomentTextClick: handleMomentTextClick_test,
+  updateFocalMomentMode: updateFocalMomentMode_test 
 };
 
 // Create object to hold shallow render
@@ -59,7 +61,16 @@ describe('<Moment />', () => {
     it('Has one element', () => {
       expect(wrapper.find('.moment').children().length).toEqual(1);
     });
-
+    
+    describe('Event handling', () => {
+    
+      it('Clicking on moment-text calls handleMomentTextClick', () => {
+        wrapper = shallow(<Moment {...testProps}/>);
+        wrapper.find('.moment-text').simulate('click');
+        expect(handleMomentTextClick_test)
+          .toHaveBeenCalledWith(testProps.moment.id);
+      });
+    });
   });
 
   describe('Actions mode', () => {
@@ -79,6 +90,20 @@ describe('<Moment />', () => {
       expect(buttons.find('.open-create-mode').length).toEqual(1);
       expect(buttons.find('.switch-story-branch').length).toEqual(1);
     });
+    
+    describe('Event handling', () => {
+      
+      it('Clicking `Create` button calls the correct action', () => {
+        testProps.mode = 'actions';
+        const wrapper = shallow(<Moment {...testProps}/>);
+        wrapper.find('.open-create-mode').simulate('click');
+        expect(updateFocalMomentMode_test)
+          .toHaveBeenCalledWith('create');
+      });
+      
+      
+    });
+    
   });
   
   describe('Create mode', () => {
@@ -108,18 +133,6 @@ describe('<Moment />', () => {
       expect(buttons.find('.cancel-create-moment').length).toEqual(1);
       expect(buttons.find('.create-moment').length).toEqual(1);
     });
-  });
-
-  describe('Event handling', () => {
-    
-    it('Clicking on moment-text calls handleMomentTextClick', () => {
-      
-      wrapper = shallow(<Moment {...testProps}/>);
-      wrapper.find('.moment-text').simulate('click');
-      expect(testOnClick)
-        .toHaveBeenCalled();
-    });
-    
   });
   
 });
