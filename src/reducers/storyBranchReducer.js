@@ -1,3 +1,5 @@
+import {LOAD_DEFAULT_BRANCH} from '../actions';
+
 // DEV CODE: Create random moments to populate initial state
 import faker from 'faker';
 
@@ -27,6 +29,12 @@ export const initialState = {
 };
 
 export default (state = initialState, action) => {
+  
+  if(action.type === LOAD_DEFAULT_BRANCH) {
+    return Object.assign({}, state, {
+      currentBranch: action.branch
+    });
+  }
   
   return state;
   

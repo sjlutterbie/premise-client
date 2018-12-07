@@ -18,7 +18,7 @@ describe('Navigation Reducer', () => {
 
   describe('setUserMenuView(true)', () => {
 
-    it('Should set showUserMenu to true', () => {
+    it('Sets showUserMenu to true', () => {
       let state = {
         showUserMenu: false
       };
@@ -28,7 +28,7 @@ describe('Navigation Reducer', () => {
       });
     });
     
-    it('Should set showUserMenu to false', () => {
+    it('Sets showUserMenu to false', () => {
       let state = {
         showUserMenu: true
       };
