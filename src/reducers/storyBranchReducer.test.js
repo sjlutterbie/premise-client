@@ -1,5 +1,11 @@
+import faker from 'faker';
+
 import {default as storyBranchReducer, initialState} from './storyBranchReducer';
-import {LOAD_DEFAULT_BRANCH, loadDefaultBranch} from '../actions';
+import {
+  LOAD_DEFAULT_BRANCH, loadDefaultBranch,
+  UPDATE_FOCAL_MOMENT, updateFocalMoment,
+  UPDATE_FOCAL_MOMENT_MODE, updateFocalMomentMode
+} from '../actions';
 
 describe('storyChainState', () => {
 
@@ -26,5 +32,30 @@ describe('Story Branch Reducer', () => {
     });
   });
   
+  describe('updateFocalMoment', () => {
+    
+    it('Updates the focalMoment in state', () => {
+      let state = {
+        focalMoment: faker.random.uuid()
+      };
+      let momentId = faker.random.uuid();
+      state = storyBranchReducer(state, updateFocalMoment(momentId));
+      expect(state.focalMoment).toEqual(momentId);
+    });
+  });
+  
+  describe('updateFocalMomentMode', () => {
+    
+    it('Updates the focalMomentMode in state', () => {
+      let state = {
+        focalMomentMode: faker.random.alphaNumeric(10)
+      };
+      let mode = faker.random.alphaNumeric(11);
+      state = storyBranchReducer(state, updateFocalMomentMode(mode));
+      
+      console.log(state);
+      expect(state.focalMomentMode).toEqual(mode);
+    });
+  });
   
 });

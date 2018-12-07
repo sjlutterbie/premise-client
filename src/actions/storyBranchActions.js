@@ -16,6 +16,3 @@ export const updateFocalMomentMode = (mode) => ({
   mode
 });
 
-
-
-// UPDATE_FOCAL_MOMENT

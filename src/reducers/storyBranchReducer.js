@@ -1,4 +1,8 @@
-import {LOAD_DEFAULT_BRANCH} from '../actions';
+import {
+  LOAD_DEFAULT_BRANCH,
+  UPDATE_FOCAL_MOMENT,
+  UPDATE_FOCAL_MOMENT_MODE
+} from '../actions';
 
 // Set initial state items for storyBranch elements
 export const initialState = {
@@ -11,7 +15,7 @@ export const initialState = {
   focalMoment: null,
   
   // <Moment/> mode for the focal moment
-  focalMomentMode: 'read',
+  focalMomentMode: 'read'
 
 };
 
@@ -23,6 +27,18 @@ export default (state = initialState, action) => {
     });
   }
   
+  if(action.type === UPDATE_FOCAL_MOMENT) {
+    return Object.assign({}, state, {
+      focalMoment: action.momentId
+    });
+  }
+  
+  if(action.type === UPDATE_FOCAL_MOMENT_MODE) {
+    return Object.assign({}, state, {
+      focalMomentMode: action.mode
+    });
+  }
+
   return state;
   
 };
