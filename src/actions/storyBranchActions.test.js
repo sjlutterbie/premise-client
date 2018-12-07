@@ -1,4 +1,10 @@
-import {LOAD_DEFAULT_BRANCH, loadDefaultBranch} from './storyBranchActions';
+import faker from 'faker';
+
+import {
+  LOAD_DEFAULT_BRANCH, loadDefaultBranch,
+  UPDATE_FOCAL_MOMENT, updateFocalMoment,
+  UPDATE_FOCAL_MOMENT_MODE,updateFocalMomentMode
+} from './storyBranchActions';
 
 describe('Story Branch Actions', () => {
   
@@ -16,5 +22,36 @@ describe('Story Branch Actions', () => {
     });
     
   });
+  
+  describe('updateFocalMoment', () => {
+    
+    it('Should return the action', () => {
+      const action = updateFocalMoment();
+      expect(action.type).toEqual(UPDATE_FOCAL_MOMENT);
+    });
+    
+    it('Should return the correct value', () => {
+      const momentId = faker.random.uuid();
+      const action = updateFocalMoment(momentId);
+      expect(action.momentId).toEqual(momentId);
+    });
+    
+  });
+  
+  describe('updateFocalMomentMode', () => {
+    
+    it('Should return the action', () => {
+      const action = updateFocalMomentMode();
+      expect(action.type).toEqual(UPDATE_FOCAL_MOMENT_MODE);
+    });
+    
+    it('Should return the correct value', () => {
+      const mode = faker.random.alphaNumeric(10);
+      const action = updateFocalMomentMode(mode);
+      expect(action.mode).toEqual(mode);
+    });
+    
+  });
+  
   
 });
