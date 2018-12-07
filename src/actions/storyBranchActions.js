@@ -16,3 +16,8 @@ export const updateFocalMomentMode = (mode) => ({
   mode
 });
 
+export const HANDLE_MOMENT_TEXT_CLICK = 'HANDLE_MOMENT_TEXT_CLICK';
+export const handleMomentTextClick = (momentId) => ({
+  type: HANDLE_MOMENT_TEXT_CLICK,
+  momentId
+})

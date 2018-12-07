@@ -52,8 +52,6 @@ describe('Story Branch Reducer', () => {
       };
       let mode = faker.random.alphaNumeric(11);
       state = storyBranchReducer(state, updateFocalMomentMode(mode));
-      
-      console.log(state);
       expect(state.focalMomentMode).toEqual(mode);
     });
   });

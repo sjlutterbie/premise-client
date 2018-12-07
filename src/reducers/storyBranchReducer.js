@@ -39,6 +39,11 @@ export default (state = initialState, action) => {
     });
   }
 
+  // HANDLE_MOMENT_TEXT_CLICK
+    // If focalMomentMode === 'create'; no action
+    // if focalMomentMode != 'create'; set mode to 'create', and momentId to 'id'
+
+
   return state;
   
 };
