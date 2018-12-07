@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import './HeaderNav.css';
 
 import UserMenu from '../UserMenu';
@@ -9,7 +10,7 @@ export default function Header(props) {
     <div className="header-nav">
       <ul>
         <li>
-          <i className="material-icons">help</i>
+          <Link to="/userguide"><i className="material-icons">help</i></Link>
         </li>
         <li>
           <UserMenu />

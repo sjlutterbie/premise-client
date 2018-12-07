@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import { connect }  from 'react-redux';
 
 import Header from './Header';
@@ -30,8 +30,7 @@ import {getResponsiveBracket} from '../selectors/navSelectors';
 
 export class PremiseApp extends Component{
 
-  componentDidMount() {
-    
+  componentWillMount() {
     this.props.loadDefaultBranch(DEV_BRANCH);
     this.props.updateWindowWidth(window.innerWidth);
     window.addEventListener('resize', () => {
@@ -41,6 +40,7 @@ export class PremiseApp extends Component{
 
   render() {
     return (
+      <Router>
         <div className="premise-app">
           <Header />
           <main>
@@ -50,6 +50,7 @@ export class PremiseApp extends Component{
             </Switch>
           </main>
         </div>
+      </Router>
     );
   }
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import './Header.css';
 
 import HeaderNav from '../HeaderNav';
@@ -8,7 +9,7 @@ export default function Header(props) {
   
   return (
     <header>
-      <h1>Premise</h1>
+      <Link to="/premise"><h1>Premise</h1></Link>
       <HeaderNav />
       <LocationBar location="Location Bar"/>
     </header>
