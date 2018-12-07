@@ -17,7 +17,7 @@ export function ReaderPane(props) {
     
     return (
         <Moment key={index}
-                mode={moment.id == props.focalMoment
+                mode={moment.id === props.focalMoment
                       ? props.focalMomentMode : 'read'}
                 moment={moment}/>
     );

@@ -26,8 +26,7 @@ export function Moment(props){
     return (
       <div className="moment">
         <p className="moment-text"
-           onClick={((mode, momentId) => props.handleMomentTextClick(
-            props.mode, props.moment.id))}
+           onClick={(momentId) => props.updateFocalMoment(props.moment.id)}
            >{props.moment.text}</p>
 
         {props.mode === 'actions'
@@ -55,10 +54,9 @@ export function Moment(props){
   
 }
 
-function handleMomentTextClick(mode, momentId) {
-
-  console.log(mode);
-  console.log(momentId);
+export function handleMomentTextClick(mode, momentId) {
+  
+  alert('Hi!');
 
 }
 

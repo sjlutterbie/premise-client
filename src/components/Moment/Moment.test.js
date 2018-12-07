@@ -2,7 +2,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import faker from 'faker';
 
-import {Moment} from './index';
+import {Moment, handleMomentTextClick} from './index';
 
 // Create DEV items
 
@@ -13,12 +13,12 @@ const testMoment = {
   id: faker.random.alphaNumeric(10)
 };
 
-const handleMomentTextClick = jest.fn();
+const testOnClick = jest.fn();
 
 const testProps = {
   moment: testMoment,
   mode: 'read',
-  handleMomentTextClick
+  handleMomentTextClick: testOnClick
 };
 
 // Create object to hold shallow render
@@ -116,12 +116,10 @@ describe('<Moment />', () => {
       
       wrapper = shallow(<Moment {...testProps}/>);
       wrapper.find('.moment-text').simulate('click');
-      expect(handleMomentTextClick)
-        .toHaveBeenCalledWith(testProps.mode, testProps.moment.id);
-      
+      expect(testOnClick)
+        .toHaveBeenCalled();
     });
-
+    
   });
-  
   
 });
