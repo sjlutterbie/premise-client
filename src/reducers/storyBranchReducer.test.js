@@ -59,7 +59,7 @@ describe('Story Branch Reducer', () => {
   
   describe('handleMomentTextClick', () => {
     
-    it('Updates focalMoment when focalMomentMode = `read` or `actions`', () => {
+    it('Updates state when focalMomentMode = `read` or `actions`', () => {
       const allowedModes = ['read', 'actions'];
       allowedModes.forEach(mode => {
         let state = {
@@ -69,10 +69,11 @@ describe('Story Branch Reducer', () => {
         const momentId = faker.random.uuid();
         state = storyBranchReducer(state, handleMomentTextClick(momentId));
         expect(state.focalMoment).toEqual(momentId);
+        expect(state.focalMomentMode).toEqual('actions');
       });
     });
     
-    it('Does NOT update focalMoment when focalMomentMode is `create`)', () => {
+    it('Does NOT update state when focalMomentMode is `create`)', () => {
       const origMomentId = faker.random.uuid();
       let state = {
         focalMomentMode: 'create',

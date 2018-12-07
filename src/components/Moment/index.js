@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import './Moment.css';
 
-import {updateFocalMoment, updateFocalMomentMode} from '../../actions';
+import {handleMomentTextClick} from '../../actions';
 
 // Every <Moment/> has three modes: 'read', 'actions', and 'create'.
 //  'read' mode is default, and just displays the moment text.
@@ -26,7 +26,7 @@ export function Moment(props){
     return (
       <div className="moment">
         <p className="moment-text"
-           onClick={(momentId) => props.updateFocalMoment(props.moment.id)}
+           onClick={(momentId) => props.handleMomentTextClick(props.moment.id)}
            >{props.moment.text}</p>
 
         {props.mode === 'actions'
@@ -54,19 +54,12 @@ export function Moment(props){
   
 }
 
-export function handleMomentTextClick(mode, momentId) {
-  
-  alert('Hi!');
-
-}
-
 const mapStateToProps = state => ({
   handleMomentTextClick
 });
 
 const mapDispatchToProps = {
-  updateFocalMoment,
-  updateFocalMomentMode
+  handleMomentTextClick
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Moment);

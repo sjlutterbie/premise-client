@@ -48,7 +48,8 @@ export default (state = initialState, action) => {
     
     if(state.focalMomentMode != 'create') {
       return Object.assign({}, state, {
-        focalMoment: action.momentId
+        focalMoment: action.momentId,
+        focalMomentMode: 'actions'
       });
     }
   }
