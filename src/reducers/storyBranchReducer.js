@@ -1,7 +1,8 @@
 import {
   LOAD_DEFAULT_BRANCH,
   UPDATE_FOCAL_MOMENT,
-  UPDATE_FOCAL_MOMENT_MODE
+  UPDATE_FOCAL_MOMENT_MODE,
+  HANDLE_MOMENT_TEXT_CLICK
 } from '../actions';
 
 // Set initial state items for storyBranch elements
@@ -38,11 +39,19 @@ export default (state = initialState, action) => {
       focalMomentMode: action.mode
     });
   }
-
+  
   // HANDLE_MOMENT_TEXT_CLICK
     // If focalMomentMode === 'create'; no action
     // if focalMomentMode != 'create'; set mode to 'create', and momentId to 'id'
 
+  if(action.type === HANDLE_MOMENT_TEXT_CLICK) {
+    
+    if(state.focalMomentMode != 'create') {
+      return Object.assign({}, state, {
+        focalMoment: action.momentId
+      });
+    }
+  }
 
   return state;
   
