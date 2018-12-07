@@ -3,7 +3,8 @@ import faker from 'faker';
 import {
   LOAD_DEFAULT_BRANCH, loadDefaultBranch,
   UPDATE_FOCAL_MOMENT, updateFocalMoment,
-  UPDATE_FOCAL_MOMENT_MODE,updateFocalMomentMode
+  UPDATE_FOCAL_MOMENT_MODE,updateFocalMomentMode,
+  HANDLE_MOMENT_TEXT_CLICK, handleMomentTextClick
 } from './storyBranchActions';
 
 describe('Story Branch Actions', () => {
@@ -20,7 +21,6 @@ describe('Story Branch Actions', () => {
       const action = loadDefaultBranch(branch);
       expect(action.branch).toEqual(branch);
     });
-    
   });
   
   describe('updateFocalMoment', () => {
@@ -35,7 +35,6 @@ describe('Story Branch Actions', () => {
       const action = updateFocalMoment(momentId);
       expect(action.momentId).toEqual(momentId);
     });
-    
   });
   
   describe('updateFocalMomentMode', () => {
@@ -49,6 +48,20 @@ describe('Story Branch Actions', () => {
       const mode = faker.random.alphaNumeric(10);
       const action = updateFocalMomentMode(mode);
       expect(action.mode).toEqual(mode);
+    });
+  });
+  
+  describe('handleMomentTextClick', () => {
+    
+    it('Should return the action', () => {
+      const action = handleMomentTextClick();
+      expect(action.type).toEqual(HANDLE_MOMENT_TEXT_CLICK);
+    });
+    
+    it('Should return the correct value', () => {
+      const momentId = faker.random.uuid();
+      const action = handleMomentTextClick(momentId);
+      expect(action.momentId).toEqual(momentId);
     });
     
   });
