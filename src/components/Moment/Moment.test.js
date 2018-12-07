@@ -9,12 +9,16 @@ import {Moment} from './index';
 const testMomentText = faker.random.alphaNumeric(50);
   
 const testMoment = {
-  text: testMomentText
+  text: testMomentText,
+  id: faker.random.alphaNumeric(10)
 };
+
+const handleMomentTextClick = jest.fn();
 
 const testProps = {
   moment: testMoment,
-  mode: 'read'
+  mode: 'read',
+  handleMomentTextClick
 };
 
 // Create object to hold shallow render
@@ -105,4 +109,19 @@ describe('<Moment />', () => {
       expect(buttons.find('.create-moment').length).toEqual(1);
     });
   });
+
+  describe('Event handling', () => {
+    
+    it('Clicking on moment-text calls handleMomentTextClick', () => {
+      
+      wrapper = shallow(<Moment {...testProps}/>);
+      wrapper.find('.moment-text').simulate('click');
+      expect(handleMomentTextClick)
+        .toHaveBeenCalledWith(testProps.mode, testProps.moment.id);
+      
+    });
+
+  });
+  
+  
 });
