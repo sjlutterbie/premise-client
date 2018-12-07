@@ -15,7 +15,7 @@ describe('<PremiseApp />', () => {
     shallow(<PremiseApp {...props}/>);
   });
   
-  describe('ComponentDidMount', () => {
+  describe('ComponentWillMount', () => {
     
     let updateWindowWidth;
     let loadDefaultBranch;
@@ -28,9 +28,9 @@ describe('<PremiseApp />', () => {
     })
     
     it('Calls the lifecycle method', ()=> {
-      jest.spyOn(PremiseApp.prototype, 'componentDidMount');
+      jest.spyOn(PremiseApp.prototype, 'componentWillMount');
       const wrapper = shallow(<PremiseApp {...props}/>);
-      expect(PremiseApp.prototype.componentDidMount.mock.calls.length).toBe(1)
+      expect(PremiseApp.prototype.componentWillMount.mock.calls.length).toBe(1)
     });
     
     it('Calls the correct methods', () => {

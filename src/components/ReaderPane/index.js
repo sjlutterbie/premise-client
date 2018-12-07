@@ -14,8 +14,12 @@ export function ReaderPane(props) {
   //  moments: Array of moment objects
   
   const momentComps = props.moments.map((moment, index) => {
+    
     return (
-        <Moment key={index} mode="read" moment={moment}/>
+        <Moment key={index}
+                mode={moment.id == props.focalMoment
+                      ? props.focalMomentMode : 'read'}
+                moment={moment}/>
     );
   });
   
@@ -31,7 +35,9 @@ export function ReaderPane(props) {
 }
 
 const mapStateToProps = state => ({
-  moments: state.storyBranch.currentBranch
+  moments: state.storyBranch.currentBranch,
+  focalMoment: state.storyBranch.focalMoment,
+  focalMomentMode: state.storyBranch.focalMomentMode
 });
 
 export default connect(mapStateToProps)(ReaderPane);
