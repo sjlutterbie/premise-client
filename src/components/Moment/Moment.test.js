@@ -13,7 +13,8 @@ const testMoment = {
 };
 
 const testProps = {
-  moment: testMoment
+  moment: testMoment,
+  mode: 'read'
 };
 
 // Create object to hold shallow render
@@ -21,27 +22,48 @@ let wrapper;
 
 describe('<Moment />', () => {
   
-  // Build the <Moment/> component before each test
-  beforeEach(() => {
-    wrapper = shallow(<Moment {...testProps}/>);
-  });
-  
   it('Renders without crashing', () => {
     shallow(<Moment {...testProps}/>);
   });
   
-  it('Has three primary components', () => {
-    expect(wrapper.children().length).toEqual(3);
+  describe('The moment-text area', () => {
+
+    const modes = ['read', 'actions', 'create'];
+
+    modes.forEach(mode => {
+      testProps.mode = mode;
+      wrapper = shallow(<Moment {...testProps}/>);
+      
+      it('Exists in every mode', () => {
+        expect(wrapper.find('.moment-text').length).toEqual(1);
+      });
+      
+      it('Contains the moment text in every mode', () => {
+        const textArea = wrapper.find('.moment-text');
+        expect(textArea.text()).toEqual(testProps.moment.text);
+      });
+    });
   });
-  
-  describe('.moment-text area', () => {
-    it('Renders momentText in the correct place', () => {
-      const textArea = wrapper.find('.moment-text');
-      expect(textArea.text()).toEqual(testProps.moment.text);
-    });    
+
+  describe('Read mode', () => {
+    
+    beforeEach(() => {
+      testProps.mode = 'read';
+      wrapper = shallow(<Moment {...testProps}/>);
+    });
+
+    it('Has one element', () => {
+      expect(wrapper.find('.moment').children().length).toEqual(1);
+    });
+
   });
-  
-  describe('.action-buttons area', () => {
+
+  describe('Actions mode', () => {
+    
+    beforeEach(() => {
+      testProps.mode = 'actions';
+      wrapper = shallow(<Moment {...testProps}/>);
+    });
     
     it('Has two buttons', () => {
       const actionArea = wrapper.find('.action-buttons');
@@ -49,24 +71,24 @@ describe('<Moment />', () => {
     });
     
     it('Has correctly named buttons', () => {
-      const actionArea = wrapper.find('.action-buttons');
-      const buttons = actionArea.find('button');
+      const buttons = wrapper.find('button');
       expect(buttons.find('.open-create-mode').length).toEqual(1);
       expect(buttons.find('.switch-story-branch').length).toEqual(1);
     });
-    
   });
   
-  describe('Create moment form', () => {
+  describe('Create mode', () => {
     
     let formArea;
     
     beforeEach(() => {
+      testProps.mode = 'create';
+      wrapper = shallow(<Moment {...testProps}/>);
       formArea = wrapper.find('form');
     });
     
-    it('Exists', () => {
-      expect(wrapper.find('form').length).toEqual(1);
+    it('Has a single form', () => {
+      expect(formArea.length).toEqual(1);
     });
     
     it('Has a single textarea element', () => {
@@ -82,9 +104,5 @@ describe('<Moment />', () => {
       expect(buttons.find('.cancel-create-moment').length).toEqual(1);
       expect(buttons.find('.create-moment').length).toEqual(1);
     });
-
   });
-
-
-  
 });
