@@ -100,8 +100,6 @@ describe('<Moment />', () => {
         expect(updateFocalMomentMode_test)
           .toHaveBeenCalledWith('create');
       });
-      
-      
     });
     
   });
@@ -133,6 +131,21 @@ describe('<Moment />', () => {
       expect(buttons.find('.cancel-create-moment').length).toEqual(1);
       expect(buttons.find('.create-moment').length).toEqual(1);
     });
+    
+    describe('Event handling', () => {
+      
+      it('Clicking `Cancel` returns to `actions` mode', () => {
+        testProps.mode = 'create';
+        const wrapper = shallow(<Moment {...testProps}/>);
+        wrapper.find('.cancel-create-moment').simulate('click');
+        expect(updateFocalMomentMode_test)
+          .toHaveBeenCalledWith('actions');
+      });
+      
+    });
+    
+    
+    
   });
   
 });
