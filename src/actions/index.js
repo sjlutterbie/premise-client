@@ -1,6 +1,7 @@
 export {
   SET_USER_MENU_VIEW, setUserMenuView,
-  UPDATE_WINDOW_WIDTH, updateWindowWidth
+  UPDATE_WINDOW_WIDTH, updateWindowWidth,
+  ADD_VISIBLE_PANES, addVisiblePanes
 } from './navActions';
         
 export {
