@@ -5,6 +5,8 @@ export const initialState = {
 
   // Responsive handling
   windowWidth: 0,
+  //responsiveBracket: 'mobile', // Dev in progress?
+  visiblePanes: ['reader'],
 
   // Element visibility
   showUserMenu: false

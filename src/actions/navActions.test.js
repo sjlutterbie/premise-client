@@ -1,9 +1,14 @@
+import faker from 'faker';
+
 import {SET_USER_MENU_VIEW, setUserMenuView,
-        UPDATE_WINDOW_WIDTH, updateWindowWidth} from './navActions';
+        UPDATE_WINDOW_WIDTH, updateWindowWidth,
+        ADD_VISIBLE_PANES, addVisiblePanes,
+        REMOVE_VISIBLE_PANES, removeVisiblePanes} from './navActions';
 
 describe('Navigation Actions', () => {
   
   describe('setUserMenuView', () => {
+
     it('Should return the action', () => {
       const action = setUserMenuView();
       expect(action.type).toEqual(SET_USER_MENU_VIEW);
@@ -14,10 +19,10 @@ describe('Navigation Actions', () => {
       const action = setUserMenuView(bool);
       expect(action.visible).toEqual(bool);
     });
-    
   });
   
   describe('updateWindowWidth', () => {
+
     it('Should return the action', () => {
       const action = updateWindowWidth();
       expect(action.type).toEqual(UPDATE_WINDOW_WIDTH);
@@ -28,7 +33,35 @@ describe('Navigation Actions', () => {
       const action = updateWindowWidth(testWidth);
       expect(action.width).toEqual(testWidth);
     });
+  });
+  
+  describe('addVisiblePanes', () => {
+
+    it('Should return the action', () => {
+      const action = addVisiblePanes();
+      expect(action.type).toEqual(ADD_VISIBLE_PANES);
+    });
     
+    it('Should return the correct value', () => {
+      const testPanes = [faker.random.alphaNumeric(10)];
+      const action = addVisiblePanes(testPanes);
+      expect(action.panes).toEqual(testPanes);
+    });
+  });
+  
+  describe('removeVisiblePanes', () => {
+
+    it('Should return the action', () => {
+      const action = removeVisiblePanes();
+      expect(action.type).toEqual(REMOVE_VISIBLE_PANES);
+    });
+    
+    it('Should return the correct value', () => {
+      const testPanes = [faker.random.alphaNumeric(10)];
+      const action = removeVisiblePanes(testPanes);
+      expect(action.panes).toEqual(testPanes);
+    });
+
   });
   
 });

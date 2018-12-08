@@ -31,8 +31,8 @@ export class PremiseApp extends Component{
   componentWillMount() {
     this.props.loadDefaultBranch(DEV_BRANCH);
     this.props.updateWindowWidth(window.innerWidth);
-    window.addEventListener('resize', () => {
-                            this.props.updateWindowWidth(window.innerWidth)});
+    window.addEventListener('resize',
+      () => {this.props.updateWindowWidth(window.innerWidth);});
   }
 
   render() {

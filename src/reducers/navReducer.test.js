@@ -6,10 +6,22 @@ import {SET_USER_MENU_VIEW, setUserMenuView,
 describe('navState', () => {
   
   it('Should contain the expected defaults', () => {
-    const expectedKeys = ['windowWidth','showUserMenu'];
+    const expectedKeys = ['windowWidth','visiblePanes', 'showUserMenu'];
     expect(Object.keys(initialState)).toEqual(expectedKeys);
   });
   
+  it('Default state elements should be the correct type', () => {
+    const expectedTypes = [
+      ['windowWidth', 'number'],
+      ['visiblePanes', 'object'], //Array-like object
+      ['showUserMenu', 'boolean']
+    ];
+    expectedTypes.forEach(element => {
+      expect(typeof initialState[element[0]]).toEqual(element[1]);
+    });
+    
+  });
+
   
 });
 
