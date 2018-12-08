@@ -43,12 +43,19 @@ export function Moment(props){
         }
         {props.mode === 'create'
           ?
-            <form className="create-moment-form">
+            <form className="create-moment-form"
+                  // DEV CODE TO PREVENT APP-RELOAD
+                  onSubmit={(event) => {event.preventDefault()}}>
               <fieldset>
                 <legend>Add to the story</legend>
                 <textarea></textarea>
-                <button className="cancel-create-moment">Cancel</button>
-                <button className="create-moment">Create</button>
+                <button className="cancel-create-moment"
+                        onClick={() => props.updateFocalMomentMode('actions')}
+                >Cancel</button>
+                <button className="create-moment"
+                        // DEV CODE
+                        onClick={() => alert('You clicked a button!')}
+                >Create</button>
               </fieldset>
             </form>
           : null
