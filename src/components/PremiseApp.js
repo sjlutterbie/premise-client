@@ -26,9 +26,6 @@ import {getResponsiveBracket} from '../selectors/navSelectors';
   
 // END DEV CODE
 
-
-
-
 export class PremiseApp extends Component{
 
   componentWillMount() {
@@ -37,7 +34,6 @@ export class PremiseApp extends Component{
     window.addEventListener('resize', () => {
                             this.props.updateWindowWidth(window.innerWidth)});
   }
-
 
   render() {
     return (
