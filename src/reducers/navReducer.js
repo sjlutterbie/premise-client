@@ -1,5 +1,5 @@
 import {SET_USER_MENU_VIEW,UPDATE_WINDOW_WIDTH,
-        ADD_VISIBLE_PANES} from '../actions';
+        ADD_VISIBLE_PANES, REMOVE_VISIBLE_PANES} from '../actions';
 
 // Set initial state items for navigation elements
 export const initialState = {
@@ -32,7 +32,7 @@ export default (state = initialState, action) => {
   // Add elements to visiblePanes array
   if (action.type === ADD_VISIBLE_PANES) {
     
-    // Remove duplicates
+    // Remove duplicates from input array
     action.panes = action.panes.filter((pane, index) => {
       return action.panes.indexOf(pane) == index;
     });
@@ -42,13 +42,26 @@ export default (state = initialState, action) => {
       return !state.visiblePanes.includes(pane);
     });
     
+    // Update state
     return Object.assign({}, state, {
       visiblePanes: state.visiblePanes.concat(action.panes)
     });
   }
-  
-  
-  
+
+  // Remove elements from visiblePanes array
+  if (action.type === REMOVE_VISIBLE_PANES) {
+    
+    // Create filtered panes area, for clarity of state update
+    let tempVisiblePanes = state.visiblePanes;
+    tempVisiblePanes = tempVisiblePanes.filter(pane => {
+      return !action.panes.includes(pane);
+    });
+    
+    return Object.assign({}, state, {
+      visiblePanes: tempVisiblePanes
+    });
+  }
+
   return state;
 
 };

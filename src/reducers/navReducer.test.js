@@ -1,9 +1,8 @@
 import faker from 'faker';
 
 import {default as navReducer, initialState} from './navReducer';
-import {SET_USER_MENU_VIEW, setUserMenuView,
-        UPDATE_WINDOW_WIDTH, updateWindowWidth,
-        addVisiblePanes} from '../actions';
+import {setUserMenuView, updateWindowWidth,
+        addVisiblePanes, removeVisiblePanes} from '../actions';
 
 
 describe('navState', () => {
@@ -115,14 +114,24 @@ describe('Navigation Reducer', () => {
         });
         expect(state.visiblePanes.length).toEqual(2);
       });
+    });
+  });
+  
+  describe('removeVisiblePanes(panes)', () => {
+    
+    it('Should remove elements from array', () => {
       
+      const existingPane1 = faker.random.alphaNumeric(10);
+      const existingPane2 = faker.random.alphaNumeric(10);
+      let state = {
+        visiblePanes: [existingPane1, existingPane2] 
+      };
+      let removedPanes = [existingPane1, existingPane2];
+      state = navReducer(state, removeVisiblePanes(removedPanes));
+      expect(state.visiblePanes.length).toEqual(0);
 
     });
     
-    
   });
   
-  
-  // TODO: removeVisiblePanes(panes)
-
 });
