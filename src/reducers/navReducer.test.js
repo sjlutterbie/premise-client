@@ -120,7 +120,6 @@ describe('Navigation Reducer', () => {
   describe('removeVisiblePanes(panes)', () => {
     
     it('Should remove elements from array', () => {
-      
       const existingPane1 = faker.random.alphaNumeric(10);
       const existingPane2 = faker.random.alphaNumeric(10);
       let state = {
@@ -129,8 +128,9 @@ describe('Navigation Reducer', () => {
       let removedPanes = [existingPane1, existingPane2];
       state = navReducer(state, removeVisiblePanes(removedPanes));
       expect(state.visiblePanes.length).toEqual(0);
-
     });
+    
+    
     
   });
   

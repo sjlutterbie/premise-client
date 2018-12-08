@@ -9,7 +9,7 @@ export default function Header(props) {
   
   return (
     <header>
-      <Link to="/premise"><h1>Premise</h1></Link>
+      <h1>Premise</h1>
       <HeaderNav />
       <LocationBar location="Location Bar"/>
     </header>

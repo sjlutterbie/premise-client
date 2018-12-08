@@ -6,28 +6,22 @@ import faker from 'faker';
 
 import {PremiseApp} from './PremiseApp';
 
+// Set up testing defaults
+
+let props = {
+  updateWindowWidth: jest.fn(),
+  loadDefaultBranch: jest.fn(),
+  responsiveBracket: 'mobile',
+  visiblePanes: []
+};
+
 describe('<PremiseApp />', () => {
   
   it('Renders without crashing', () => {
-    const props = {
-      updateWindowWidth: jest.fn(),
-      loadDefaultBranch: jest.fn()
-    };
     shallow(<PremiseApp {...props}/>);
   });
   
-  // TODO: Complete tests for responsive rendering
-  
   describe('Responsive rendering', () => {
-    
-    let props;
-    
-    beforeEach(() => {
-      props = {
-        updateWindowWidth: jest.fn(),
-        loadDefaultBranch: jest.fn()
-      };
-    });
     
     it('Only renders <MobileNav/> in mobile view', () => {
       const testCases = [
@@ -44,20 +38,39 @@ describe('<PremiseApp />', () => {
         expect(mobNav.length).toEqual(testCase[1]);
       });
     });
-    
   });
   
+  describe('visiblePanes rendering', () => {
+    
+    it('Only renders <PremiseArea/> when specified', () => {
+      const testCases = [
+        // [visiblePanes, render <PremiseArea/>? 1=yes, 0=no]
+        [['reader'], 1],
+        [[faker.random.alphaNumeric(10)],0]
+      ];
+      testCases.forEach(testCase => {
+        props.visiblePanes = testCase[0];
+        const wrapper = shallow(<PremiseApp {...props}/>);
+        expect(wrapper.find('.reader-wrapper').length)
+          .toEqual(testCase[1]);
+      });
+    });
+    
+  });
+
   describe('ComponentWillMount', () => {
     
     let updateWindowWidth;
     let loadDefaultBranch;
-    let props;
-    
+
     beforeEach(() => {
       updateWindowWidth = jest.fn();
       loadDefaultBranch = jest.fn();
-      props = {updateWindowWidth, loadDefaultBranch};
-    })
+      props = Object.assign({}, props, {
+        updateWindowWidth,
+        loadDefaultBranch
+      });
+    });
     
     it('Calls the lifecycle method', ()=> {
       jest.spyOn(PremiseApp.prototype, 'componentWillMount');
@@ -93,10 +106,4 @@ describe('<PremiseApp />', () => {
     });
 
   });
-  
-  // TODO: Testing React Router routes
-    // path "/premise" should load <PremiseArea />
-    // path "/userguide" should load <UserGuide />
-    // Establish & test error handling
-  
 });

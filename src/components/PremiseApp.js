@@ -47,10 +47,15 @@ export class PremiseApp extends Component{
                  </div>)
               : (null)
             }
-            <Switch>
-              <Route path="/premise" component={PremiseArea} />
-              <Route path="/userguide" component={UserGuide} />
-            </Switch>
+            
+            {this.props.visiblePanes.includes('reader')
+              ? (<div className="reader-wrapper">
+                   <PremiseArea />
+                 </div>)
+              : (null)
+            }
+
+            <UserGuide />
           </main>
         </div>
       </Router>
@@ -59,7 +64,8 @@ export class PremiseApp extends Component{
 }
 
 const mapStateToProps = state => ({
-  responsiveBracket: getResponsiveBracket(state)
+  responsiveBracket: getResponsiveBracket(state),
+  visiblePanes: state.navState.visiblePanes
 });
 
 const mapDispatchToProps = {

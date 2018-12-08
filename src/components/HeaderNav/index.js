@@ -10,7 +10,7 @@ export default function Header(props) {
     <div className="header-nav">
       <ul>
         <li>
-          <Link to="/userguide"><i className="material-icons">help</i></Link>
+          <i className="material-icons">help</i>
         </li>
         <li>
           <UserMenu />
