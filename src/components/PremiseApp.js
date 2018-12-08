@@ -5,6 +5,7 @@ import { connect }  from 'react-redux';
 import Header from './Header';
 import PremiseArea from './PremiseArea';
 import UserGuide from './UserGuide';
+import MobileNav from './MobileNav';
 
 import {updateWindowWidth, loadDefaultBranch} from '../actions';
 import {getResponsiveBracket} from '../selectors/navSelectors';
@@ -25,9 +26,6 @@ import {getResponsiveBracket} from '../selectors/navSelectors';
   
 // END DEV CODE
 
-
-
-
 export class PremiseApp extends Component{
 
   componentWillMount() {
@@ -37,13 +35,18 @@ export class PremiseApp extends Component{
                             this.props.updateWindowWidth(window.innerWidth)});
   }
 
-
   render() {
     return (
       <Router>
         <div className="premise-app">
           <Header />
           <main>
+            {this.props.responsiveBracket === 'mobile'
+              ? (<div className="mob-nav-wrapper">
+                   <MobileNav/>
+                 </div>)
+              : (null)
+            }
             <Switch>
               <Route path="/premise" component={PremiseArea} />
               <Route path="/userguide" component={UserGuide} />
