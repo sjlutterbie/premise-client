@@ -6,8 +6,7 @@ import faker from 'faker';
 
 import {PremiseApp} from './PremiseApp';
 
-// Set up testing defaults
-
+// Set up testing environment
 let props = {
   updateWindowWidth: jest.fn(),
   loadDefaultBranch: jest.fn(),
@@ -34,7 +33,7 @@ describe('<PremiseApp />', () => {
       testCases.forEach(testCase => {
         props.responsiveBracket = testCase[0];
         const wrapper = shallow(<PremiseApp {...props}/>);
-        const mobNav = wrapper.find('.mob-nav-wrapper');
+        const mobNav = wrapper.find('.rct-mob-nav-wrapper');
         expect(mobNav.length).toEqual(testCase[1]);
       });
     });
@@ -42,20 +41,19 @@ describe('<PremiseApp />', () => {
   
   describe('visiblePanes rendering', () => {
     
-    it('Only renders <PremiseArea/> when specified', () => {
+    it('Only renders <UserGuide /> when specified', () => {
       const testCases = [
         // [visiblePanes, render <PremiseArea/>? 1=yes, 0=no]
-        [['reader'], 1],
+        [['userguide'], 1],
         [[faker.random.alphaNumeric(10)],0]
       ];
       testCases.forEach(testCase => {
         props.visiblePanes = testCase[0];
         const wrapper = shallow(<PremiseApp {...props}/>);
-        expect(wrapper.find('.reader-wrapper').length)
+        expect(wrapper.find('.rct-userguide-wrapper').length)
           .toEqual(testCase[1]);
       });
     });
-    
   });
 
   describe('ComponentWillMount', () => {

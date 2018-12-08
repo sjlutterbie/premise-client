@@ -27,7 +27,15 @@ import {getResponsiveBracket} from '../selectors/navSelectors';
 // END DEV CODE
 
 export class PremiseApp extends Component{
-
+  // Expected props:
+  //  Actions:
+  //    loadDefaultBranch
+  //    updateWindowWidth
+  //  State values:
+  //    responsiveBracket (string)
+  //    visiblePanes (array)
+  
+  
   componentWillMount() {
     this.props.loadDefaultBranch(DEV_BRANCH);
     this.props.updateWindowWidth(window.innerWidth);
@@ -42,20 +50,18 @@ export class PremiseApp extends Component{
           <Header />
           <main>
             {this.props.responsiveBracket === 'mobile'
-              ? (<div className="mob-nav-wrapper">
+              ? (<div className="rct-mob-nav-wrapper">
                    <MobileNav/>
                  </div>)
               : (null)
             }
-            
-            {this.props.visiblePanes.includes('reader')
-              ? (<div className="reader-wrapper">
-                   <PremiseArea />
+            {this.props.visiblePanes.includes('userguide')
+              ? (<div className="rct-userguide-wrapper">
+                  <UserGuide />
                  </div>)
               : (null)
             }
-
-            <UserGuide />
+            <PremiseArea />
           </main>
         </div>
       </Router>

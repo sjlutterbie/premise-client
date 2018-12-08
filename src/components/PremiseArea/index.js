@@ -1,4 +1,6 @@
 import React from 'react';
+import {connect} from 'react-redux';
+
 import './PremiseArea.css';
 
 // <PremiseArea /> contains the overall interface when interacting with a single
@@ -8,14 +10,34 @@ import './PremiseArea.css';
 import ReaderPane from '../ReaderPane';
 import NetworkPane from '../NetworkPane';
 
-export default function PremiseArea(props) {
+export function PremiseArea(props) {
+  // Expected props:
+  //  State elements:
+  //    visiblePanes (array)
   
   return (
     <div className="premise-area">
-      <ReaderPane />
-      <NetworkPane />
+      {props.visiblePanes.includes('reader')
+        ? (<div className="rct-readerpane-wrapper">
+             <ReaderPane />
+           </div>)
+        : (null)
+      }
+      {props.visiblePanes.includes('network')
+        ? (<div className="rct-networkpane-wrapper">
+             <NetworkPane />
+           </div>)
+        : (null)
+      }
     </div>
   );
 
 }
 
+const mapStateToProps = state => ({
+  visiblePanes: state.navState.visiblePanes
+});
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PremiseArea);
