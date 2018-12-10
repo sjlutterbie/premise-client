@@ -2,7 +2,6 @@ import faker from 'faker';
 
 import {default as navReducer, initialState} from './navReducer';
 import {setUserMenuView, monitorResponsiveBracket,
-        updateWindowWidth,
         addVisiblePanes, removeVisiblePanes} from '../actions';
 
 

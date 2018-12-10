@@ -1,8 +1,5 @@
 import {SET_USER_MENU_VIEW, MONITOR_RESPONSIVE_BRACKET,
-        UPDATE_WINDOW_WIDTH,
         ADD_VISIBLE_PANES, REMOVE_VISIBLE_PANES} from '../actions';
-
-import {addVisiblePanes, removeVisiblePanes} from '../actions';
 
 // Set initial state items for navigation elements
 export const initialState = {
@@ -68,13 +65,6 @@ export default (state = initialState, action) => {
     return Object.assign({}, state, newState);
   }
 
-  // Update windowWidth
-  if (action.type === UPDATE_WINDOW_WIDTH) {
-    return Object.assign({}, state, {
-      windowWidth: action.width
-    });
-  }
-  
   // Add elements to visiblePanes array
   if (action.type === ADD_VISIBLE_PANES) {
     
