@@ -8,8 +8,8 @@ import {addVisiblePanes, removeVisiblePanes} from '../actions';
 export const initialState = {
 
   // Responsive handling
-  windowWidth: 0,
   responsiveBracket: 'small', // Default to mobile setting
+
   visiblePanes: ['reader'], // Default to mobile setting
 
   // Element visibility

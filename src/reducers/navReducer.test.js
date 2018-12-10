@@ -9,14 +9,12 @@ import {setUserMenuView, monitorResponsiveBracket,
 describe('navState', () => {
   
   it('Should contain the expected defaults', () => {
-    const expectedKeys = ['windowWidth','responsiveBracket',
-                          'visiblePanes', 'showUserMenu'];
+    const expectedKeys = ['responsiveBracket','visiblePanes','showUserMenu'];
     expect(Object.keys(initialState)).toEqual(expectedKeys);
   });
   
   it('Default state elements should be the correct type', () => {
     const expectedTypes = [
-      ['windowWidth', 'number'],
       ['responsiveBracket', 'string'],
       ['visiblePanes', 'object'], //Array-like object
       ['showUserMenu', 'boolean']
@@ -26,7 +24,6 @@ describe('navState', () => {
     });
   });
 });
-
 
 describe('Navigation Reducer', () => {
 
@@ -91,20 +88,6 @@ describe('Navigation Reducer', () => {
         };
         state=navReducer(state, monitorResponsiveBracket(testCase[2]));
         expect(state.visiblePanes).toEqual(testCase[3]);
-      });
-    });
-  });
-
-  describe('updateWindowWidth(val)', () => {
-    
-    it('Should set windowWidth to val', () => {
-      let state = {
-        windowWidth: null
-      };
-      let testWidth = Math.random() * 2000;
-      state = navReducer(state, updateWindowWidth(testWidth));
-      expect(state).toEqual({
-        windowWidth: testWidth
       });
     });
   });
@@ -174,9 +157,5 @@ describe('Navigation Reducer', () => {
       state = navReducer(state, removeVisiblePanes(removedPanes));
       expect(state.visiblePanes.length).toEqual(0);
     });
-    
-    
-    
   });
-  
 });
