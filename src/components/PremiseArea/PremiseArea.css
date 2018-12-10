@@ -1,0 +1,4 @@
+.premise-area {
+  display: flex;
+  flex-flow: row nowrap;
+}

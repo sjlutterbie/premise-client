@@ -17,15 +17,15 @@ export function PremiseArea(props) {
   
   return (
     <div className="premise-area">
-      {props.visiblePanes.includes('reader')
-        ? (<div className="rct-readerpane-wrapper">
-             <ReaderPane />
-           </div>)
-        : (null)
-      }
       {props.visiblePanes.includes('network')
         ? (<div className="rct-networkpane-wrapper">
              <NetworkPane />
+           </div>)
+        : (null)
+      }
+      {props.visiblePanes.includes('reader')
+        ? (<div className="rct-readerpane-wrapper">
+             <ReaderPane />
            </div>)
         : (null)
       }
