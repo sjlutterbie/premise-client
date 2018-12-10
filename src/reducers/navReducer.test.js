@@ -3,13 +3,13 @@ import faker from 'faker';
 import {default as navReducer, initialState} from './navReducer';
 import {setUserMenuView, monitorResponsiveBracket,
         addVisiblePanes, removeVisiblePanes,
-        updateUserGuidePage} from '../actions';
+        updateUserGuidePage, updateCurrentLocation} from '../actions';
 
 
 describe('navState', () => {
   
   it('Should contain the expected defaults', () => {
-    const expectedKeys = ['responsiveBracket','visiblePanes',
+    const expectedKeys = ['responsiveBracket','visiblePanes', 'currentLocation',
                           'userGuidePage','showUserMenu'];
     expect(Object.keys(initialState)).toEqual(expectedKeys);
   });
@@ -18,6 +18,7 @@ describe('navState', () => {
     const expectedTypes = [
       ['responsiveBracket', 'string'],
       ['visiblePanes', 'object'], //Array-like object
+      ['currentLocation', 'string'],
       ['userGuidePage', 'string'],
       ['showUserMenu', 'boolean']
     ];
@@ -161,7 +162,7 @@ describe('Navigation Reducer', () => {
     });
   });
   
-  describe('updateUserGuidePage(page', () => {
+  describe('updateUserGuidePage(page)', () => {
     
     it('Should update userGuidePage correctly', () => {
       let state = {
@@ -170,6 +171,18 @@ describe('Navigation Reducer', () => {
       const testPage = faker.random.alphaNumeric(10);
       state = navReducer(state, updateUserGuidePage(testPage));
       expect(state.userGuidePage).toEqual(testPage);
+    });
+  });
+  
+  describe('updateCurrentLocation(page)', () => {
+    
+    it('Should update currentLocation correctly', () => {
+      let state = {
+        currentLocation: 'foo'
+      };
+      const testLoc = faker.random.alphaNumeric(10);
+      state = navReducer(state, updateCurrentLocation(testLoc));
+      expect(state.currentLocation).toEqual(testLoc);
     });
   });
 });
