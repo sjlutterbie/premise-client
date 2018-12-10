@@ -1,6 +1,6 @@
 import {SET_USER_MENU_VIEW, MONITOR_RESPONSIVE_BRACKET,
         ADD_VISIBLE_PANES, REMOVE_VISIBLE_PANES,
-        UPDATE_USER_GUIDE_PAGE} from '../actions';
+        UPDATE_USER_GUIDE_PAGE, UPDATE_CURRENT_LOCATION} from '../actions';
 
 // Set initial state items for navigation elements
 export const initialState = {
@@ -10,9 +10,12 @@ export const initialState = {
 
   visiblePanes: ['reader'], // Default to mobile setting
   
+  // Current location within App
+  currentLocation: 'TEMP VALUE',
+  
   // Current <UserGuide/> page
   userGuidePage: 'page1', // Default to page1
-
+  
   // Element visibility
   showUserMenu: false
 };
@@ -106,6 +109,13 @@ export default (state = initialState, action) => {
   if (action.type === UPDATE_USER_GUIDE_PAGE) {
     return Object.assign({}, state, {
       userGuidePage: action.page
+    });
+  }
+
+  // Update currentLocation
+  if (action.type === UPDATE_CURRENT_LOCATION) {
+    return Object.assign({}, state, {
+      currentLocation: action.location
     });
   }
 
