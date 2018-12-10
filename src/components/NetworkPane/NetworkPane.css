@@ -1,5 +1,10 @@
-@media screen and (max-width: 599px) {
+.network-pane {
+  margin-top: 50px;
+  border: 1px solid red;
+}
+
+@media screen and (min-width: 600px) {
   .network-pane {
-    margin-top: 50px;
+    margin-top: 0px;
   }
 }

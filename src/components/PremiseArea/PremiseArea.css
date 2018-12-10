@@ -2,3 +2,13 @@
   display: flex;
   flex-flow: row nowrap;
 }
+
+@media screen and (min-width: 600px) {
+  .rct-networkpane-wrapper {
+    width: 60%;
+  }
+  
+  .rct-readerpane-wrapper {
+    width: 40%;
+  }
+}
