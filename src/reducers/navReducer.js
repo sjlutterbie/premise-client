@@ -1,4 +1,5 @@
-import {SET_USER_MENU_VIEW,UPDATE_WINDOW_WIDTH,
+import {SET_USER_MENU_VIEW, MONITOR_RESPONSIVE_BRACKET,
+        UPDATE_WINDOW_WIDTH,
         ADD_VISIBLE_PANES, REMOVE_VISIBLE_PANES} from '../actions';
 
 // Set initial state items for navigation elements
@@ -6,7 +7,7 @@ export const initialState = {
 
   // Responsive handling
   windowWidth: 0,
-  //responsiveBracket: 'mobile', // Dev in progress?
+  responsiveBracket: 'mobile', // Default setting (DEV)
   visiblePanes: ['reader','network','userguide'], // Render all (DEV)
 
   // Element visibility
@@ -22,6 +23,20 @@ export default (state = initialState, action) => {
     });
   }
   
+  // monitor responsiveBracket
+  if (action.type === MONITOR_RESPONSIVE_BRACKET) {
+    // Evaluate responsive bracket
+    let bracket;
+    if(action.width < 600) {
+      bracket = 'small';
+    } else {
+      bracket = 'large';
+    }
+    return Object.assign({}, state, {
+      responsiveBracket: bracket
+    });
+  }
+
   // Update windowWidth
   if (action.type === UPDATE_WINDOW_WIDTH) {
     return Object.assign({}, state, {

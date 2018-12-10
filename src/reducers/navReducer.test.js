@@ -1,20 +1,23 @@
 import faker from 'faker';
 
 import {default as navReducer, initialState} from './navReducer';
-import {setUserMenuView, updateWindowWidth,
+import {setUserMenuView, monitorResponsiveBracket,
+        updateWindowWidth,
         addVisiblePanes, removeVisiblePanes} from '../actions';
 
 
 describe('navState', () => {
   
   it('Should contain the expected defaults', () => {
-    const expectedKeys = ['windowWidth','visiblePanes', 'showUserMenu'];
+    const expectedKeys = ['windowWidth','responsiveBracket',
+                          'visiblePanes', 'showUserMenu'];
     expect(Object.keys(initialState)).toEqual(expectedKeys);
   });
   
   it('Default state elements should be the correct type', () => {
     const expectedTypes = [
       ['windowWidth', 'number'],
+      ['responsiveBracket', 'string'],
       ['visiblePanes', 'object'], //Array-like object
       ['showUserMenu', 'boolean']
     ];
@@ -49,6 +52,25 @@ describe('Navigation Reducer', () => {
       });
     });
   });
+
+  describe('monitorResponsiveBracket', () => {
+    it('Sets responsiveBracket correctly', () => {
+      const testCases = [
+        //[width, expected responsiveBracket]
+        [599, 'small'],
+        [600, 'large'] 
+      ];
+      testCases.forEach(testCase => {
+        let state = {
+          responsiveBracket: ''
+        };
+        state = navReducer(state, monitorResponsiveBracket(testCase[0]));
+        expect(state.responsiveBracket).toEqual(testCase[1]);
+      });
+    });
+  });
+
+
 
   describe('updateWindowWidth(val)', () => {
     
