@@ -5,6 +5,12 @@ export const setUserMenuView = (visible) => ({
   visible // Expects boolean
 });
 
+export const MONITOR_RESPONSIVE_BRACKET = 'MONITOR_RESPONSIVE_BRACKET';
+export const monitorResponsiveBracket = (width) => ({
+  type: MONITOR_RESPONSIVE_BRACKET,
+  width
+});
+
 export const UPDATE_WINDOW_WIDTH = 'UPDATE_WINDOW_WIDTH';
 export const updateWindowWidth = (width) => ({
   type: UPDATE_WINDOW_WIDTH,
