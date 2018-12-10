@@ -3,7 +3,8 @@ export {
   MONITOR_RESPONSIVE_BRACKET, monitorResponsiveBracket,
   ADD_VISIBLE_PANES, addVisiblePanes,
   REMOVE_VISIBLE_PANES, removeVisiblePanes,
-  UPDATE_USER_GUIDE_PAGE, updateUserGuidePage
+  UPDATE_USER_GUIDE_PAGE, updateUserGuidePage,
+  UPDATE_CURRENT_LOCATION, updateCurrentLocation
 } from './navActions';
         
 export {

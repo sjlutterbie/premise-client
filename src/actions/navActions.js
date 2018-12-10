@@ -28,3 +28,9 @@ export const updateUserGuidePage = (page) => ({
   type: UPDATE_USER_GUIDE_PAGE,
   page // Expects string
 });
+
+export const UPDATE_CURRENT_LOCATION = 'UPDATE_CURRENT_LOCATION';
+export const updateCurrentLocation = (location) => ({
+  type: UPDATE_CURRENT_LOCATION,
+  location
+})

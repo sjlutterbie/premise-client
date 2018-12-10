@@ -4,7 +4,8 @@ import {SET_USER_MENU_VIEW, setUserMenuView,
         MONITOR_RESPONSIVE_BRACKET, monitorResponsiveBracket,
         ADD_VISIBLE_PANES, addVisiblePanes,
         REMOVE_VISIBLE_PANES, removeVisiblePanes,
-        UPDATE_USER_GUIDE_PAGE, updateUserGuidePage} from './navActions';
+        UPDATE_USER_GUIDE_PAGE, updateUserGuidePage,
+        UPDATE_CURRENT_LOCATION, updateCurrentLocation} from './navActions';
 
 describe('Navigation Actions', () => {
   
@@ -75,6 +76,19 @@ describe('Navigation Actions', () => {
       const testPage = faker.random.alphaNumeric(10);
       const action = updateUserGuidePage(testPage);
       expect(action.page).toEqual(testPage);
+    });
+  });
+  
+  describe('updateCurrentLocation', () => {
+    it('Should return the action', () => {
+      const action = updateCurrentLocation();
+      expect(action.type).toEqual(UPDATE_CURRENT_LOCATION);
+    });
+    
+    it('SHould return the correct value', () => {
+      const testLoc = faker.random.alphaNumeric(10);
+      const action = updateCurrentLocation(testLoc);
+      expect(action.location).toEqual(testLoc);
     });
   });
 });
