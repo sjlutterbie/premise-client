@@ -6,7 +6,7 @@ import './UserGuide.css';
 import {userGuideData} from './UserGuideData';
 
 import {addVisiblePanes, removeVisiblePanes,
-        updateUserGuidePage} from '../../actions';
+        updateUserGuidePage, updateCurrentLocation} from '../../actions';
 
 // <UserGuide /> is a 'routable' area of the site, that includes the
 //  introductory slideshow and, eventually, other tools, such as an FAQ.
@@ -19,6 +19,7 @@ export function UserGuide(props) {
   //    addVisiblePanes(array)
   //    removeVisiblePanes(array)
   //    updateUserGuidePage(string)
+  //    updateCurrentLocation(string)
   //  Other:
   //    userGuideData: Custom JSON object
   
@@ -34,6 +35,7 @@ export function UserGuide(props) {
                 }
                 props.addVisiblePanes(addPanes);
                 props.removeVisiblePanes(removePanes);
+                props.updateCurrentLocation('TEMP VALUE') // DEV: Will update with real data
               }}>Return to App</button>
       <div className="userguide-content-area">
         {props.userGuideData[props.userGuidePage].content}
@@ -70,7 +72,8 @@ export const mapStateToProps = state => ({
 export const mapDispatchToProps = {
   addVisiblePanes,
   removeVisiblePanes,
-  updateUserGuidePage
+  updateUserGuidePage,
+  updateCurrentLocation
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserGuide);

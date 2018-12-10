@@ -17,7 +17,8 @@ let props = {
   },
   addVisiblePanes: jest.fn(),
   removeVisiblePanes: jest.fn(),
-  updateUserGuidePage: jest.fn()
+  updateUserGuidePage: jest.fn(),
+  updateCurrentLocation: jest.fn()
 };
 
 let wrapper;
@@ -100,6 +101,8 @@ describe('<UserGuide />', () => {
           .toHaveBeenCalledWith(testCase[1]);
         expect(props.removeVisiblePanes)
           .toHaveBeenCalledWith(testCase[2]);
+        expect(props.updateCurrentLocation)
+          .toHaveBeenCalled();
       });
     });
 
