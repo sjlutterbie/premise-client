@@ -1,5 +1,6 @@
 import {SET_USER_MENU_VIEW, MONITOR_RESPONSIVE_BRACKET,
-        ADD_VISIBLE_PANES, REMOVE_VISIBLE_PANES} from '../actions';
+        ADD_VISIBLE_PANES, REMOVE_VISIBLE_PANES,
+        UPDATE_USER_GUIDE_PAGE} from '../actions';
 
 // Set initial state items for navigation elements
 export const initialState = {
@@ -98,6 +99,13 @@ export default (state = initialState, action) => {
     
     return Object.assign({}, state, {
       visiblePanes: tempVisiblePanes
+    });
+  }
+  
+  // Update userGuidePage
+  if (action.type === UPDATE_USER_GUIDE_PAGE) {
+    return Object.assign({}, state, {
+      userGuidePage: action.page
     });
   }
 
