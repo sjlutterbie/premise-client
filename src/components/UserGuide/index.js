@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 
 import './UserGuide.css';
 
+import {userGuideData} from './UserGuideData';
+
 import {addVisiblePanes, removeVisiblePanes} from '../../actions';
 
 // <UserGuide /> is a 'routable' area of the site, that includes the
@@ -15,6 +17,8 @@ export function UserGuide(props) {
   //  Actions:
   //    addVisiblePanes(array)
   //    removeVisiblePanes(array)
+  //  Other:
+  //    userGuideData: Custom JSON object
   
   return (
     <div className="user-guide">
@@ -38,7 +42,8 @@ export function UserGuide(props) {
 }
 
 export const mapStateToProps = state => ({
-  responsiveBracket: state.navState.responsiveBracket
+  responsiveBracket: state.navState.responsiveBracket,
+  userGuideData
 });
 
 export const mapDispatchToProps = {
