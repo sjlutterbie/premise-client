@@ -3,7 +3,8 @@ import faker from 'faker';
 import {SET_USER_MENU_VIEW, setUserMenuView,
         MONITOR_RESPONSIVE_BRACKET, monitorResponsiveBracket,
         ADD_VISIBLE_PANES, addVisiblePanes,
-        REMOVE_VISIBLE_PANES, removeVisiblePanes} from './navActions';
+        REMOVE_VISIBLE_PANES, removeVisiblePanes,
+        UPDATE_USER_GUIDE_PAGE, updateUserGuidePage} from './navActions';
 
 describe('Navigation Actions', () => {
   
@@ -62,7 +63,18 @@ describe('Navigation Actions', () => {
       const action = removeVisiblePanes(testPanes);
       expect(action.panes).toEqual(testPanes);
     });
-
   });
   
+  describe('updateUserGuidePage', () => {
+    it('Should return the action', () => {
+      const action = updateUserGuidePage();
+      expect(action.type).toEqual(UPDATE_USER_GUIDE_PAGE);
+    });
+    
+    it('Should return the correct value', () => {
+      const testPage = faker.random.alphaNumeric(10);
+      const action = updateUserGuidePage(testPage);
+      expect(action.page).toEqual(testPage);
+    });
+  });
 });
