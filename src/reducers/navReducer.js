@@ -8,6 +8,9 @@ export const initialState = {
   responsiveBracket: 'small', // Default to mobile setting
 
   visiblePanes: ['reader'], // Default to mobile setting
+  
+  // Current <UserGuide/> page
+  userGuidePage: 'page1', // Default to page1
 
   // Element visibility
   showUserMenu: false

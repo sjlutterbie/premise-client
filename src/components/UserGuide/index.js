@@ -34,7 +34,17 @@ export function UserGuide(props) {
                 props.removeVisiblePanes(removePanes);
               }}>Return to App</button>
       <div className="userguide-content-area">
-        <p>User Guide Area</p>
+        {props.userGuideData[props.userGuidePage].content}
+      </div>
+      <div className="userguide-nav-buttons">
+        {props.userGuideData[props.userGuidePage].prev
+          ? (<button className="rct-userguide-prev">Previous</button>)
+          : (null)
+        }
+        {props.userGuideData[props.userGuidePage].next
+          ? <button className="rct-userguide-next">Next</button>
+          : (null)
+        }
       </div>
     </div>
   );
@@ -43,6 +53,7 @@ export function UserGuide(props) {
 
 export const mapStateToProps = state => ({
   responsiveBracket: state.navState.responsiveBracket,
+  userGuidePage: state.navState.userGuidePage,
   userGuideData
 });
 

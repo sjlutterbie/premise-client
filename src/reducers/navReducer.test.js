@@ -8,7 +8,8 @@ import {setUserMenuView, monitorResponsiveBracket,
 describe('navState', () => {
   
   it('Should contain the expected defaults', () => {
-    const expectedKeys = ['responsiveBracket','visiblePanes','showUserMenu'];
+    const expectedKeys = ['responsiveBracket','visiblePanes',
+                          'userGuidePage','showUserMenu'];
     expect(Object.keys(initialState)).toEqual(expectedKeys);
   });
   
@@ -16,6 +17,7 @@ describe('navState', () => {
     const expectedTypes = [
       ['responsiveBracket', 'string'],
       ['visiblePanes', 'object'], //Array-like object
+      ['userGuidePage', 'string'],
       ['showUserMenu', 'boolean']
     ];
     expectedTypes.forEach(element => {
