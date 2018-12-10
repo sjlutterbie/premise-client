@@ -22,3 +22,9 @@ export const removeVisiblePanes = (panes) => ({
   type: REMOVE_VISIBLE_PANES,
   panes // Expects array
 });
+
+export const UPDATE_USER_GUIDE_PAGE = 'UPDATE_USER_GUIDE_PAGE';
+export const updateUserGuidePage = (page) => ({
+  type: UPDATE_USER_GUIDE_PAGE,
+  page // Expects string
+});

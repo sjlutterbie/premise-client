@@ -2,7 +2,8 @@ export {
   SET_USER_MENU_VIEW, setUserMenuView,
   MONITOR_RESPONSIVE_BRACKET, monitorResponsiveBracket,
   ADD_VISIBLE_PANES, addVisiblePanes,
-  REMOVE_VISIBLE_PANES, removeVisiblePanes
+  REMOVE_VISIBLE_PANES, removeVisiblePanes,
+  UPDATE_USER_GUIDE_PAGE, updateUserGuidePage
 } from './navActions';
         
 export {

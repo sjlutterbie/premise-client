@@ -2,13 +2,15 @@ import faker from 'faker';
 
 import {default as navReducer, initialState} from './navReducer';
 import {setUserMenuView, monitorResponsiveBracket,
-        addVisiblePanes, removeVisiblePanes} from '../actions';
+        addVisiblePanes, removeVisiblePanes,
+        updateUserGuidePage} from '../actions';
 
 
 describe('navState', () => {
   
   it('Should contain the expected defaults', () => {
-    const expectedKeys = ['responsiveBracket','visiblePanes','showUserMenu'];
+    const expectedKeys = ['responsiveBracket','visiblePanes',
+                          'userGuidePage','showUserMenu'];
     expect(Object.keys(initialState)).toEqual(expectedKeys);
   });
   
@@ -16,6 +18,7 @@ describe('navState', () => {
     const expectedTypes = [
       ['responsiveBracket', 'string'],
       ['visiblePanes', 'object'], //Array-like object
+      ['userGuidePage', 'string'],
       ['showUserMenu', 'boolean']
     ];
     expectedTypes.forEach(element => {
@@ -155,6 +158,18 @@ describe('Navigation Reducer', () => {
       let removedPanes = [existingPane1, existingPane2];
       state = navReducer(state, removeVisiblePanes(removedPanes));
       expect(state.visiblePanes.length).toEqual(0);
+    });
+  });
+  
+  describe('updateUserGuidePage(page', () => {
+    
+    it('Should update userGuidePage correctly', () => {
+      let state = {
+        userGuidePage: ''
+      };
+      const testPage = faker.random.alphaNumeric(10);
+      state = navReducer(state, updateUserGuidePage(testPage));
+      expect(state.userGuidePage).toEqual(testPage);
     });
   });
 });
