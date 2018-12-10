@@ -8,9 +8,12 @@ import {PremiseApp} from './PremiseApp';
 
 // Set up testing environment
 let props = {
-  updateWindowWidth: jest.fn(),
   loadDefaultBranch: jest.fn(),
-  responsiveBracket: 'mobile',
+  monitorResponsiveBracket: jest.fn(),
+  
+  updateWindowWidth: jest.fn(),
+  
+  responsiveBracket: 'small',
   visiblePanes: []
 };
 
@@ -58,15 +61,23 @@ describe('<PremiseApp />', () => {
 
   describe('ComponentWillMount', () => {
     
-    let updateWindowWidth;
     let loadDefaultBranch;
+    let monitorResponsiveBracket;
+
+    let updateWindowWidth;
+
 
     beforeEach(() => {
-      updateWindowWidth = jest.fn();
       loadDefaultBranch = jest.fn();
+      monitorResponsiveBracket = jest.fn();
+
+      updateWindowWidth = jest.fn();
+
       props = Object.assign({}, props, {
-        updateWindowWidth,
-        loadDefaultBranch
+        monitorResponsiveBracket,
+        loadDefaultBranch,
+        
+        updateWindowWidth
       });
     });
     
@@ -78,6 +89,7 @@ describe('<PremiseApp />', () => {
     
     it('Calls the correct methods', () => {
       const wrapper = shallow(<PremiseApp {...props}/>);
+      expect(monitorResponsiveBracket).toHaveBeenCalled();
       expect(updateWindowWidth).toHaveBeenCalled();
     });
     
@@ -101,6 +113,7 @@ describe('<PremiseApp />', () => {
       // Run test
       map.resize();
       expect(updateWindowWidth).toHaveBeenCalled();
+      expect(monitorResponsiveBracket).toHaveBeenCalled();
     });
 
   });

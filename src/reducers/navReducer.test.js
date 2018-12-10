@@ -68,6 +68,31 @@ describe('Navigation Reducer', () => {
         expect(state.responsiveBracket).toEqual(testCase[1]);
       });
     });
+    
+    it('Handles bracket changes correctly', () => {
+      const testCases = [
+        // [initialBracket,initialVisiblePanes,newWidth,expectedVisiblePanes]
+        // small -> large, userguide visible
+        ['small', ['userguide'], 601, ['reader', 'network', 'userguide']],
+        // small -> large, userguide hidden
+        ['small', [''], 601, ['reader', 'network']],
+        // large -> small, userguide visible
+        ['large', ['userguide'], 599, ['userguide']],
+        // large -> small, userguide hidden
+        ['large', [''], 599, ['reader', 'mobileNav']],
+        // small, no change
+        ['small', ['asdf'], 599, ['asdf']],
+        ['large', ['sdfg'], 601, ['sdfg']]
+      ];
+      testCases.forEach(testCase => {
+        let state = {
+          responsiveBracket: testCase[0],
+          visiblePanes: testCase[1]
+        };
+        state=navReducer(state, monitorResponsiveBracket(testCase[2]));
+        expect(state.visiblePanes).toEqual(testCase[3]);
+      });
+    });
   });
 
 
