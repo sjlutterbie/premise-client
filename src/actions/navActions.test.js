@@ -2,7 +2,6 @@ import faker from 'faker';
 
 import {SET_USER_MENU_VIEW, setUserMenuView,
         MONITOR_RESPONSIVE_BRACKET, monitorResponsiveBracket,
-        UPDATE_WINDOW_WIDTH, updateWindowWidth,
         ADD_VISIBLE_PANES, addVisiblePanes,
         REMOVE_VISIBLE_PANES, removeVisiblePanes} from './navActions';
 
@@ -35,20 +34,6 @@ describe('Navigation Actions', () => {
       expect(action.width).toEqual(testWidth);
     });
 
-  });
-  
-  describe('updateWindowWidth', () => {
-
-    it('Should return the action', () => {
-      const action = updateWindowWidth();
-      expect(action.type).toEqual(UPDATE_WINDOW_WIDTH);
-    });
-    
-    it('Should return the correct value', () => {
-      const testWidth = Math.random() * 2000;
-      const action = updateWindowWidth(testWidth);
-      expect(action.width).toEqual(testWidth);
-    });
   });
   
   describe('addVisiblePanes', () => {

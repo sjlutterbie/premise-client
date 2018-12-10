@@ -11,12 +11,6 @@ export const monitorResponsiveBracket = (width) => ({
   width
 });
 
-export const UPDATE_WINDOW_WIDTH = 'UPDATE_WINDOW_WIDTH';
-export const updateWindowWidth = (width) => ({
-  type: UPDATE_WINDOW_WIDTH,
-  width // Expects number
-});
-
 export const ADD_VISIBLE_PANES = 'ADD_VISIBLE_PANES';
 export const addVisiblePanes = (panes) => ({
   type: ADD_VISIBLE_PANES,
