@@ -1,16 +1,27 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+
 import './HeaderNav.css';
 
 import UserMenu from '../UserMenu';
 
-export default function Header(props) {
+import {addVisiblePanes, removeVisiblePanes} from '../../actions';
+
+export function HeaderNav(props) {
+  // Expected props:
+  //  Actions:
+  //    addVisiblePanes(array)
+  //    removeVisiblePanes(array)
   
   return (
     <div className="header-nav">
       <ul>
         <li>
-          <i className="material-icons">help</i>
+          <i className="material-icons rct-userguide-pane"
+             onClick={() => {
+               props.addVisiblePanes(['userguide']);
+               props.removeVisiblePanes(['reader', 'network']);
+             }}>help</i>
         </li>
         <li>
           <UserMenu />
@@ -20,3 +31,12 @@ export default function Header(props) {
   );
   
 }
+
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = {
+  addVisiblePanes,
+  removeVisiblePanes
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderNav);
