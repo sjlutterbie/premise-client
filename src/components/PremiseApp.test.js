@@ -8,9 +8,12 @@ import {PremiseApp} from './PremiseApp';
 
 // Set up testing environment
 let props = {
-  updateWindowWidth: jest.fn(),
   loadDefaultBranch: jest.fn(),
-  responsiveBracket: 'mobile',
+  monitorResponsiveBracket: jest.fn(),
+  
+  updateWindowWidth: jest.fn(),
+  
+  responsiveBracket: 'small',
   visiblePanes: []
 };
 
@@ -18,25 +21,6 @@ describe('<PremiseApp />', () => {
   
   it('Renders without crashing', () => {
     shallow(<PremiseApp {...props}/>);
-  });
-  
-  describe('Responsive rendering', () => {
-    
-    it('Only renders <MobileNav/> in mobile view', () => {
-      const testCases = [
-        // [currentView, mobNavRender? 1=yes, 0=no]
-        ['mobile', 1],
-        ['desktop', 0],
-        // 'Other' case
-        [faker.random.alphaNumeric(5), 0]
-      ];
-      testCases.forEach(testCase => {
-        props.responsiveBracket = testCase[0];
-        const wrapper = shallow(<PremiseApp {...props}/>);
-        const mobNav = wrapper.find('.rct-mob-nav-wrapper');
-        expect(mobNav.length).toEqual(testCase[1]);
-      });
-    });
   });
   
   describe('visiblePanes rendering', () => {
@@ -54,18 +38,33 @@ describe('<PremiseApp />', () => {
           .toEqual(testCase[1]);
       });
     });
+    
+    it('Only renders <MobileNav /> when specified', () => {
+      const testCases = [
+        // [visiblePanes, render <MobileNav/> ? 1 : 0]
+        [['mobileNav'],1],
+        [[faker.random.alphaNumeric(10)],0]
+      ];
+      testCases.forEach(testCase => {
+        props.visiblePanes = testCase[0];
+        const wrapper = shallow(<PremiseApp {...props}/>);
+        expect(wrapper.find('.rct-mob-nav-wrapper').length)
+          .toEqual(testCase[1]);
+      });
+    });
   });
 
   describe('ComponentWillMount', () => {
     
-    let updateWindowWidth;
     let loadDefaultBranch;
+    let monitorResponsiveBracket;
 
     beforeEach(() => {
-      updateWindowWidth = jest.fn();
       loadDefaultBranch = jest.fn();
+      monitorResponsiveBracket = jest.fn();
+
       props = Object.assign({}, props, {
-        updateWindowWidth,
+        monitorResponsiveBracket,
         loadDefaultBranch
       });
     });
@@ -78,7 +77,7 @@ describe('<PremiseApp />', () => {
     
     it('Calls the correct methods', () => {
       const wrapper = shallow(<PremiseApp {...props}/>);
-      expect(updateWindowWidth).toHaveBeenCalled();
+      expect(monitorResponsiveBracket).toHaveBeenCalled();
     });
     
     it('Adds an event listener', () => {
@@ -100,8 +99,7 @@ describe('<PremiseApp />', () => {
       const wrapper = shallow(<PremiseApp {...props}/>);
       // Run test
       map.resize();
-      expect(updateWindowWidth).toHaveBeenCalled();
+      expect(monitorResponsiveBracket).toHaveBeenCalled();
     });
-
   });
 });

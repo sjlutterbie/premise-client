@@ -1,6 +1,6 @@
 export {
   SET_USER_MENU_VIEW, setUserMenuView,
-  UPDATE_WINDOW_WIDTH, updateWindowWidth,
+  MONITOR_RESPONSIVE_BRACKET, monitorResponsiveBracket,
   ADD_VISIBLE_PANES, addVisiblePanes,
   REMOVE_VISIBLE_PANES, removeVisiblePanes
 } from './navActions';

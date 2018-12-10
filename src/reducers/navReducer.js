@@ -1,13 +1,13 @@
-import {SET_USER_MENU_VIEW,UPDATE_WINDOW_WIDTH,
+import {SET_USER_MENU_VIEW, MONITOR_RESPONSIVE_BRACKET,
         ADD_VISIBLE_PANES, REMOVE_VISIBLE_PANES} from '../actions';
 
 // Set initial state items for navigation elements
 export const initialState = {
 
   // Responsive handling
-  windowWidth: 0,
-  //responsiveBracket: 'mobile', // Dev in progress?
-  visiblePanes: ['reader','network','userguide'], // Render all (DEV)
+  responsiveBracket: 'small', // Default to mobile setting
+
+  visiblePanes: ['reader'], // Default to mobile setting
 
   // Element visibility
   showUserMenu: false
@@ -22,13 +22,49 @@ export default (state = initialState, action) => {
     });
   }
   
-  // Update windowWidth
-  if (action.type === UPDATE_WINDOW_WIDTH) {
-    return Object.assign({}, state, {
-      windowWidth: action.width
-    });
+  // monitor responsiveBracket
+  if (action.type === MONITOR_RESPONSIVE_BRACKET) {
+    // Store existing bracket value
+    let previousBracket = state.responsiveBracket;
+
+    // Evaluate responsive bracket
+    let bracket;
+    if(action.width < 600) {
+      bracket = 'small';
+    } else {
+      bracket = 'large';
+    }
+    
+    // Initialize additions to state
+    let newState = {
+      responsiveBracket: bracket,
+      visiblePanes: state.visiblePanes
+    };
+    
+    // Identify small -> large bracket shift
+    if (previousBracket === 'small' && bracket === 'large') {
+      // Don't hide userguide on transition
+      if (state.visiblePanes.includes('userguide')) {
+       newState.visiblePanes = ['reader', 'network', 'userguide'];
+      } else {
+        newState.visiblePanes = ['reader', 'network'];
+      }
+    }
+    
+    // Identify large -> small bracket shift
+    if (previousBracket === 'large' && bracket==='small') {
+      // Don't hide userguide on transition
+      if (state.visiblePanes.includes('userguide')) {
+        newState.visiblePanes = ['userguide'];
+      } else {
+        newState.visiblePanes = ['reader', 'mobileNav'];
+      }
+    }
+    
+    // Update state
+    return Object.assign({}, state, newState);
   }
-  
+
   // Add elements to visiblePanes array
   if (action.type === ADD_VISIBLE_PANES) {
     

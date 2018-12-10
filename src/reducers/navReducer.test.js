@@ -1,20 +1,20 @@
 import faker from 'faker';
 
 import {default as navReducer, initialState} from './navReducer';
-import {setUserMenuView, updateWindowWidth,
+import {setUserMenuView, monitorResponsiveBracket,
         addVisiblePanes, removeVisiblePanes} from '../actions';
 
 
 describe('navState', () => {
   
   it('Should contain the expected defaults', () => {
-    const expectedKeys = ['windowWidth','visiblePanes', 'showUserMenu'];
+    const expectedKeys = ['responsiveBracket','visiblePanes','showUserMenu'];
     expect(Object.keys(initialState)).toEqual(expectedKeys);
   });
   
   it('Default state elements should be the correct type', () => {
     const expectedTypes = [
-      ['windowWidth', 'number'],
+      ['responsiveBracket', 'string'],
       ['visiblePanes', 'object'], //Array-like object
       ['showUserMenu', 'boolean']
     ];
@@ -23,7 +23,6 @@ describe('navState', () => {
     });
   });
 });
-
 
 describe('Navigation Reducer', () => {
 
@@ -50,16 +49,44 @@ describe('Navigation Reducer', () => {
     });
   });
 
-  describe('updateWindowWidth(val)', () => {
+  describe('monitorResponsiveBracket', () => {
+    it('Sets responsiveBracket correctly', () => {
+      const testCases = [
+        //[width, expected responsiveBracket]
+        [599, 'small'],
+        [600, 'large'] 
+      ];
+      testCases.forEach(testCase => {
+        let state = {
+          responsiveBracket: ''
+        };
+        state = navReducer(state, monitorResponsiveBracket(testCase[0]));
+        expect(state.responsiveBracket).toEqual(testCase[1]);
+      });
+    });
     
-    it('Should set windowWidth to val', () => {
-      let state = {
-        windowWidth: null
-      };
-      let testWidth = Math.random() * 2000;
-      state = navReducer(state, updateWindowWidth(testWidth));
-      expect(state).toEqual({
-        windowWidth: testWidth
+    it('Handles bracket changes correctly', () => {
+      const testCases = [
+        // [initialBracket,initialVisiblePanes,newWidth,expectedVisiblePanes]
+        // small -> large, userguide visible
+        ['small', ['userguide'], 601, ['reader', 'network', 'userguide']],
+        // small -> large, userguide hidden
+        ['small', [''], 601, ['reader', 'network']],
+        // large -> small, userguide visible
+        ['large', ['userguide'], 599, ['userguide']],
+        // large -> small, userguide hidden
+        ['large', [''], 599, ['reader', 'mobileNav']],
+        // small, no change
+        ['small', ['asdf'], 599, ['asdf']],
+        ['large', ['sdfg'], 601, ['sdfg']]
+      ];
+      testCases.forEach(testCase => {
+        let state = {
+          responsiveBracket: testCase[0],
+          visiblePanes: testCase[1]
+        };
+        state=navReducer(state, monitorResponsiveBracket(testCase[2]));
+        expect(state.visiblePanes).toEqual(testCase[3]);
       });
     });
   });
@@ -129,9 +156,5 @@ describe('Navigation Reducer', () => {
       state = navReducer(state, removeVisiblePanes(removedPanes));
       expect(state.visiblePanes.length).toEqual(0);
     });
-    
-    
-    
   });
-  
 });
