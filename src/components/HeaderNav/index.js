@@ -19,8 +19,19 @@ export function HeaderNav(props) {
         <li>
           <i className="material-icons rct-userguide-pane"
              onClick={() => {
-               props.addVisiblePanes(['userguide']);
-               props.removeVisiblePanes(['reader', 'network']);
+              // Base action on responsiveBracket
+              let addPanes;
+              let removePanes;
+              
+              if (props.responsiveBracket === 'small') {
+                addPanes = ['userguide'];
+                removePanes = ['reader', 'network', 'mobileNav'];
+              } else {
+                addPanes = ['userguide'];
+                removePanes = [];
+              }
+               props.addVisiblePanes(addPanes);
+               props.removeVisiblePanes(removePanes);
              }}>help</i>
         </li>
         <li>
@@ -32,7 +43,9 @@ export function HeaderNav(props) {
   
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  responsiveBracket: state.navState.responsiveBracket
+});
 
 const mapDispatchToProps = {
   addVisiblePanes,
