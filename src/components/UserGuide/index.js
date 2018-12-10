@@ -5,7 +5,8 @@ import './UserGuide.css';
 
 import {userGuideData} from './UserGuideData';
 
-import {addVisiblePanes, removeVisiblePanes} from '../../actions';
+import {addVisiblePanes, removeVisiblePanes,
+        updateUserGuidePage} from '../../actions';
 
 // <UserGuide /> is a 'routable' area of the site, that includes the
 //  introductory slideshow and, eventually, other tools, such as an FAQ.
@@ -17,6 +18,7 @@ export function UserGuide(props) {
   //  Actions:
   //    addVisiblePanes(array)
   //    removeVisiblePanes(array)
+  //    updateUserGuidePage(string)
   //  Other:
   //    userGuideData: Custom JSON object
   
@@ -38,11 +40,19 @@ export function UserGuide(props) {
       </div>
       <div className="userguide-nav-buttons">
         {props.userGuideData[props.userGuidePage].prev
-          ? (<button className="rct-userguide-prev">Previous</button>)
+          ? (<button className="rct-userguide-prev"
+                     onClick={(page) => {props
+                        .updateUserGuidePage(
+                            props.userGuideData[props.userGuidePage].prev)}}
+          >Previous</button>)
           : (null)
         }
         {props.userGuideData[props.userGuidePage].next
-          ? <button className="rct-userguide-next">Next</button>
+          ? <button className="rct-userguide-next"
+                    onClick={(page) => {props
+                        .updateUserGuidePage(
+                            props.userGuideData[props.userGuidePage].next)}}
+          >Next</button>
           : (null)
         }
       </div>
@@ -59,7 +69,8 @@ export const mapStateToProps = state => ({
 
 export const mapDispatchToProps = {
   addVisiblePanes,
-  removeVisiblePanes
+  removeVisiblePanes,
+  updateUserGuidePage
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserGuide);

@@ -23,6 +23,6 @@ export const userGuideData = {
         <p>This is UserGuide Page 3</p>
       </div>,
     prev: 'page2',
-    next: 'page3'
+    next: null
   }
 };

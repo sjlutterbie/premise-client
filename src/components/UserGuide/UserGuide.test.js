@@ -16,8 +16,10 @@ let props = {
     }
   },
   addVisiblePanes: jest.fn(),
-  removeVisiblePanes: jest.fn()
+  removeVisiblePanes: jest.fn(),
+  updateUserGuidePage: jest.fn()
 };
+
 let wrapper;
 
 describe('<UserGuide />', () => {
@@ -99,6 +101,38 @@ describe('<UserGuide />', () => {
         expect(props.removeVisiblePanes)
           .toHaveBeenCalledWith(testCase[2]);
       });
+    });
+
+    it('Clicking .rct-userguide-prev updates fires action correctly', () => {
+      const testPage = faker.random.alphaNumeric(10);
+      props.userGuidePage = 'page1';
+      props.userGuideData = {
+        page1: {
+          content: 'asdf',
+          prev: testPage,
+          next: 'asdf'
+        } 
+      };
+      wrapper = shallow(<UserGuide {...props}/>);
+      wrapper.find('.rct-userguide-prev').simulate('click');
+      expect(props.updateUserGuidePage)
+        .toHaveBeenCalledWith(testPage);
+    });
+    
+    it('Clicking .rct-userguide-next updates fires action correctly', () => {
+      const testPage = faker.random.alphaNumeric(10);
+      props.userGuidePage = 'page1';
+      props.userGuideData = {
+        page1: {
+          content: 'asdf',
+          prev: 'asdf',
+          next: testPage
+        } 
+      };
+      wrapper = shallow(<UserGuide {...props}/>);
+      wrapper.find('.rct-userguide-next').simulate('click');
+      expect(props.updateUserGuidePage)
+        .toHaveBeenCalledWith(testPage);
     });
   });
 });
