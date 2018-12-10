@@ -95,8 +95,6 @@ describe('Navigation Reducer', () => {
     });
   });
 
-
-
   describe('updateWindowWidth(val)', () => {
     
     it('Should set windowWidth to val', () => {

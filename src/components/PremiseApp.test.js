@@ -23,25 +23,6 @@ describe('<PremiseApp />', () => {
     shallow(<PremiseApp {...props}/>);
   });
   
-  describe('Responsive rendering', () => {
-    
-    it('Only renders <MobileNav/> in mobile view', () => {
-      const testCases = [
-        // [currentView, mobNavRender? 1=yes, 0=no]
-        ['mobile', 1],
-        ['desktop', 0],
-        // 'Other' case
-        [faker.random.alphaNumeric(5), 0]
-      ];
-      testCases.forEach(testCase => {
-        props.responsiveBracket = testCase[0];
-        const wrapper = shallow(<PremiseApp {...props}/>);
-        const mobNav = wrapper.find('.rct-mob-nav-wrapper');
-        expect(mobNav.length).toEqual(testCase[1]);
-      });
-    });
-  });
-  
   describe('visiblePanes rendering', () => {
     
     it('Only renders <UserGuide /> when specified', () => {
@@ -54,6 +35,20 @@ describe('<PremiseApp />', () => {
         props.visiblePanes = testCase[0];
         const wrapper = shallow(<PremiseApp {...props}/>);
         expect(wrapper.find('.rct-userguide-wrapper').length)
+          .toEqual(testCase[1]);
+      });
+    });
+    
+    it('Only renders <MobileNav /> when specified', () => {
+      const testCases = [
+        // [visiblePanes, render <MobileNav/> ? 1 : 0]
+        [['mobileNav'],1],
+        [[faker.random.alphaNumeric(10)],0]
+      ];
+      testCases.forEach(testCase => {
+        props.visiblePanes = testCase[0];
+        const wrapper = shallow(<PremiseApp {...props}/>);
+        expect(wrapper.find('.rct-mob-nav-wrapper').length)
           .toEqual(testCase[1]);
       });
     });

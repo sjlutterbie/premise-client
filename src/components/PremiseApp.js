@@ -56,7 +56,7 @@ export class PremiseApp extends Component{
         <div className="premise-app">
           <Header />
           <main>
-            {this.props.responsiveBracket === 'mobile'
+            {this.props.visiblePanes.includes('mobileNav')
               ? (<div className="rct-mob-nav-wrapper">
                    <MobileNav/>
                  </div>)

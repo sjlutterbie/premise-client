@@ -9,8 +9,8 @@ export const initialState = {
 
   // Responsive handling
   windowWidth: 0,
-  responsiveBracket: 'small', // Default setting (DEV)
-  visiblePanes: ['reader','network','userguide'], // Render all (DEV)
+  responsiveBracket: 'small', // Default to mobile setting
+  visiblePanes: ['reader'], // Default to mobile setting
 
   // Element visibility
   showUserMenu: false
