@@ -89,7 +89,7 @@ describe('<UserGuide />', () => {
     it('Clicking .rct-exit-userguide calls actions as expected', () => {
       const testCases = [
         // [responsiveBracket, expectedAddPanes, expectedRemovePanes]
-        ['small', ['reader'], ['userguide']],
+        ['small', ['reader', 'mobileNav'], ['userguide']],
         ['large', [], ['userguide']]
       ];
       

@@ -31,7 +31,7 @@ export function UserGuide(props) {
                 let removePanes = ['userguide'];
                 let addPanes = [];
                 if(props.responsiveBracket === 'small') {
-                  addPanes = ['reader'];
+                  addPanes = ['reader', 'mobileNav'];
                 }
                 props.addVisiblePanes(addPanes);
                 props.removeVisiblePanes(removePanes);
