@@ -5,13 +5,17 @@ import './HeaderNav.css';
 
 import UserMenu from '../UserMenu';
 
-import {addVisiblePanes, removeVisiblePanes} from '../../actions';
+import {addVisiblePanes, removeVisiblePanes,
+        updateCurrentLocation} from '../../actions';
 
 export function HeaderNav(props) {
   // Expected props:
+  //  State:
+  //    responsiveBracket: string
   //  Actions:
   //    addVisiblePanes(array)
   //    removeVisiblePanes(array)
+  //    updateCurrentLocation(string)
   
   return (
     <div className="header-nav">
@@ -26,6 +30,9 @@ export function HeaderNav(props) {
               if (props.responsiveBracket === 'small') {
                 addPanes = ['userguide'];
                 removePanes = ['reader', 'network', 'mobileNav'];
+                // Update currentLocation
+                props.updateCurrentLocation('User Guide');
+                
               } else {
                 addPanes = ['userguide'];
                 removePanes = [];
@@ -49,7 +56,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   addVisiblePanes,
-  removeVisiblePanes
+  removeVisiblePanes,
+  updateCurrentLocation
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderNav);
