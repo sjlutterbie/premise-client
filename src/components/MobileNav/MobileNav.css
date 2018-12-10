@@ -1,0 +1,11 @@
+.mobile-nav {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  margin-left: -100px;
+  width: 200px;
+}
+
+button.mobile-nav {
+  padding: 8px;
+}
