@@ -12,7 +12,8 @@ describe('<HeaderNav />', () => {
     
     props = {
       addVisiblePanes: jest.fn(),
-      removeVisiblePanes: jest.fn()
+      removeVisiblePanes: jest.fn(),
+      responsiveBracket: 'small'
     };
     
     wrapper = shallow(<HeaderNav {...props}/>);
@@ -25,12 +26,24 @@ describe('<HeaderNav />', () => {
   
   describe('Event handlers', () => {
     
-    it('Clicking .rct-userguide-pane calls the expected actions', () => {
-      wrapper.find('.rct-userguide-pane').simulate('click');
-      expect(props.addVisiblePanes)
-        .toHaveBeenCalledWith(['userguide']);
-      expect(props.removeVisiblePanes)
-        .toHaveBeenCalledWith(['reader', 'network']);
+    describe('Clicking .rct-userguide-pane', () => {
+      
+      it('Handles responsiveBracket = [small | large] as expected', () => {
+        const testCases = [
+          // [responsiveBracket, addPanes, removePanes]
+          ['small', ['userguide'], ['reader', 'network', 'mobileNav']],
+          ['large', ['userguide'], []]
+        ];
+        testCases.forEach(testCase => {
+          props.responsiveBracket = testCase[0];
+          wrapper = shallow(<HeaderNav {...props}/>);
+          wrapper.find('.rct-userguide-pane').simulate('click');
+          expect(props.addVisiblePanes)
+            .toHaveBeenCalledWith(testCase[1]);
+          expect(props.removeVisiblePanes)
+            .toHaveBeenCalledWith(testCase[2]);
+        });
+      });
     });
   });
 });
