@@ -1,17 +1,21 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import {MobileNav} from './index';
+import {MobileNav, loadNetworkView, loadReaderView} from './index';
 
 // Declare/create testing variables/objects
 let wrapper;
+let props;
 
 describe('<MobileNav/>', () => {
   
   beforeEach(() => {
-    wrapper = shallow(<MobileNav/>);
+    props = {
+      addVisiblePanes: jest.fn(),
+      removeVisiblePanes: jest.fn()
+    };
+    wrapper = shallow(<MobileNav {...props}/>);
   });
-  
   
   it('Renders without crashing', () => {
     shallow(<MobileNav />);
@@ -28,5 +32,22 @@ describe('<MobileNav/>', () => {
     expect(buttons.find('.rct-reader-pane').length).toEqual(1);
   });
   
-  
+  describe('Event handlers', () => {
+    
+    it('Clicking .rct-network-pane calls the expected actions', () => {
+      wrapper.find('.rct-network-pane').simulate('click');
+      expect(props.addVisiblePanes)
+        .toHaveBeenCalledWith(['network']);
+      expect(props.removeVisiblePanes)
+        .toHaveBeenCalledWith(['userguide', 'reader']);
+    });
+    
+    it('Clicking .rct-reader-pans calls the expected actions', () => {
+      wrapper.find('.rct-reader-pane').simulate('click');
+      expect(props.addVisiblePanes)
+        .toHaveBeenCalledWith(['reader']);
+      expect(props.removeVisiblePanes)
+        .toHaveBeenCalledWith(['userguide', 'network']);
+    });
+  });
 });
