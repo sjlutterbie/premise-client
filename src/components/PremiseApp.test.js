@@ -59,20 +59,13 @@ describe('<PremiseApp />', () => {
     let loadDefaultBranch;
     let monitorResponsiveBracket;
 
-    let updateWindowWidth;
-
-
     beforeEach(() => {
       loadDefaultBranch = jest.fn();
       monitorResponsiveBracket = jest.fn();
 
-      updateWindowWidth = jest.fn();
-
       props = Object.assign({}, props, {
         monitorResponsiveBracket,
-        loadDefaultBranch,
-        
-        updateWindowWidth
+        loadDefaultBranch
       });
     });
     
@@ -85,7 +78,6 @@ describe('<PremiseApp />', () => {
     it('Calls the correct methods', () => {
       const wrapper = shallow(<PremiseApp {...props}/>);
       expect(monitorResponsiveBracket).toHaveBeenCalled();
-      expect(updateWindowWidth).toHaveBeenCalled();
     });
     
     it('Adds an event listener', () => {
@@ -107,9 +99,7 @@ describe('<PremiseApp />', () => {
       const wrapper = shallow(<PremiseApp {...props}/>);
       // Run test
       map.resize();
-      expect(updateWindowWidth).toHaveBeenCalled();
       expect(monitorResponsiveBracket).toHaveBeenCalled();
     });
-
   });
 });

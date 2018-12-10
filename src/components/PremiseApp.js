@@ -7,9 +7,7 @@ import PremiseArea from './PremiseArea';
 import UserGuide from './UserGuide';
 import MobileNav from './MobileNav';
 
-import {updateWindowWidth, loadDefaultBranch,
-        monitorResponsiveBracket} from '../actions';
-import {getResponsiveBracket} from '../selectors/navSelectors';
+import {loadDefaultBranch, monitorResponsiveBracket} from '../actions';
 
 // START DEV CODE
   
@@ -39,15 +37,10 @@ export class PremiseApp extends Component{
   
   componentWillMount() {
     this.props.loadDefaultBranch(DEV_BRANCH);
-    
     this.props.monitorResponsiveBracket(window.innerWidth);
+    
     window.addEventListener('resize',
     () => {this.props.monitorResponsiveBracket(window.innerWidth)});
-    
-    // OLD METHOD, TO BE REMOVED
-    this.props.updateWindowWidth(window.innerWidth);
-    window.addEventListener('resize',
-      () => {this.props.updateWindowWidth(window.innerWidth);});
   }
 
   render() {
@@ -77,12 +70,10 @@ export class PremiseApp extends Component{
 }
 
 const mapStateToProps = state => ({
-  responsiveBracket: getResponsiveBracket(state),
   visiblePanes: state.navState.visiblePanes
 });
 
 const mapDispatchToProps = {
-  updateWindowWidth,
   loadDefaultBranch,
   monitorResponsiveBracket
 };
