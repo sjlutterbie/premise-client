@@ -4,11 +4,11 @@
 }
 
 @media screen and (min-width: 600px) {
-  .rct-networkpane-wrapper {
+  .networkpane-wrapper {
     width: 60%;
   }
   
-  .rct-readerpane-wrapper {
+  .readerpane-wrapper {
     width: 40%;
   }
 }

@@ -56,7 +56,7 @@ export class PremiseApp extends Component{
               : (null)
             }
             {this.props.visiblePanes.includes('userguide')
-              ? (<div className="rct-userguide-wrapper">
+              ? (<div className="userguide-wrapper rct-userguide-wrapper">
                   <UserGuide />
                  </div>)
               : (null)

@@ -18,13 +18,13 @@ export function PremiseArea(props) {
   return (
     <div className="premise-area">
       {props.visiblePanes.includes('network')
-        ? (<div className="rct-networkpane-wrapper">
+        ? (<div className="networkpane-wrapper rct-networkpane-wrapper">
              <NetworkPane />
            </div>)
         : (null)
       }
       {props.visiblePanes.includes('reader')
-        ? (<div className="rct-readerpane-wrapper">
+        ? (<div className="readerpane-wrapper rct-readerpane-wrapper">
              <ReaderPane />
            </div>)
         : (null)
