@@ -38,7 +38,7 @@ describe('<ReaderPane />', () => {
     }
     testProps.moments = moments;
     wrapper = shallow(<ReaderPane {...testProps}/>);
-    const momentArea = wrapper.find('.reader');
+    const momentArea = wrapper.find('.reader-pane');
     expect(momentArea.children().length).toEqual(testProps.moments.length);
     
   });

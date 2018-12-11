@@ -87,23 +87,9 @@ describe('<UserGuide />', () => {
   describe('Event handling', () => {
     
     it('Clicking .rct-exit-userguide calls actions as expected', () => {
-      const testCases = [
-        // [responsiveBracket, expectedAddPanes, expectedRemovePanes]
-        ['small', ['reader', 'mobileNav'], ['userguide']],
-        ['large', [], ['userguide']]
-      ];
-      
-      testCases.forEach(testCase => {
-        props.responsiveBracket = testCase[0];
-        wrapper = shallow(<UserGuide {...props}/>);
-        wrapper.find('.rct-exit-userguide').simulate('click');
-        expect(props.addVisiblePanes)
-          .toHaveBeenCalledWith(testCase[1]);
-        expect(props.removeVisiblePanes)
-          .toHaveBeenCalledWith(testCase[2]);
-        expect(props.updateCurrentLocation)
-          .toHaveBeenCalled();
-      });
+      wrapper.find('.rct-exit-userguide').simulate('click');
+      expect(props.removeVisiblePanes)
+        .toHaveBeenCalledWith(['userguide']);
     });
 
     it('Clicking .rct-userguide-prev updates fires action correctly', () => {

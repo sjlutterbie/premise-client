@@ -37,7 +37,10 @@ export function Moment(props){
                         props.updateFocalMomentMode('create')}>
                 Create
               </button>
-              <button className="switch-story-branch">Switch branch</button>
+              <button className="switch-story-branch"
+                      //DEV CODE
+                      onClick={() => alert('That tickles... but I don\'t work yet!')}
+              >Switch branch</button>
             </div>
           : null
         }
@@ -46,17 +49,21 @@ export function Moment(props){
             <form className="create-moment-form"
                   // DEV CODE TO PREVENT APP-RELOAD
                   onSubmit={(event) => {event.preventDefault()}}>
-              <fieldset>
-                <legend>Add to the story</legend>
-                <textarea></textarea>
-                <button className="cancel-create-moment"
-                        onClick={() => props.updateFocalMomentMode('actions')}
-                >Cancel</button>
-                <button className="create-moment"
-                        // DEV CODE
-                        onClick={() => alert('You clicked a button!')}
-                >Create</button>
-              </fieldset>
+              <div className="fieldset-wrapper">
+                <fieldset>
+                  <div className="fieldset-contents">
+                    <legend>Add to the story</legend>
+                    <textarea></textarea>
+                    <button className="cancel-create-moment"
+                            onClick={() => props.updateFocalMomentMode('actions')}
+                    >Cancel</button>
+                    <button className="create-moment"
+                            // DEV CODE
+                            onClick={() => alert('That tickles... but I don\'t work yet!')}
+                    >Create</button>
+                  </div>
+                </fieldset>
+              </div>
             </form>
           : null
         }

@@ -1,0 +1,15 @@
+.mobile-nav {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  margin-left: -100px;
+  width: 200px;
+}
+
+button.mobile-nav {
+  padding: 8px;
+}

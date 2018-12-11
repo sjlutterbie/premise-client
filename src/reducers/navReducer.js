@@ -8,7 +8,7 @@ export const initialState = {
   // Responsive handling
   responsiveBracket: 'small', // Default to mobile setting
 
-  visiblePanes: ['reader'], // Default to mobile setting
+  visiblePanes: ['reader', 'mobileNav'], // Default to mobile setting
   
   // Current location within App
   currentLocation: 'TEMP VALUE',

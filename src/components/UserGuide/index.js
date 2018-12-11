@@ -24,39 +24,34 @@ export function UserGuide(props) {
   //    userGuideData: Custom JSON object
   
   return (
-    <div className="user-guide">
-      <button className="rct-exit-userguide"
-              onClick={() => {
-                // Handle based on responsive bracket
-                let removePanes = ['userguide'];
-                let addPanes = [];
-                if(props.responsiveBracket === 'small') {
-                  addPanes = ['reader', 'mobileNav'];
-                }
-                props.addVisiblePanes(addPanes);
-                props.removeVisiblePanes(removePanes);
-                props.updateCurrentLocation('TEMP VALUE') // DEV: Will update with real data
-              }}>Return to App</button>
-      <div className="userguide-content-area">
-        {props.userGuideData[props.userGuidePage].content}
-      </div>
-      <div className="userguide-nav-buttons">
-        {props.userGuideData[props.userGuidePage].prev
-          ? (<button className="rct-userguide-prev"
-                     onClick={(page) => {props
-                        .updateUserGuidePage(
-                            props.userGuideData[props.userGuidePage].prev)}}
-          >Previous</button>)
-          : (null)
-        }
-        {props.userGuideData[props.userGuidePage].next
-          ? <button className="rct-userguide-next"
-                    onClick={(page) => {props
-                        .updateUserGuidePage(
-                            props.userGuideData[props.userGuidePage].next)}}
-          >Next</button>
-          : (null)
-        }
+    <div className="rct-userguide-shim userguide-shim">
+      <div className="user-guide">
+        <button className="rct-exit-userguide"
+                onClick={() => {
+                  props.removeVisiblePanes(['userguide']);
+                  props.updateCurrentLocation('TEMP VALUE'); // DEV: Will update with real data
+                }}>Return to App</button>
+        <div className="userguide-content-area">
+          {props.userGuideData[props.userGuidePage].content}
+        </div>
+        <div className="userguide-nav-buttons">
+          {props.userGuideData[props.userGuidePage].prev
+            ? (<button className="rct-userguide-prev"
+                       onClick={(page) => {props
+                          .updateUserGuidePage(
+                              props.userGuideData[props.userGuidePage].prev)}}
+            >Previous</button>)
+            : (null)
+          }
+          {props.userGuideData[props.userGuidePage].next
+            ? <button className="rct-userguide-next"
+                      onClick={(page) => {props
+                          .updateUserGuidePage(
+                              props.userGuideData[props.userGuidePage].next)}}
+            >Next</button>
+            : (null)
+          }
+        </div>
       </div>
     </div>
   );

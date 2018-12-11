@@ -1,0 +1,10 @@
+.reader-pane {
+  margin-top: 50px;
+  border: 1px solid blue;
+}
+
+@media screen and (min-width: 600px) {
+  .reader-pane {
+    margin-top: 0px;
+  }
+}

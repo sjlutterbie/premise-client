@@ -24,7 +24,7 @@ export function ReaderPane(props) {
   });
   
   return (
-    <div className="reader">
+    <div className="reader-pane">
       { momentComps.length > 0
         ? momentComps
         : <p>Whoops,something went wrong!</p>

@@ -3,3 +3,31 @@
   margin: 4px;
   border: 1px solid #ccc;
 }
+
+.action-buttons {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  
+  width: 100%;
+  
+}
+
+.create-moment-form {
+  border: 1px solid red;
+}
+
+.fieldset-wrapper, .fieldset-content {
+  width: 100%;
+}
+
+.fieldset-contents {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  justify-content: space-evenly;
+}
+
+.create-moment-form textarea {
+  width: 100%;
+}

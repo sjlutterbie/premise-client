@@ -1,0 +1,14 @@
+.premise-area {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+@media screen and (min-width: 600px) {
+  .networkpane-wrapper {
+    width: 60%;
+  }
+  
+  .readerpane-wrapper {
+    width: 40%;
+  }
+}
