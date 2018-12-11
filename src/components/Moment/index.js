@@ -37,7 +37,10 @@ export function Moment(props){
                         props.updateFocalMomentMode('create')}>
                 Create
               </button>
-              <button className="switch-story-branch">Switch branch</button>
+              <button className="switch-story-branch"
+                      //DEV CODE
+                      onClick={() => alert('That tickles... but I don\'t work yet!')}
+              >Switch branch</button>
             </div>
           : null
         }
@@ -56,7 +59,7 @@ export function Moment(props){
                     >Cancel</button>
                     <button className="create-moment"
                             // DEV CODE
-                            onClick={() => alert('You clicked a button!')}
+                            onClick={() => alert('That tickles... but I don\'t work yet!')}
                     >Create</button>
                   </div>
                 </fieldset>
