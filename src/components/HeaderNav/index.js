@@ -21,24 +21,9 @@ export function HeaderNav(props) {
     <div className="header-nav">
       <ul>
         <li>
-          <i className="material-icons rct-userguide-pane"
+          <i className="material-icons rct-show-userguide"
              onClick={() => {
-              // Base action on responsiveBracket
-              let addPanes;
-              let removePanes;
-              
-              if (props.responsiveBracket === 'small') {
-                addPanes = ['userguide'];
-                removePanes = ['reader', 'network', 'mobileNav'];
-                // Update currentLocation
-                props.updateCurrentLocation('User Guide');
-                
-              } else {
-                addPanes = ['userguide'];
-                removePanes = [];
-              }
-               props.addVisiblePanes(addPanes);
-               props.removeVisiblePanes(removePanes);
+              props.addVisiblePanes(['userguide']);
              }}>help</i>
         </li>
         <li>

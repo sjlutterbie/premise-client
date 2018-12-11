@@ -1,41 +1,37 @@
+.userguide-shim {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  background: rgba(0,0,0,.3);
+}
+  
 .user-guide {
+  position: absolute;
+  left: 50%;
+  margin-left: -160px;
+  top: 50%;
+  margin-top: -40vh;
+  z-index: 12; /* Higher than .userguide-shim */
+  
+
+  width: 320px;
+  height: 80vh;
+  background: #ffffff;
   border: 1px solid green;
+
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-evenly;
   align-items: center;
-  height: 80vh;
 }
 
 .userguide-nav-buttons {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-evenly;
-
   width: 100%;
 }
 
-@media screen and (min-width: 600px) {
-  
-  .user-guide-shim {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    width: 100vw;
-    height: 100vh;
-    z-index: 10;
-    background: rgba(0,0,0,.3);
-  }
-  
-  .user-guide {
-    position: absolute;
-    left: 50%;
-    margin-left: -200px;
-    top: 50%;
-    margin-top: -40vh;
-    
-    width: 400px;
-    background: #ffffff;
-    
-  }
-}

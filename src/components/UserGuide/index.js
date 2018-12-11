@@ -24,19 +24,12 @@ export function UserGuide(props) {
   //    userGuideData: Custom JSON object
   
   return (
-    <div className="user-guide-shim">
+    <div className="rct-userguide-shim userguide-shim">
       <div className="user-guide">
         <button className="rct-exit-userguide"
                 onClick={() => {
-                  // Handle based on responsive bracket
-                  let removePanes = ['userguide'];
-                  let addPanes = [];
-                  if(props.responsiveBracket === 'small') {
-                    addPanes = ['reader', 'mobileNav'];
-                  }
-                  props.addVisiblePanes(addPanes);
-                  props.removeVisiblePanes(removePanes);
-                  props.updateCurrentLocation('TEMP VALUE') // DEV: Will update with real data
+                  props.removeVisiblePanes(['userguide']);
+                  props.updateCurrentLocation('TEMP VALUE'); // DEV: Will update with real data
                 }}>Return to App</button>
         <div className="userguide-content-area">
           {props.userGuideData[props.userGuidePage].content}
