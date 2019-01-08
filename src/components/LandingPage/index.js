@@ -4,12 +4,16 @@ import {Link} from 'react-router-dom';
 
 import './LandingPage.css';
 
+import RegistrationForm from '../RegistrationForm';
+
 export function LandingPage(props) {
   
   return (
     <div className="landing-page">
       This the Landing Page!<br/>
-      <Link to="/register">Register</Link><br/>
+      <div className="form-wrapper">
+        <RegistrationForm />
+      </div>
       <Link to="/login">Login</Link><br/>
       <Link to="/premisearea">PremiseArea</Link>
     </div>
