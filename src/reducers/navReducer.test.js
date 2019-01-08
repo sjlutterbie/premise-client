@@ -3,19 +3,21 @@ import faker from 'faker';
 import {default as navReducer, initialState} from './navReducer';
 import {setUserMenuView, monitorResponsiveBracket,
         addVisiblePanes, removeVisiblePanes,
-        updateUserGuidePage, updateCurrentLocation} from '../actions';
+        updateUserGuidePage, updateCurrentLocation,
+        updateAuthStatus} from '../actions';
 
 
 describe('navState', () => {
   
   it('Should contain the expected defaults', () => {
-    const expectedKeys = ['responsiveBracket','visiblePanes', 'currentLocation',
-                          'userGuidePage','showUserMenu'];
+    const expectedKeys = ['authStatus', 'responsiveBracket','visiblePanes',
+                          'currentLocation', 'userGuidePage','showUserMenu'];
     expect(Object.keys(initialState)).toEqual(expectedKeys);
   });
   
   it('Default state elements should be the correct type', () => {
     const expectedTypes = [
+      ['authStatus', 'boolean'],
       ['responsiveBracket', 'string'],
       ['visiblePanes', 'object'], //Array-like object
       ['currentLocation', 'string'],
@@ -185,4 +187,27 @@ describe('Navigation Reducer', () => {
       expect(state.currentLocation).toEqual(testLoc);
     });
   });
+  
+  describe('updateAuthorizedUser(authStatus)', () => {
+    
+    it('Sets authorizedUser to true', () => {
+      let state = {
+        authStatus: false
+      };
+      const testAuth = true;
+      state = navReducer(state, updateAuthStatus(testAuth));
+      expect(state.authStatus).toEqual(testAuth);
+    });
+    
+    it('Sets authorizedUser to false', () => {
+      let state = {
+        authStatus: true
+      };
+      const testAuth = false;
+      state = navReducer(state, updateAuthStatus(testAuth));
+      expect(state.authStatus).toEqual(testAuth);
+    });
+    
+  });
+  
 });
