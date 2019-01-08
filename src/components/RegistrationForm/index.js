@@ -49,6 +49,13 @@ export class RegistrationForm extends React.Component {
           label="Password"
           validate={[required, nonEmpty]}
         />
+        <Field
+          name="password-repeat"
+          type="password-repeat"
+          component={Input}
+          label="Repeat password"
+          validate={[required, nonEmpty]}
+        />
         <button
           type="submit"
           disabled={this.props.pristine || this.props.submitting}>

@@ -11,7 +11,9 @@ export function LandingPage(props) {
   return (
     <div className="landing-page">
       This the Landing Page!<br/>
-      <RegistrationForm />
+      <div className="form-wrapper">
+        <RegistrationForm />
+      </div>
       <Link to="/login">Login</Link><br/>
       <Link to="/premisearea">PremiseArea</Link>
     </div>
