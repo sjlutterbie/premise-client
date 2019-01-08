@@ -9,7 +9,7 @@ import {updateAuthStatus} from '../../actions';
 
 export function LoginForm(props) {
   return (
-    <div className="login-form">Hello, world!</div>
+    <div className="login-form">This is the LoginForm!</div>
   );
 }
 

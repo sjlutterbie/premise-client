@@ -7,7 +7,7 @@ export function LandingPage(props) {
   
   return (
     <div className="landing-page">
-      Hello, world!
+      This the Landing Page!
     </div>
   );
   
