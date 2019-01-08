@@ -65,7 +65,6 @@ export class PremiseApp extends Component{
               : (null)
             }
             <Route exact path="/" component={LandingPage} />
-            <Route exact path="/login" component={LoginForm} />
             <Route exact path="/premisearea" component={PremiseArea} />
           </main>
         </div>

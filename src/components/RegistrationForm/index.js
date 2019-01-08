@@ -1,5 +1,4 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import {reduxForm, Field} from 'redux-form';
 
 import Input from '../Input';
@@ -58,9 +57,8 @@ export class RegistrationForm extends React.Component {
         />
         <button
           type="submit"
-          disabled={this.props.pristine || this.props.submitting}>
-          Register
-        </button>
+          disabled={this.props.pristine || this.props.submitting}
+        >Register</button>
       </form>
     );
   }
