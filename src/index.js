@@ -13,9 +13,7 @@ import PremiseApp from './components/PremiseApp';
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router>
       <PremiseApp />
-    </Router>
   </Provider>,
   document.getElementById('root')
 );

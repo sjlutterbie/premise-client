@@ -1,11 +1,12 @@
 import {combineReducers, createStore} from 'redux';
 
 // Reducers
-import {navReducer} from './reducers';
+import {navReducer, storyBranchReducer} from './reducers';
 
 // Build central reducer
 const centralReducer = combineReducers({
-  navState: navReducer
+  navState: navReducer,
+  storyBranch: storyBranchReducer
 });
 
 // Export store

@@ -1,43 +1,81 @@
 import React, {Component} from 'react';
-import {Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import { connect }  from 'react-redux';
 
 import Header from './Header';
 import PremiseArea from './PremiseArea';
 import UserGuide from './UserGuide';
+import MobileNav from './MobileNav';
 
-import {updateWindowWidth} from '../actions';
-import {getResponsiveBracket} from '../selectors/navSelectors';
+import {loadDefaultBranch, monitorResponsiveBracket} from '../actions';
+
+// START DEV CODE
+  
+  // Generate a random storyBranch when initiating the app
+  import faker from 'faker';
+  
+  let DEV_BRANCH = [];
+  const momentCount = Math.floor(Math.random() * 50) + 1;
+  for (let i = 0; i < momentCount; i++) {
+    DEV_BRANCH.push({
+      id: faker.random.uuid(),
+      text: faker.lorem.sentences(3)
+    });
+  }
+  
+// END DEV CODE
 
 export class PremiseApp extends Component{
-  constructor(props) {
-    super(props);
+  // Expected props:
+  //  Actions:
+  //    loadDefaultBranch
+  //    updateWindowWidth
+  //  State values:
+  //    responsiveBracket (string)
+  //    visiblePanes (array)
+  
+  
+  componentWillMount() {
+    this.props.loadDefaultBranch(DEV_BRANCH);
+    this.props.monitorResponsiveBracket(window.innerWidth);
+    
+    window.addEventListener('resize',
+    () => {this.props.monitorResponsiveBracket(window.innerWidth)});
   }
-
-  componentDidMount() {
-    this.props.updateWindowWidth(window.innerWidth);
-    window.addEventListener('resize', () => {
-                            this.props.updateWindowWidth(window.innerWidth)});
-  }
-
 
   render() {
     return (
+      <Router>
         <div className="premise-app">
           <Header />
           <main>
-            <Switch>
-              <Route path="/premise" component={PremiseArea} />
-              <Route path="/userguide" component={UserGuide} />
-            </Switch>
+            {this.props.visiblePanes.includes('mobileNav')
+              ? (<div className="rct-mob-nav-wrapper">
+                   <MobileNav/>
+                 </div>)
+              : (null)
+            }
+            {this.props.visiblePanes.includes('userguide')
+              ? (<div className="userguide-wrapper rct-userguide-wrapper">
+                  <UserGuide />
+                 </div>)
+              : (null)
+            }
+            <PremiseArea />
           </main>
         </div>
+      </Router>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  responsiveBracket: getResponsiveBracket(state)
+  visiblePanes: state.navState.visiblePanes
 });
 
-export default connect(mapStateToProps, {updateWindowWidth})(PremiseApp);
+const mapDispatchToProps = {
+  loadDefaultBranch,
+  monitorResponsiveBracket
+};
+
+export default connect(mapStateToProps,mapDispatchToProps)(PremiseApp);
