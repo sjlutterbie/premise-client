@@ -8,7 +8,7 @@ import {reducer as formsReducer} from 'redux-form';
 const centralReducer = combineReducers({
   navState: navReducer,
   storyBranch: storyBranchReducer,
-  forms: formsReducer
+  form: formsReducer
 });
 
 // Export store
