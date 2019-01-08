@@ -12,3 +12,9 @@ export function LandingPage(props) {
   );
   
 }
+
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LandingPage);
