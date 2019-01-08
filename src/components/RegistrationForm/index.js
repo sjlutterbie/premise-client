@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {Form, reduxForm, focus} from 'redux-form';
 
 import './RegistrationForm.css';
 
