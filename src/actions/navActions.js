@@ -33,4 +33,10 @@ export const UPDATE_CURRENT_LOCATION = 'UPDATE_CURRENT_LOCATION';
 export const updateCurrentLocation = (location) => ({
   type: UPDATE_CURRENT_LOCATION,
   location
-})
+});
+
+export const UPDATE_AUTH_STATUS = 'UPDATE_AUTH_STATUS';
+export const updateAuthStatus = (authStatus) => ({
+  type: UPDATE_AUTH_STATUS,
+  authStatus
+});

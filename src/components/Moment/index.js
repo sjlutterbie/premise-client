@@ -39,7 +39,8 @@ export function Moment(props){
               </button>
               <button className="switch-story-branch"
                       //DEV CODE
-                      onClick={() => alert('That tickles... but I don\'t work yet!')}
+                      onClick={() => alert(
+                        'That tickles... but I don\'t work yet!')}
               >Switch branch</button>
             </div>
           : null
@@ -55,11 +56,13 @@ export function Moment(props){
                     <legend>Add to the story</legend>
                     <textarea></textarea>
                     <button className="cancel-create-moment"
-                            onClick={() => props.updateFocalMomentMode('actions')}
+                            onClick={() => 
+                              props.updateFocalMomentMode('actions')}
                     >Cancel</button>
                     <button className="create-moment"
                             // DEV CODE
-                            onClick={() => alert('That tickles... but I don\'t work yet!')}
+                            onClick={() => alert(
+                              'That tickles... but I don\'t work yet!')}
                     >Create</button>
                   </div>
                 </fieldset>

@@ -1,9 +1,13 @@
 import {SET_USER_MENU_VIEW, MONITOR_RESPONSIVE_BRACKET,
         ADD_VISIBLE_PANES, REMOVE_VISIBLE_PANES,
-        UPDATE_USER_GUIDE_PAGE, UPDATE_CURRENT_LOCATION} from '../actions';
+        UPDATE_USER_GUIDE_PAGE, UPDATE_CURRENT_LOCATION,
+        UPDATE_AUTH_STATUS} from '../actions';
 
 // Set initial state items for navigation elements
 export const initialState = {
+
+  // If authorized, show main App. If not authorized, show landing/login page.
+  authStatus: false,
 
   // Responsive handling
   responsiveBracket: 'small', // Default to mobile setting
@@ -116,6 +120,13 @@ export default (state = initialState, action) => {
   if (action.type === UPDATE_CURRENT_LOCATION) {
     return Object.assign({}, state, {
       currentLocation: action.location
+    });
+  }
+  
+  // Update authorizedUser Status
+  if (action.type === UPDATE_AUTH_STATUS) {
+    return Object.assign({}, state, {
+      authStatus: action.authStatus
     });
   }
 

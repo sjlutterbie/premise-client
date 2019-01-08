@@ -5,7 +5,8 @@ import {SET_USER_MENU_VIEW, setUserMenuView,
         ADD_VISIBLE_PANES, addVisiblePanes,
         REMOVE_VISIBLE_PANES, removeVisiblePanes,
         UPDATE_USER_GUIDE_PAGE, updateUserGuidePage,
-        UPDATE_CURRENT_LOCATION, updateCurrentLocation} from './navActions';
+        UPDATE_CURRENT_LOCATION, updateCurrentLocation,
+        UPDATE_AUTH_STATUS, updateAuthStatus} from './navActions';
 
 describe('Navigation Actions', () => {
   
@@ -85,10 +86,24 @@ describe('Navigation Actions', () => {
       expect(action.type).toEqual(UPDATE_CURRENT_LOCATION);
     });
     
-    it('SHould return the correct value', () => {
+    it('Should return the correct value', () => {
       const testLoc = faker.random.alphaNumeric(10);
       const action = updateCurrentLocation(testLoc);
       expect(action.location).toEqual(testLoc);
     });
   });
+  
+  describe('updateAuthorizedUser', () => {
+    it('Should return the action', () => {
+      const action = updateAuthStatus();
+      expect(action.type).toEqual(UPDATE_AUTH_STATUS);
+    });
+    
+    it('Should set the correct value', () => {
+      const testAuth = Math.random() < .5 ? true : false;
+      const action = updateAuthStatus(testAuth);
+      expect(action.authStatus).toEqual(testAuth);
+    });
+  });
+  
 });
