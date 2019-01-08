@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import {RegistrationForm} from './index';
+import {default as RegistrationForm} from './index';
 
 // Create DEV items
 
@@ -13,7 +13,7 @@ let wrapper;
 describe('<RegistrationForm />', () => {
   
   it('Renders without crashing', () => {
-    shallow(<RegistrationForm {...testProps}/>);
+    shallow(<RegistrationForm/>);
   });
   
 });

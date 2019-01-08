@@ -7,7 +7,7 @@ import PremiseArea from './PremiseArea';
 import UserGuide from './UserGuide';
 import MobileNav from './MobileNav';
 import LandingPage from './LandingPage';
-import RegistrationForm from './RegistrationForm';
+import {default as RegistrationForm} from './RegistrationForm';
 import LoginForm from './LoginForm';
 
 import {loadDefaultBranch, monitorResponsiveBracket} from '../actions';
@@ -65,7 +65,6 @@ export class PremiseApp extends Component{
               : (null)
             }
             <Route exact path="/" component={LandingPage} />
-            <Route exact path="/register" component={RegistrationForm} />
             <Route exact path="/login" component={LoginForm} />
             <Route exact path="/premisearea" component={PremiseArea} />
           </main>
