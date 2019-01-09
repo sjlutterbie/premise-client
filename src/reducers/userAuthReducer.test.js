@@ -2,7 +2,7 @@ import faker from 'faker';
 
 import {default as userAuthReducer, initialState} from './userAuthReducer';
 
-import {registerNewUser} from '../actions';
+import {startAuthRequest} from '../actions';
 
 describe('userAuthState', () => {
   
@@ -22,4 +22,17 @@ describe('userAuthState', () => {
     });
   });
   
+  describe('startAuthRequest', () => {
+    
+    it('Signals an authorization request has begun', () => {
+      
+      let state = {
+        authenticating: false,
+        error: true
+      };
+      state = userAuthReducer(state, startAuthRequest());
+      expect(state.authenticating).toEqual(true);
+      expect(state.error).toEqual(null);
+    });
+  });
 });

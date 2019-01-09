@@ -1,4 +1,5 @@
-import {REGISTER_NEW_USER, AUTHENTICATE_USER} from '../actions';
+import {REGISTER_NEW_USER, AUTHENTICATE_USER,
+        START_AUTH_REQUEST} from '../actions';
 
 export const initialState = {
   currentUser: null,
@@ -22,6 +23,16 @@ export default (state = initialState, action) => {
       currentUser: action.values.username
     });
   }
+
+  if (action.type === START_AUTH_REQUEST) {
+    return Object.assign({}, state, {
+      authenticating: true,
+      error: null
+    });
+    
+    
+  }
+
 
   return state;
   

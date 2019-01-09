@@ -1,7 +1,8 @@
 import faker from 'faker';
 
 import {REGISTER_NEW_USER, registerNewUser,
-        AUTHENTICATE_USER, authenticateUser} from './userAuthActions';
+        AUTHENTICATE_USER, authenticateUser,
+        START_AUTH_REQUEST, startAuthRequest} from './userAuthActions';
 
 describe('User Authentication Actions', () => {
   
@@ -40,5 +41,11 @@ describe('User Authentication Actions', () => {
     
   });
   
+  describe('startAuthRequest', () => {
     
+    it('Should return the action', () => {
+      const action = startAuthRequest();
+      expect(action.type).toEqual(START_AUTH_REQUEST);
+    });
+  });
 });

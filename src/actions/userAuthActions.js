@@ -9,3 +9,8 @@ export const authenticateUser = values => ({
   type: AUTHENTICATE_USER,
   values
 });
+
+export const START_AUTH_REQUEST = 'START_AUTH_REQUEST';
+export const startAuthRequest = () => ({
+  type: START_AUTH_REQUEST
+});
