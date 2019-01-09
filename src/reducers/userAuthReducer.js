@@ -1,5 +1,5 @@
 import {REGISTER_NEW_USER, AUTHENTICATE_USER,
-        START_AUTH_REQUEST} from '../actions';
+        START_AUTH_REQUEST, APPROVE_AUTH_REQUEST} from '../actions';
 
 export const initialState = {
   currentUser: null,
@@ -29,10 +29,13 @@ export default (state = initialState, action) => {
       authenticating: true,
       error: null
     });
-    
-    
   }
-
+  
+  if (action.type === APPROVE_AUTH_REQUEST) {
+    return Object.assign({}, state, {
+      authenticating: false
+    });
+  }
 
   return state;
   

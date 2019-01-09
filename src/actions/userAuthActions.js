@@ -14,3 +14,8 @@ export const START_AUTH_REQUEST = 'START_AUTH_REQUEST';
 export const startAuthRequest = () => ({
   type: START_AUTH_REQUEST
 });
+
+export const APPROVE_AUTH_REQUEST = 'APPROVE_AUTH_REQUEST';
+export const approveAuthRequest = () => ({
+  type: APPROVE_AUTH_REQUEST
+});
