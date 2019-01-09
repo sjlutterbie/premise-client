@@ -52,15 +52,22 @@ describe('userAuthState', () => {
   
   describe('rejectAuthRequest', () => {
     
-    it('Signals an authorization request is complete', () => {
+    it('Signals an authorization request failed', () => {
       let state = {
-        authenticating: true
+        authenticating: true,
+        error: null
       };
-      state = userAuthReducer(state, rejectAuthRequest());
+      const testError = {
+        message: 'Failed!'
+      };
+      state = userAuthReducer(state, rejectAuthRequest(testError));
       expect(state.authenticating).toEqual(false);
+      expect(state.error).toEqual(testError);
     });
-    
-    
   });
+  
+  // STRETCH GOALS:
+    // Tests for storeAuthInfo
+    // Tests for handleLogin
   
 });

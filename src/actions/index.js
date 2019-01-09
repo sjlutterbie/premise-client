@@ -20,5 +20,7 @@ export {
   AUTHENTICATE_USER, authenticateUser,
   START_AUTH_REQUEST, startAuthRequest,
   APPROVE_AUTH_REQUEST, approveAuthRequest,
-  REJECT_AUTH_REQUEST, rejectAuthRequest
+  REJECT_AUTH_REQUEST, rejectAuthRequest,
+  SET_AUTH_TOKEN, setAuthToken,
+  handleLogin
 } from './userAuthActions';

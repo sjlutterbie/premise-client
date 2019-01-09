@@ -40,7 +40,8 @@ export default (state = initialState, action) => {
   
   if (action.type === REJECT_AUTH_REQUEST) {
     return Object.assign({}, state, {
-      authenticating: false
+      authenticating: false,
+      error: action.error
     });
   }
 
