@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
+import requiresLogin from '../RequiresLogin';
+
 import './PremiseArea.css';
 
 // <PremiseArea /> contains the overall interface when interacting with a single
@@ -40,4 +42,5 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(PremiseArea);
+export default requiresLogin()(
+  connect(mapStateToProps, mapDispatchToProps)(PremiseArea));

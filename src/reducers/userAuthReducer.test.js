@@ -7,13 +7,15 @@ import {registerNewUser} from '../actions';
 describe('userAuthState', () => {
   
   it('Should contain the expected defaults', () => {
-    const expectedKeys = ['user'];
+    const expectedKeys = ['currentUser', 'authenticating', 'error'];
     expect(Object.keys(initialState)).toEqual(expectedKeys);
   });
   
   it('Default state elements should be the correct type', () => {
     const expectedTypes = [
-      ['user', 'object']
+      ['currentUser', 'object'],
+      ['authenticating', 'boolean'],
+      ['error', 'boolean']
     ];
     expectedTypes.forEach(element => {
       expect(typeof initialState[element[0]]).toEqual(element[1]);
