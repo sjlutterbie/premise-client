@@ -19,3 +19,8 @@ export const APPROVE_AUTH_REQUEST = 'APPROVE_AUTH_REQUEST';
 export const approveAuthRequest = () => ({
   type: APPROVE_AUTH_REQUEST
 });
+
+export const REJECT_AUTH_REQUEST = 'REJECT_AUTH_REQUEST';
+export const rejectAuthRequest = () => ({
+  type: REJECT_AUTH_REQUEST
+});

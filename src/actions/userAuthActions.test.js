@@ -3,7 +3,8 @@ import faker from 'faker';
 import {REGISTER_NEW_USER, registerNewUser,
         AUTHENTICATE_USER, authenticateUser,
         START_AUTH_REQUEST, startAuthRequest,
-        APPROVE_AUTH_REQUEST, approveAuthRequest} from './userAuthActions';
+        APPROVE_AUTH_REQUEST, approveAuthRequest,
+        REJECT_AUTH_REQUEST, rejectAuthRequest} from './userAuthActions';
 
 describe('User Authentication Actions', () => {
   
@@ -57,6 +58,14 @@ describe('User Authentication Actions', () => {
       expect(action.type).toEqual(APPROVE_AUTH_REQUEST);
     });
     
+  });
+  
+  describe('rejectAuthRequest', () => {
+    
+    it('Should return the action', () => {
+      const action = rejectAuthRequest();
+      expect(action.type).toEqual(REJECT_AUTH_REQUEST);
+    });
     
   });
   
