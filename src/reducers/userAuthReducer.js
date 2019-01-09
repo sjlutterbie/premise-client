@@ -1,7 +1,9 @@
 import {REGISTER_NEW_USER, AUTHENTICATE_USER} from '../actions';
 
 export const initialState = {
-  user: null
+  currentUser: null,
+  authenticating: false,
+  error: false
 };
 
 export default (state = initialState, action) => {
