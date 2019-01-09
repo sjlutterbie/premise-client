@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 
 import './LandingPage.css';
 
@@ -8,6 +8,10 @@ import RegistrationForm from '../RegistrationForm';
 import LoginForm from '../LoginForm';
 
 export function LandingPage(props) {
+  
+  if(props.loggedIn) {
+    return <Redirect to="/premisearea" />;
+  }
   
   return (
     <div className="landing-page">
@@ -22,7 +26,9 @@ export function LandingPage(props) {
   
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  loggedIn: state.userAuth.currentUser !== null
+});
 
 const mapDispatchToProps = {};
 
