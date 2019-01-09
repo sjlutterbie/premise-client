@@ -9,7 +9,7 @@ import {registerNewUser} from '../../actions';
 
 import './RegistrationForm.css';
 
-export function RegistrationForm(props) {
+export function coreRegistrationForm(props) {
   
   return (
     <form onSubmit={props.handleSubmit(values =>
@@ -68,8 +68,8 @@ const mapDispatchToProps = {
   registerNewUser
 };
 
-RegistrationForm = connect(mapStateToProps,
-                           mapDispatchToProps)(RegistrationForm);
+let RegistrationForm = connect(mapStateToProps,
+                           mapDispatchToProps)(coreRegistrationForm);
 
 export default reduxForm({
   form: 'registration'

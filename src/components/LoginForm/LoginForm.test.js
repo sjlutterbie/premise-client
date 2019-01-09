@@ -7,11 +7,10 @@ import {coreLoginForm as LoginForm} from './index';
 // Create DEV items
 
 const handleSubmit_test = jest.fn();
-const authenticateUser_test = jest.fn();
 
 const testProps = {
   handleSubmit: handleSubmit_test,
-  authenticateUser: authenticateUser_test
+  authenticateUser: jest.fn() // Not called directly, so not tested
 };
 
 // Create object to hold shallow render
@@ -27,7 +26,6 @@ describe('<LoginForm />', () => {
     
     it('Clicking the submit button calls authenticateUser', () => {
       wrapper = shallow(<LoginForm {...testProps}/>);
-      console.log(wrapper);
       wrapper.find('.login-form').simulate('submit');
       expect(handleSubmit_test)
         .toHaveBeenCalled();
