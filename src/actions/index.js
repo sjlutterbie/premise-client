@@ -16,5 +16,6 @@ export {
 } from './storyBranchActions';
 
 export {
-  REGISTER_NEW_USER, registerNewUser
+  REGISTER_NEW_USER, registerNewUser,
+  AUTHENTICATE_USER, authenticateUser
 } from './userAuthActions';

@@ -5,14 +5,16 @@ import {reduxForm, Field} from 'redux-form';
 import Input from '../Input';
 import {required, nonEmpty} from '../../validators';
 
-import {registerNewUser} from '../../actions';
+import {authenticateUser} from '../../actions';
 
 import './LoginForm.css';
 
-export function LoginForm(props) {
+export function coreLoginForm(props) {
   
  return (
-    <form onSubmit={props.handleSubmit(values => props.onSubmit(values))}>
+    <form className="login-form"
+          onSubmit={props.handleSubmit(values =>
+                      props.authenticateUser(values))}>
       <Field
         name="username"
         type="text"
@@ -39,11 +41,10 @@ export function LoginForm(props) {
 const mapStateToProps = state => ({});
 
 const mapDispatchToProps = {
-  onSubmit: registerNewUser
+  authenticateUser
 };
 
-LoginForm = connect(mapStateToProps, mapDispatchToProps)(LoginForm);
-
+let LoginForm = connect(mapStateToProps, mapDispatchToProps)(coreLoginForm);
 
 export default reduxForm({
   form: 'login'
