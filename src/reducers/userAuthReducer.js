@@ -15,7 +15,12 @@ export default (state = initialState, action) => {
   
   // Authenticate user
   if (action.type === AUTHENTICATE_USER) {
-    console.log(action.values);
+    
+    // DEV ONLY: Automatically logs in any provided username
+    
+    return Object.assign({}, state, {
+      currentUser: action.values.username
+    });
   }
 
   return state;
