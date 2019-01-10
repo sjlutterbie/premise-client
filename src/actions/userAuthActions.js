@@ -9,3 +9,10 @@ export const authenticateUser = values => ({
   type: AUTHENTICATE_USER,
   values
 });
+
+export const START_USER_AUTH = 'START_USER_AUTH';
+export const startUserAuth = () => ({
+  type: START_USER_AUTH,
+  authenticating: true,
+  error: null
+});
