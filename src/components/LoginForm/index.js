@@ -5,16 +5,26 @@ import {reduxForm, Field} from 'redux-form';
 import Input from '../Input';
 import {required, nonEmpty} from '../../validators';
 
-import {authenticateUser} from '../../actions';
+import {loginUser} from '../../actions';
 
 import './LoginForm.css';
 
 export function coreLoginForm(props) {
   
- return (
+  let error;
+  if (props.error) {
+    error = (
+      <div className="form-error" aria-live="polite">
+        {props.error}
+      </div>
+    );
+  }
+  
+  return (
     <form className="login-form"
           onSubmit={props.handleSubmit(values =>
-                      props.authenticateUser(values))}>
+                      props.loginUser(values.username, values.password))}>
+      {error}
       <Field
         name="username"
         type="text"
@@ -41,7 +51,7 @@ export function coreLoginForm(props) {
 const mapStateToProps = state => ({});
 
 const mapDispatchToProps = {
-  authenticateUser
+  loginUser
 };
 
 let LoginForm = connect(mapStateToProps, mapDispatchToProps)(coreLoginForm);

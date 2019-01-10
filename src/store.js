@@ -1,4 +1,5 @@
-import {combineReducers, createStore} from 'redux';
+import {combineReducers, createStore, applyMiddleware} from 'redux';
+import thunk from 'redux-thunk';
 
 // Reducers
 import {navReducer, storyBranchReducer, userAuthReducer} from './reducers';
@@ -13,4 +14,4 @@ const centralReducer = combineReducers({
 });
 
 // Export store
-export default createStore(centralReducer);
+export default createStore(centralReducer, applyMiddleware(thunk));

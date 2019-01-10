@@ -16,6 +16,12 @@ export {
 } from './storyBranchActions';
 
 export {
-  REGISTER_NEW_USER, registerNewUser,
-  AUTHENTICATE_USER, authenticateUser
+  AUTH_REQUEST, authRequest,
+  AUTH_SUCCESS, authSuccess,
+  AUTH_ERROR, authError,
+  SET_AUTH_TOKEN, setAuthToken,
+  CLEAR_AUTH, clearAuth,
+  loginUser,
+  // TEMP
+  REGISTER_NEW_USER, registerNewUser
 } from './userAuthActions';
