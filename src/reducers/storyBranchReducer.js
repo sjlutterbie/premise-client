@@ -46,7 +46,7 @@ export default (state = initialState, action) => {
 
   if(action.type === HANDLE_MOMENT_TEXT_CLICK) {
     
-    if(state.focalMomentMode != 'create') {
+    if(state.focalMomentMode !== 'create') {
       return Object.assign({}, state, {
         focalMoment: action.momentId,
         focalMomentMode: 'actions'
