@@ -21,7 +21,7 @@ export {
   AUTH_ERROR, authError,
   SET_AUTH_TOKEN, setAuthToken,
   CLEAR_AUTH, clearAuth,
-  loginUser,
+  loginUser, registerUser,
   // TEMP
   REGISTER_NEW_USER, registerNewUser
 } from './userAuthActions';

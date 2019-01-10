@@ -103,6 +103,31 @@ export const refreshAuthToken = () => (dispatch, getState) => {
     });
 };
 
+export const registerUser = user => dispatch => {
+  
+  return fetch(`${PREMISE_BASE_API_URL}/user`,
+  {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify(user)
+  })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .catch(err => {
+      const {reason, message, location} = err;
+      if (reason === 'ValidationError') {
+        // Convert ValidationError to SubmissionError
+        return Promise.reject(
+          new SubmissionError({
+            [location]: message
+          }) 
+        );
+      }
+    });
+};
+
 // TEMP CODE:
 
 export const REGISTER_NEW_USER = 'REGISTER_NEW_USER';

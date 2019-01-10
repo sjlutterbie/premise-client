@@ -81,5 +81,6 @@ describe('User Authentication Actions', () => {
     // storeAuthInfo
     // loginUser
     // refreshAuthToken
+    // registerUser
 
 });

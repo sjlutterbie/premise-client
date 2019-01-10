@@ -17,7 +17,7 @@ export function LandingPage(props) {
     <div className="landing-page">
       This the Landing Page!<br/>
       <div className="form-wrapper">
-        <LoginForm />
+        <RegistrationForm />
       </div>
       <Link to="/login">Login</Link><br/>
       <Link to="/premisearea">PremiseArea</Link>
