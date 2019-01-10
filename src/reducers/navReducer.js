@@ -81,7 +81,7 @@ export default (state = initialState, action) => {
     
     // Remove duplicates from input array
     action.panes = action.panes.filter((pane, index) => {
-      return action.panes.indexOf(pane) == index;
+      return action.panes.indexOf(pane) === index;
     });
     
     // Filter out already visible panes

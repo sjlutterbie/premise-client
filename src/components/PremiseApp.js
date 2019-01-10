@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 import { connect }  from 'react-redux';
 
 import Header from './Header';
@@ -7,8 +7,6 @@ import PremiseArea from './PremiseArea';
 import UserGuide from './UserGuide';
 import MobileNav from './MobileNav';
 import LandingPage from './LandingPage';
-import {default as RegistrationForm} from './RegistrationForm';
-import LoginForm from './LoginForm';
 
 import {loadDefaultBranch, monitorResponsiveBracket} from '../actions';
 

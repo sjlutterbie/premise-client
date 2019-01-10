@@ -5,7 +5,7 @@ import {Link, Redirect} from 'react-router-dom';
 import './LandingPage.css';
 
 import RegistrationForm from '../RegistrationForm';
-import LoginForm from '../LoginForm';
+// import LoginForm from '../LoginForm';
 
 export function LandingPage(props) {
   

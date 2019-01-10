@@ -55,7 +55,7 @@ export function coreRegistrationForm(props) {
       />
       <Field
         name="password-repeat"
-        type="password-repeat"
+        type="password"
         component={Input}
         label="Repeat password"
         validate={[required, nonEmpty]}
