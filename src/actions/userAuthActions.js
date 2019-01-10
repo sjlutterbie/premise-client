@@ -1,4 +1,9 @@
+import jwtDecode from 'jwt-decode';
+
 import {PREMISE_BASE_API_URL} from '../config';
+
+import {normalizeResponseErrors} from './utils';
+import {saveAuthToken, clearAuthToken} from '../local-storage';
 
 export const REGISTER_NEW_USER = 'REGISTER_NEW_USER';
 export const registerNewUser = values => ({
@@ -21,6 +26,24 @@ export const startUserAuth = () => ({
   error: null
 });
 
+export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
+export const setAuthToken = authToken => ({
+  type: SET_AUTH_TOKEN,
+  authToken
+});
+
+export const CLEAR_AUTH = 'CLEAR_AUTH';
+export const clearAuth = () => ({
+  type: CLEAR_AUTH
+});
+
+export const AUTH_ERROR = 'AUTH_ERROR';
+export const authError = error => ({
+  type: AUTH_ERROR,
+  error
+});
+
+
 export const loginUser = (username, password) => dispatch => {
   
   // Signal start of login process
@@ -38,9 +61,11 @@ export const loginUser = (username, password) => dispatch => {
         password
       })
     })
+    .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then(res => console.log(res))
+    .then(({authToken}) => console.log(authToken))
     .catch(err => console.log(err))
   );
 
 };
+
