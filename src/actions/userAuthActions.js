@@ -41,7 +41,6 @@ export const clearAuth = () => ({
 
 const storeAuthInfo = ((authToken, dispatch) => {
   const decodedToken = jwtDecode(authToken);
-  console.log(decodedToken);
   dispatch(setAuthToken(authToken));
   dispatch(authSuccess(decodedToken.user.username));
   saveAuthToken(authToken);
