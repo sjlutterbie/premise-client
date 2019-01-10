@@ -34,13 +34,16 @@ export const setAuthToken = authToken => ({
 
 export const CLEAR_AUTH = 'CLEAR_AUTH';
 export const clearAuth = () => ({
-  type: CLEAR_AUTH
+  type: CLEAR_AUTH,
+  authToken: null,
+  currentUser: null
 });
 
 const storeAuthInfo = ((authToken, dispatch) => {
   const decodedToken = jwtDecode(authToken);
+  console.log(decodedToken);
   dispatch(setAuthToken(authToken));
-  dispatch(authSuccess(decodedToken.user));
+  dispatch(authSuccess(decodedToken.user.username));
   saveAuthToken(authToken);
 });
 
@@ -65,9 +68,17 @@ export const loginUser = (username, password) => dispatch => {
     .then(res => res.json())
     .then(({authToken}) => storeAuthInfo(authToken, dispatch))
     .catch(err => {
+      const {code} = err;
+      const message = 
+        code === 401
+          ? 'Incorrect username or password'
+          : 'Unable to login, please try again';
       dispatch(authError(err));
-      dispatch(clearAuth());
-      clearAuthToken();
+      return Promise.reject(
+        new SubmissionError({
+          _error: message
+        })
+      );
     })
   );
 };
@@ -92,3 +103,10 @@ export const refreshAuthToken = () => (dispatch, getState) => {
       clearAuthToken(authToken);
     });
 };
+
+// TEMP CODE:
+
+export const REGISTER_NEW_USER = 'REGISTER_NEW_USER';
+export const registerNewUser = () => ({
+  type: REGISTER_NEW_USER
+});

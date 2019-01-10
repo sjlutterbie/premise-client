@@ -1,44 +1,53 @@
 import {
-  REGISTER_NEW_USER, AUTHENTICATE_USER,
-  START_USER_AUTH
+  AUTH_REQUEST,
+  AUTH_SUCCESS,
+  AUTH_ERROR,
+  SET_AUTH_TOKEN,
+  CLEAR_AUTH
 } from '../actions';
 
 export const initialState = {
+  authToken: null,
   currentUser: null,
   authenticating: false,
-  error: false
+  error: null
 };
 
 export default (state = initialState, action) => {
   
-  // Register new user
-  if (action.type === REGISTER_NEW_USER) {
-    console.log(action.values);
-  }
-  
-  // Authenticate user
-  if (action.type === AUTHENTICATE_USER) {
-    
-    // DEV ONLY: Automatically logs in any provided username
-    
-    return Object.assign({}, state, {
-      currentUser: action.username,
-      authenticating: action.authenticating,
-      error: action.error
-    });
-  }
-  
-  if(action.type === START_USER_AUTH) {
-    
+  if(action.type === AUTH_REQUEST) {
     return Object.assign({}, state, {
       authenticating: action.authenticating,
       error: action.error
     });
-    
   }
   
+  if(action.type === AUTH_SUCCESS) {
+    return Object.assign({}, state, {
+      authenticating: action.authenticating,
+      error: action.error,
+      currentUser: action.username
+    });
+  }
   
-
+  if(action.type === AUTH_ERROR) {
+    return Object.assign({}, state, {
+      error: action.error
+    });
+  }
+  
+  if(action.type === SET_AUTH_TOKEN) {
+    return Object.assign({}, state, {
+      authToken: action.authToken
+    });
+  }
+  
+  if(action.type === CLEAR_AUTH) {
+    return Object.assign({}, state, {
+      authToken: action.authToken,
+      currentUser: action.currentUser
+    });
+  }
+  
   return state;
-  
 };

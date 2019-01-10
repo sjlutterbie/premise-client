@@ -69,6 +69,12 @@ describe('User Authentication Actions', () => {
       const action = clearAuth();
       expect(action.type).toEqual(CLEAR_AUTH);
     });
+    
+    it('Should return the correct values', () => {
+      const action = clearAuth();
+      expect(action.authToken).toEqual(null);
+      expect(action.currentUser).toEqual(null);
+    });
   });
 
   // TODO:
