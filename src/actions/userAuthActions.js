@@ -26,14 +26,21 @@ export const loginUser = (username, password) => dispatch => {
   // Signal start of login process
   dispatch(startUserAuth());
   
-  fetch(`${PREMISE_BASE_API_URL}/auth/test`,
-  {
-    method: 'GET'
-  })
+  return (
+    
+    fetch(`${PREMISE_BASE_API_URL}/auth/login`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        username,
+        password
+      })
+    })
     .then(res => res.json())
-    .then(res => console.log(res));
-//    .then(res => {
-//      dispatch(authenticateUser(username));
-//    });
-  
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
+  );
+
 };
