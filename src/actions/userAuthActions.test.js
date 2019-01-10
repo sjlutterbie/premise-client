@@ -32,12 +32,9 @@ describe('User Authentication Actions', () => {
     });
     
     it('Should return the correct values', () => {
-      const testObject = {
-        username: faker.random.alphaNumeric(10),
-        password: faker.random.alphaNumeric(10)
-      };
-      const action = authenticateUser(testObject);
-      expect(action.values).toEqual(testObject);
+      const testUsername = faker.random.alphaNumeric(10);
+      const action = authenticateUser(testUsername);
+      expect(action.username).toEqual(testUsername);
     });
     
   });

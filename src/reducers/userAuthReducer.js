@@ -22,7 +22,9 @@ export default (state = initialState, action) => {
     // DEV ONLY: Automatically logs in any provided username
     
     return Object.assign({}, state, {
-      currentUser: action.values.username
+      currentUser: action.username,
+      authenticating: action.authenticating,
+      error: action.error
     });
   }
   
