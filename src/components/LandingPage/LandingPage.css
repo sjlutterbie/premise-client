@@ -1,0 +1,21 @@
+.landing-page {
+  height: calc(100vh - 43px);
+  
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-wrapper {
+  min-height: 320px;
+  min-width: 350px;
+  
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  
+  border: 1px solid #ccc;
+  padding: 8px;
+}
