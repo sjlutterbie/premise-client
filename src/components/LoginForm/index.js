@@ -11,10 +11,20 @@ import './LoginForm.css';
 
 export function coreLoginForm(props) {
   
- return (
+  let error;
+  if (props.error) {
+    error = (
+      <div className="form-error" aria-live="polite">
+        {props.error}
+      </div>
+    );
+  }
+  
+  return (
     <form className="login-form"
           onSubmit={props.handleSubmit(values =>
                       props.loginUser(values.username, values.password))}>
+      {error}
       <Field
         name="username"
         type="text"
