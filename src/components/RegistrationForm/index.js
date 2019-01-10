@@ -38,7 +38,6 @@ export function coreRegistrationForm(props) {
         type="email"
         component={Input}
         label="Email address"
-        validate={[required, nonEmpty]}
       />
       <Field
         name="username"
