@@ -17,5 +17,6 @@ export {
 
 export {
   REGISTER_NEW_USER, registerNewUser,
-  AUTHENTICATE_USER, authenticateUser
+  AUTHENTICATE_USER, authenticateUser,
+  START_USER_AUTH, startUserAuth
 } from './userAuthActions';
