@@ -2,39 +2,45 @@ import faker from 'faker';
 
 import {default as userAuthReducer, initialState} from './userAuthReducer';
 
-import {registerNewUser, startUserAuth} from '../actions';
+import {
+  authRequest,
+  authSuccess,
+  authError,
+  setAuthToken,
+  clearAuth
+} from '../actions';
 
 describe('userAuthState', () => {
   
   it('Should contain the expected defaults', () => {
-    const expectedKeys = ['currentUser', 'authenticating', 'error'];
+    const expectedKeys = ['authToken', 'currentUser',
+                          'authenticating', 'error'];
     expect(Object.keys(initialState)).toEqual(expectedKeys);
   });
   
   it('Default state elements should be the correct type', () => {
     const expectedTypes = [
-      ['currentUser', 'object'],
-      ['authenticating', 'boolean'],
-      ['error', 'boolean']
+      ['authenticating', 'boolean']
     ];
     expectedTypes.forEach(element => {
       expect(typeof initialState[element[0]]).toEqual(element[1]);
     });
   });
   
-  describe('startUserAuth', () => {
+  describe('authRequest', () => {
     
-    it('It sets `authenticating` and `error` appropriately', () => {
+    it('Should set `authenticating` and `error` as expected', () => {
       let state = {
         authenticating: false,
         error: 'foo'
       };
-      state = userAuthReducer(state, startUserAuth());
+      state = userAuthReducer(state, authRequest());
       expect(state.authenticating).toEqual(true);
       expect(state.error).toEqual(null);
     });
     
+    
   });
-  
+
   
 });
