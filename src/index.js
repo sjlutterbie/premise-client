@@ -10,6 +10,8 @@ import * as serviceWorker from './serviceWorker';
 
 import PremiseApp from './components/PremiseApp';
 
+require('dotenv').config();
+
 ReactDOM.render(
   <Provider store={store}>
       <PremiseApp />
