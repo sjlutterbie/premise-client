@@ -6,7 +6,9 @@ import {SET_USER_MENU_VIEW, setUserMenuView,
         REMOVE_VISIBLE_PANES, removeVisiblePanes,
         UPDATE_USER_GUIDE_PAGE, updateUserGuidePage,
         UPDATE_CURRENT_LOCATION, updateCurrentLocation,
-        UPDATE_AUTH_STATUS, updateAuthStatus} from './navActions';
+        UPDATE_AUTH_STATUS, updateAuthStatus,
+        UPDATE_LANDING_PAGE_FORM, updateLandingPageForm
+} from './navActions';
 
 describe('Navigation Actions', () => {
   
@@ -94,6 +96,7 @@ describe('Navigation Actions', () => {
   });
   
   describe('updateAuthorizedUser', () => {
+
     it('Should return the action', () => {
       const action = updateAuthStatus();
       expect(action.type).toEqual(UPDATE_AUTH_STATUS);
@@ -106,4 +109,17 @@ describe('Navigation Actions', () => {
     });
   });
   
+  describe('updateLandingPageForm', () => {
+    
+    it('Should return the action', () => {
+      const action = updateLandingPageForm();
+      expect(action.type).toEqual(UPDATE_LANDING_PAGE_FORM);
+    });
+    
+    it('Should return the correct value', () => {
+      const testForm = faker.random.alphaNumeric(10);
+      const action = updateLandingPageForm(testForm);
+      expect(action.form).toEqual(testForm);
+    });
+  });
 });

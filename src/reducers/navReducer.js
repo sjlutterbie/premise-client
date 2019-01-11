@@ -1,7 +1,8 @@
 import {SET_USER_MENU_VIEW, MONITOR_RESPONSIVE_BRACKET,
         ADD_VISIBLE_PANES, REMOVE_VISIBLE_PANES,
         UPDATE_USER_GUIDE_PAGE, UPDATE_CURRENT_LOCATION,
-        UPDATE_AUTH_STATUS} from '../actions';
+        UPDATE_AUTH_STATUS, UPDATE_LANDING_PAGE_FORM
+} from '../actions';
 
 // Set initial state items for navigation elements
 export const initialState = {
@@ -21,7 +22,10 @@ export const initialState = {
   userGuidePage: 'page1', // Default to page1
   
   // Element visibility
-  showUserMenu: false
+  showUserMenu: false,
+  
+  // Which form to display on landing page
+  landingPageForm: 'login'
 };
 
 export default (state = initialState, action) => {
@@ -129,6 +133,12 @@ export default (state = initialState, action) => {
       authStatus: action.authStatus
     });
   }
+
+  if (action.type === UPDATE_LANDING_PAGE_FORM) {
+    return Object.assign({}, state, {
+      landingPageForm: action.form
+    });
+  }  
 
   return state;
 

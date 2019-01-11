@@ -40,3 +40,9 @@ export const updateAuthStatus = (authStatus) => ({
   type: UPDATE_AUTH_STATUS,
   authStatus
 });
+
+export const UPDATE_LANDING_PAGE_FORM = 'UPDATE_LANDING_PAGE_FORM';
+export const updateLandingPageForm = (form) => ({
+  type: UPDATE_LANDING_PAGE_FORM,
+  form
+});
