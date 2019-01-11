@@ -12,10 +12,13 @@ import './RegistrationForm.css';
 export function coreRegistrationForm(props) {
   
   function onSubmit(values) {
-    const {username, password, firstName, lastName} = values;
-    const user = {username, password, firstName, lastName};
+    const {username, password} = values;
+    const user = {username, password};
     return props.registerUser(user)
-      .then(() => props.loginUser(username, password));
+      .then(() => {
+        alert(`Welcome, ${username}! You will now be logged in.`);
+        props.loginUser(username, password);
+      });
   }
 
   let error;
@@ -32,24 +35,6 @@ export function coreRegistrationForm(props) {
                       onSubmit(values))}>
       {error}
       <Field
-        name="firstName"
-        type="text"
-        component={Input}
-        label="First name"
-      />
-      <Field
-        name="lastName"
-        type="text"
-        component={Input}
-        label="Last name"
-      />
-      <Field
-        name="email"
-        type="email"
-        component={Input}
-        label="Email address"
-      />
-      <Field
         name="username"
         type="text"
         component={Input}
@@ -61,13 +46,6 @@ export function coreRegistrationForm(props) {
         type="password"
         component={Input}
         label="Password"
-        validate={[required, nonEmpty]}
-      />
-      <Field
-        name="password-repeat"
-        type="password"
-        component={Input}
-        label="Repeat password"
         validate={[required, nonEmpty]}
       />
       <button
