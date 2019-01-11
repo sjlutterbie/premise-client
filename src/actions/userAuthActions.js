@@ -127,10 +127,3 @@ export const registerUser = user => dispatch => {
       }
     });
 };
-
-// TEMP CODE:
-
-export const REGISTER_NEW_USER = 'REGISTER_NEW_USER';
-export const registerNewUser = () => ({
-  type: REGISTER_NEW_USER
-});

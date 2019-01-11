@@ -23,6 +23,5 @@ export {
   SET_AUTH_TOKEN, setAuthToken,
   CLEAR_AUTH, clearAuth,
   loginUser, registerUser,
-  // TEMP
-  REGISTER_NEW_USER, registerNewUser
+  refreshAuthToken
 } from './userAuthActions';
