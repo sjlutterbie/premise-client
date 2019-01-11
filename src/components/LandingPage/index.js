@@ -17,20 +17,28 @@ export function LandingPage(props) {
   
   let form;
   if (props.form === 'login') {
-    form = <LoginForm />;
+    form = 
+      <div className='rct-login-form-wrapper'>
+        <LoginForm />
+      </div>;
   } else {
-    form = <RegistrationForm />;
+    form = 
+    <div className='rct-registration-form-wrapper'>
+      <RegistrationForm />
+    </div>;
   }
   
   let formToggleLink;
   if (props.form === 'login') {
-    formToggleLink = <a href="#" onClick={
-                          () => props.updateLandingPageForm('registration')
-                        }>Register</a>;
+    formToggleLink =
+      <a className="rct-form-toggle-link" href="#"
+         onClick={() => props.updateLandingPageForm('registration')}>
+      Register</a>;
   } else {
-    formToggleLink = <a href="#" onClick={
-                          () => props.updateLandingPageForm('login')
-                        }>Login</a>;
+    formToggleLink =
+      <a className="rct-form-toggle-link" href="#"
+         onClick={() => props.updateLandingPageForm('login')}>
+      Login</a>;
   }
   return (
     <div className="landing-page">
