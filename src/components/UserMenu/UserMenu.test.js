@@ -6,24 +6,35 @@ import {SET_USER_MENU_VIEW, setUserMenuView} from '../../actions';
 
 describe('<UserMenu />', () => {
   
+  
+  let clearAuth_test, setUserMenuView_test, testProps; 
+  
+  beforeEach( () => {
+    clearAuth_test = jest.fn();
+    setUserMenuView_test = jest.fn();
+    testProps = {
+      showUserMenu: false,
+      clearAuth: clearAuth_test,
+      setUserMenuView: setUserMenuView_test
+    };  
+  });
+  
+  
   it('Renders without crashing', () => {
-    shallow(<UserMenu />);
+    shallow(<UserMenu {...testProps}/>);
   });
   
   it('On clicking i.user-menu-toggle, dispatches setUserMenuView', () => {
-    const dispatch = jest.fn();
-    const wrapper = shallow(<UserMenu dispatch={dispatch} />);
-    
+    const wrapper = shallow(<UserMenu {...testProps} />);
     wrapper.find('.user-menu-toggle').simulate('click');
-    
-    expect(dispatch).toHaveBeenCalledWith(
-      {
-        visible: expect.any(Boolean),
-        type: SET_USER_MENU_VIEW
-      }
-    );
-    
-    
+    expect(setUserMenuView_test).toHaveBeenCalled();
+  });
+  
+  it('Clicking the `Log Out` button calls logOut', () => {
+    testProps.showUserMenu = true;
+    const wrapper = shallow(<UserMenu {...testProps} />);
+    wrapper.find('.rct-log-out').simulate('click');
+    expect(clearAuth_test).toHaveBeenCalled();
   });
   
   

@@ -23,7 +23,7 @@ export function UserMenu(props) {
         props.showUserMenu
           ? (
             <ul>
-              <li onClick={() => logOut()}>Log Out</li>
+              <li className="rct-log-out" onClick={() => logOut()}>Log Out</li>
             </ul>
           )
           : (null)
