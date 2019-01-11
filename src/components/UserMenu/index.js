@@ -11,6 +11,7 @@ export function UserMenu(props) {
   function logOut() {
     props.clearAuth();
     clearAuthToken();
+    props.setUserMenuView(!props.showUserMenu);
   }
  
   return(
