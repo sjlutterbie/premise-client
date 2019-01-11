@@ -15,8 +15,10 @@ export function coreRegistrationForm(props) {
     const {username, password} = values;
     const user = {username, password};
     return props.registerUser(user)
-      // TODO: What happens once user is created?
-      // .then(() => props.loginUser(username, password));
+      .then(() => {
+        alert(`Welcome, ${username}! You will now be logged in.`);
+        props.loginUser(username, password);
+      });
   }
 
   let error;
