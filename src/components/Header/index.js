@@ -1,17 +1,29 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import './Header.css';
 
 import HeaderNav from '../HeaderNav';
 import LocationBar from '../LocationBar';
 
-export default function Header(props) {
+export function Header(props) {
   
   return (
     <header>
       <h1>Premise</h1>
-      <HeaderNav />
+      {props.loggedIn
+        ? <HeaderNav />
+        : (null)
+      }
       <LocationBar location="Location Bar"/>
     </header>
   );
   
 }
+
+const mapStateToProps = state => ({
+  loggedIn: state.userAuth.currentUser !== null,
+});
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
