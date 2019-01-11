@@ -8,7 +8,8 @@ import UserGuide from './UserGuide';
 import MobileNav from './MobileNav';
 import LandingPage from './LandingPage';
 
-import {loadDefaultBranch, monitorResponsiveBracket} from '../actions';
+import {loadDefaultBranch, monitorResponsiveBracket,
+        refreshAuthToken} from '../actions';
 
 // START DEV CODE
   
@@ -42,6 +43,25 @@ export class PremiseApp extends Component{
     
     window.addEventListener('resize',
     () => {this.props.monitorResponsiveBracket(window.innerWidth)});
+  }
+  
+  componentDidUpdate(prevProps) {
+    if (!prevProps.loggedIn && this.props.loggedIn) {
+      this.startPeriodicRefresh();
+    } else if (prevProps.loggedIn && !this.props.loggedIn) {
+      this.stopPeriodicRefresh();
+    }
+  }
+  
+  componentWillUnmount() {
+    this.stopPeriodicRefresh();
+  }
+  
+  startPeriodicRefresh() {
+    this.refreshInterval = setInterval(
+      () => this.props.refreshAuthToken(),
+      60 * 60 * 1000
+    );
   }
 
   render() {
@@ -77,7 +97,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   loadDefaultBranch,
-  monitorResponsiveBracket
+  monitorResponsiveBracket,
+  refreshAuthToken
 };
 
 export default connect(mapStateToProps,mapDispatchToProps)(PremiseApp);
