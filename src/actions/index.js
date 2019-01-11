@@ -5,7 +5,8 @@ export {
   REMOVE_VISIBLE_PANES, removeVisiblePanes,
   UPDATE_USER_GUIDE_PAGE, updateUserGuidePage,
   UPDATE_CURRENT_LOCATION, updateCurrentLocation,
-  UPDATE_AUTH_STATUS, updateAuthStatus
+  UPDATE_AUTH_STATUS, updateAuthStatus,
+  UPDATE_LANDING_PAGE_FORM, updateLandingPageForm
 } from './navActions';
         
 export {

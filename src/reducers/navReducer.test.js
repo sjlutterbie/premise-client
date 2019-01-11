@@ -4,14 +4,16 @@ import {default as navReducer, initialState} from './navReducer';
 import {setUserMenuView, monitorResponsiveBracket,
         addVisiblePanes, removeVisiblePanes,
         updateUserGuidePage, updateCurrentLocation,
-        updateAuthStatus} from '../actions';
+        updateAuthStatus, updateLandingPageForm
+} from '../actions';
 
 
 describe('navState', () => {
   
   it('Should contain the expected defaults', () => {
     const expectedKeys = ['authStatus', 'responsiveBracket','visiblePanes',
-                          'currentLocation', 'userGuidePage','showUserMenu'];
+                          'currentLocation', 'userGuidePage','showUserMenu',
+                          'landingPageForm'];
     expect(Object.keys(initialState)).toEqual(expectedKeys);
   });
   
@@ -22,7 +24,8 @@ describe('navState', () => {
       ['visiblePanes', 'object'], //Array-like object
       ['currentLocation', 'string'],
       ['userGuidePage', 'string'],
-      ['showUserMenu', 'boolean']
+      ['showUserMenu', 'boolean'],
+      ['landingPageForm', 'string']
     ];
     expectedTypes.forEach(element => {
       expect(typeof initialState[element[0]]).toEqual(element[1]);
@@ -207,7 +210,17 @@ describe('Navigation Reducer', () => {
       state = navReducer(state, updateAuthStatus(testAuth));
       expect(state.authStatus).toEqual(testAuth);
     });
-    
   });
   
+  describe('updateLandingPageForm(form)', () => {
+    
+    it('Should update state.form as expected', () => {
+      let state = {
+        landingPageForm: 'foo'
+      };
+      const testForm = faker.random.alphaNumeric(10);
+      state = navReducer(state, updateLandingPageForm(testForm));
+      expect(state.landingPageForm).toEqual(testForm);
+    });
+  });
 });
