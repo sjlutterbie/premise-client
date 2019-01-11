@@ -3,7 +3,7 @@ export const normalizeResponseErrors = res => {
   if(!res.ok) {
     if (
       res.headers.has('content-type') &&
-      res.headers.get('content-type').startswith('application/json')
+      res.headers.get('content-type').startsWith('application/json')
     ) {
       // It's a standard JSON error
       return res.json().then(err => Promise.reject(err));

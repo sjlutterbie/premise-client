@@ -105,7 +105,7 @@ export const refreshAuthToken = () => (dispatch, getState) => {
 
 export const registerUser = user => dispatch => {
   
-  return fetch(`${PREMISE_BASE_API_URL}/user`,
+  return fetch(`${PREMISE_BASE_API_URL}/user/`,
   {
     method: 'POST',
     headers: {
