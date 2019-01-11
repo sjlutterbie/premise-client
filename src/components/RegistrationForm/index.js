@@ -17,10 +17,20 @@ export function coreRegistrationForm(props) {
     return props.registerUser(user)
       .then(() => props.loginUser(username, password));
   }
+
+  let error;
+  if (props.error) {
+    error = (
+      <div className="form-error" aria-live="polite">
+        {props.error}
+      </div>
+    );
+  }
   
   return (
     <form onSubmit={props.handleSubmit(values =>
                       onSubmit(values))}>
+      {error}
       <Field
         name="firstName"
         type="text"
