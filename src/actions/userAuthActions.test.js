@@ -48,7 +48,6 @@ describe('User Authentication Actions', () => {
     });
   });
 
-  
   describe('setAuthToken', () => {
     
     it('Should return the action', () => {

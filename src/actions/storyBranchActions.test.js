@@ -63,8 +63,5 @@ describe('Story Branch Actions', () => {
       const action = handleMomentTextClick(momentId);
       expect(action.momentId).toEqual(momentId);
     });
-    
   });
-  
-  
 });

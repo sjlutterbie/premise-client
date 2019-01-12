@@ -38,7 +38,6 @@ describe('Navigation Actions', () => {
       const action = monitorResponsiveBracket(testWidth);
       expect(action.width).toEqual(testWidth);
     });
-
   });
   
   describe('addVisiblePanes', () => {
