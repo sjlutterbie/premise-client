@@ -77,7 +77,7 @@ describe('User Authentication Actions', () => {
   });
 
   // TODO:
-    // storeAuthInfo
+    // storeAuthInfo aggregates functions, each tested elsewhere
     // loginUser
     // refreshAuthToken
     // registerUser
