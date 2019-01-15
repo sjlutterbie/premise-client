@@ -1,7 +1,7 @@
 import jwtDecode from 'jwt-decode';
 import {SubmissionError} from 'redux-form';
 
-import {PREMISE_BASE_API_URL} from '../config';
+import {REACT_APP_PREMISE_BASE_API_URL} from '../config';
 import {normalizeResponseErrors} from './utils';
 import {saveAuthToken, clearAuthToken} from '../local-storage';
 
@@ -53,7 +53,7 @@ export const loginUser = (username, password) => dispatch => {
   
   return (
     
-    fetch(`${PREMISE_BASE_API_URL}/auth/login`, {
+    fetch(`${REACT_APP_PREMISE_BASE_API_URL}/auth/login`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json'
@@ -105,7 +105,7 @@ export const refreshAuthToken = () => (dispatch, getState) => {
 
 export const registerUser = user => dispatch => {
   
-  return fetch(`${PREMISE_BASE_API_URL}/user/`,
+  return fetch(`${REACT_APP_PREMISE_BASE_API_URL}/user/`,
   {
     method: 'POST',
     headers: {
