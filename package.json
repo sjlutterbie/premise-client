@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "dot-env": "0.0.1",
+    "dotenv": "^6.2.0",
     "jwt-decode": "^2.2.0",
     "react": "^16.6.3",
     "react-redux": "^6.0.0",
