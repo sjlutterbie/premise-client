@@ -22,7 +22,7 @@ describe('<Input />', () => {
         name: faker.random.alphaNumeric(10),
       },
       label: faker.random.alphaNumeric(10),
-      type: faker.random.alphaNumeric(10),
+      type: 'text',
       element: faker.random.alphaNumeric(10)
     };
   });
@@ -53,19 +53,5 @@ describe('<Input />', () => {
     const labelElement = wrapper.find('label');
     expect(labelElement.prop('htmlFor')).toEqual(testProps.input.name);
     expect(labelElement.text()).toEqual(testProps.label)
-  });
-  
-  it('Renders the correct input element type', () => {
-    wrapper = shallow(<Input {...testProps}/>);
-    const inputElement = wrapper.find(String(testProps.element));
-    expect(inputElement.length).toEqual(1);
-    const testAttrs = [
-      ['name', String(testProps.input.name)],
-      ['id', String(testProps.input.name)],
-      ['type', String(testProps.type)]
-    ];
-    testAttrs.forEach(testAttr => {
-      expect(inputElement.prop(testAttr[0])).toEqual(testAttr[1]);
-    });
   });
 });
