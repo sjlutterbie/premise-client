@@ -86,7 +86,7 @@ export const refreshAuthToken = () => (dispatch, getState) => {
   
   dispatch(authRequest());
   const authToken = getState().userAuth.authToken;
-  return fetch(`${PREMISE_BASE_API_URL}/auth/refresh`, {
+  return fetch(`${REACT_APP_PREMISE_BASE_API_URL}/auth/refresh`, {
     method: 'POST',
     headers: {
       // Provide existing credentials
