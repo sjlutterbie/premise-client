@@ -11,7 +11,7 @@ export function Header(props) {
     <header>
       <h1>Premise</h1>
       {props.loggedIn
-        ? <HeaderNav />
+        ? <div className="rct-header-wrapper"><HeaderNav /></div>
         : (null)
       }
       <LocationBar location="Location Bar"/>

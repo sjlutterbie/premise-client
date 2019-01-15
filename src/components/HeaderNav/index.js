@@ -5,8 +5,7 @@ import './HeaderNav.css';
 
 import UserMenu from '../UserMenu';
 
-import {addVisiblePanes, removeVisiblePanes,
-        updateCurrentLocation} from '../../actions';
+import {addVisiblePanes} from '../../actions';
 
 export function HeaderNav(props) {
   // Expected props:
@@ -32,17 +31,12 @@ export function HeaderNav(props) {
       </ul>
     </div>
   );
-  
 }
 
-const mapStateToProps = state => ({
-  responsiveBracket: state.navState.responsiveBracket
-});
+const mapStateToProps = state => ({});
 
 const mapDispatchToProps = {
-  addVisiblePanes,
-  removeVisiblePanes,
-  updateCurrentLocation
+  addVisiblePanes
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderNav);

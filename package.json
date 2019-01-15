@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "dot-env": "0.0.1",
+    "dotenv": "^6.2.0",
     "jwt-decode": "^2.2.0",
     "react": "^16.6.3",
     "react-redux": "^6.0.0",
@@ -34,6 +35,7 @@
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.7.0",
     "faker": "^4.1.0",
+    "fetch-mock": "^7.3.0",
     "jest": "^23.6.0",
     "react-dom": "^16.6.3",
     "sinon": "^7.1.1"
