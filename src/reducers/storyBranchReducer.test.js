@@ -8,10 +8,11 @@ import {
   HANDLE_MOMENT_TEXT_CLICK, handleMomentTextClick
 } from '../actions';
 
-describe('storyChainState', () => {
+describe('storyBranchState', () => {
 
   it('Should contain the expected defaults', () => {
-    const expectedKeys = ['currentBranch', 'focalMoment', 'focalMomentMode'];
+    const expectedKeys = ['currentBranch', 'focalMoment', 'focalMomentMode',
+                          'loadingStoryNetwork', 'storyNetworkError'];
     expect(Object.keys(initialState)).toEqual(expectedKeys);
   });
 
@@ -83,7 +84,6 @@ describe('Story Branch Reducer', () => {
       state = storyBranchReducer(state, handleMomentTextClick(momentId));
       expect(state.focalMoment).toEqual(origMomentId);
     });
-    
   });
   
 });

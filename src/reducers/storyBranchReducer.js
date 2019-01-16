@@ -2,7 +2,10 @@ import {
   LOAD_DEFAULT_BRANCH,
   UPDATE_FOCAL_MOMENT,
   UPDATE_FOCAL_MOMENT_MODE,
-  HANDLE_MOMENT_TEXT_CLICK
+  HANDLE_MOMENT_TEXT_CLICK,
+  STORYNETWORK_REQUEST,
+  STORYNETWORK_SUCCESS,
+  STORYNETWORK_ERROR
 } from '../actions';
 
 // Set initial state items for storyBranch elements
@@ -16,7 +19,11 @@ export const initialState = {
   focalMoment: null,
   
   // <Moment/> mode for the focal moment
-  focalMomentMode: 'read'
+  focalMomentMode: 'read',
+  
+  loadingStoryNetwork: false,
+  
+  storyNetworkError: false
 
 };
 
@@ -52,6 +59,12 @@ export default (state = initialState, action) => {
         focalMomentMode: 'actions'
       });
     }
+  }
+  
+  if (action.type === STORYNETWORK_REQUEST) {
+    return Object.assign({},state, {
+      loadingStoryNetwork: action.loadingStoryNetwork
+    });
   }
 
   return state;

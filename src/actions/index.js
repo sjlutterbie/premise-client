@@ -13,7 +13,11 @@ export {
   LOAD_DEFAULT_BRANCH, loadDefaultBranch,               // componentWillMount (PremiseApp)
   UPDATE_FOCAL_MOMENT, updateFocalMoment,               // Simple onClick event (clean code)
   UPDATE_FOCAL_MOMENT_MODE, updateFocalMomentMode,      // Multiple state updates
-  HANDLE_MOMENT_TEXT_CLICK, handleMomentTextClick
+  HANDLE_MOMENT_TEXT_CLICK, handleMomentTextClick,
+  STORYNETWORK_REQUEST, storyNetworkRequest,
+  STORYNETWORK_SUCCESS, storyNetworkSuccess,
+  STORYNETWORK_ERROR, storyNetworkError,
+  loadStoryNetwork
 } from './storyBranchActions';
 
 export {
