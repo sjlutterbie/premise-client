@@ -66,6 +66,20 @@ export default (state = initialState, action) => {
       loadingStoryNetwork: action.loadingStoryNetwork
     });
   }
+  
+  if (action.type === STORYNETWORK_SUCCESS) {
+    return Object.assign({}, state, {
+      loadingStoryNetwork: action.loadingStoryNetwork,
+      storyNetwork: action.storyNetwork
+    });
+  }
+  
+  if (action.type === STORYNETWORK_ERROR) {
+    return Object.assign({}, state, {
+      loadingStoryNetwork: false,
+      storyNetworkError: true
+    });
+  }
 
   return state;
   

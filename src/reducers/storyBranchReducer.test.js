@@ -5,7 +5,10 @@ import {
   LOAD_DEFAULT_BRANCH, loadDefaultBranch,
   UPDATE_FOCAL_MOMENT, updateFocalMoment,
   UPDATE_FOCAL_MOMENT_MODE, updateFocalMomentMode,
-  HANDLE_MOMENT_TEXT_CLICK, handleMomentTextClick
+  HANDLE_MOMENT_TEXT_CLICK, handleMomentTextClick,
+  STORYNETWORK_REQUEST, storyNetworkRequest,
+  STORYNETWORK_SUCCESS, storyNetworkSuccess,
+  STORYNETWORK_ERROR, storyNetworkError
 } from '../actions';
 
 describe('storyBranchState', () => {
@@ -86,4 +89,45 @@ describe('Story Branch Reducer', () => {
     });
   });
   
+  describe('storyNetworkRequest', () => {
+    
+    it('Sets loadingStoryNetwork to true', () => {
+      let state = {
+        loadingStoryNetwork: false
+      };
+      state = storyBranchReducer(state, storyNetworkRequest());
+      expect(state.loadingStoryNetwork).toEqual(true);
+    });
+    
+  });
+  
+  describe('storyNetworkSuccess', () => {
+    
+    it('Sets loadingStoryNetwork to false, and loads storyNetwork', () => {
+      let state = {
+        loadingStoryNetwork:true,
+        storyNetwork: null
+      };
+      const testNetwork = [
+        faker.random.alphaNumeric(10),
+        faker.random.alphaNumeric(10)
+      ];
+      state = storyBranchReducer(state, storyNetworkSuccess(testNetwork));
+      expect(state.loadingStoryNetwork).toEqual(false);
+      expect(state.storyNetwork).toEqual(testNetwork);
+    });
+  });
+  
+  describe('storyNetworkError', () => {
+    
+    it('Sets loadingStoryNetwork to false; storyNetworkError to true', () => {
+      let state = {
+        loadingStoryNetwork: true,
+        storyNetworkError: false
+      };
+      state = storyBranchReducer(state, storyNetworkError());
+      expect(state.loadingStoryNetwork).toEqual(false);
+      expect(state.storyNetworkError).toEqual(true);
+    });
+  });
 });
