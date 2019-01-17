@@ -24,6 +24,11 @@ export const storyNetworkError = () => ({
   storyNetworkError: true
 });
 
+export const UPDATE_STORY_NETWORK_ID = 'UPDATE_STORY_NETWORK_ID';
+export const updateStoryNetworkId = (storyNetworkId) => ({
+  type: UPDATE_STORY_NETWORK_ID,
+  storyNetworkId
+});
 
 // STORY BRANCH ACTIONS
 
@@ -67,7 +72,9 @@ export const loadStoryNetwork = (storyNetworkId) => (dispatch, getState) => {
   )
 //  .then(res => normalizeResponseErrors(res))
   .then(res => res.json())
-  .then(res => dispatch(storyNetworkSuccess(res)))
+  .then(res => {
+    dispatch(storyNetworkSuccess(res));
+  })
   .catch(err => {
     dispatch(storyNetworkError());
   });

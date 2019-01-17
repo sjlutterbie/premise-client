@@ -17,6 +17,7 @@ export {
   STORYNETWORK_REQUEST, storyNetworkRequest,
   STORYNETWORK_SUCCESS, storyNetworkSuccess,
   STORYNETWORK_ERROR, storyNetworkError,
+  UPDATE_STORY_NETWORK_ID, updateStoryNetworkId,
   loadStoryNetwork
 } from './storyBranchActions';
 

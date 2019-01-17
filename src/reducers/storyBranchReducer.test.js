@@ -8,7 +8,8 @@ import {
   HANDLE_MOMENT_TEXT_CLICK, handleMomentTextClick,
   STORYNETWORK_REQUEST, storyNetworkRequest,
   STORYNETWORK_SUCCESS, storyNetworkSuccess,
-  STORYNETWORK_ERROR, storyNetworkError
+  STORYNETWORK_ERROR, storyNetworkError,
+  UPDATE_STORY_NETWORK_ID, updateStoryNetworkId
 } from '../actions';
 
 describe('storyBranchState', () => {
@@ -16,7 +17,7 @@ describe('storyBranchState', () => {
   it('Should contain the expected defaults', () => {
     const expectedKeys = ['currentBranch', 'focalMoment', 'focalMomentMode',
                           'loadingStoryNetwork', 'storyNetworkError',
-                          'storyNetwork'];
+                          'storyNetworkId', 'storyNetwork'];
     expect(Object.keys(initialState)).toEqual(expectedKeys);
   });
 
@@ -129,6 +130,18 @@ describe('Story Branch Reducer', () => {
       state = storyBranchReducer(state, storyNetworkError());
       expect(state.loadingStoryNetwork).toEqual(false);
       expect(state.storyNetworkError).toEqual(true);
+    });
+  });
+  
+  describe('updateStoryNetworkId', () => {
+    
+    it('Sets storyNetworkId as expected', () => {
+      let state = {
+        storyNetworkId: null
+      };
+      let testId = faker.random.alphaNumeric(10);
+      state = storyBranchReducer(state, updateStoryNetworkId(testId));
+      expect(state.storyNetworkId).toEqual(testId);
     });
   });
 });

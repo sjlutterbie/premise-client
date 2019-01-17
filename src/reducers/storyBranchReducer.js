@@ -5,7 +5,8 @@ import {
   HANDLE_MOMENT_TEXT_CLICK,
   STORYNETWORK_REQUEST,
   STORYNETWORK_SUCCESS,
-  STORYNETWORK_ERROR
+  STORYNETWORK_ERROR,
+  UPDATE_STORY_NETWORK_ID
 } from '../actions';
 
 // Set initial state items for storyBranch elements
@@ -24,6 +25,8 @@ export const initialState = {
   loadingStoryNetwork: false,
   
   storyNetworkError: false,
+  
+  storyNetworkId: null,
   
   storyNetwork: null
 
@@ -80,6 +83,12 @@ export default (state = initialState, action) => {
     return Object.assign({}, state, {
       loadingStoryNetwork: false,
       storyNetworkError: true
+    });
+  }
+  
+  if (action.type === UPDATE_STORY_NETWORK_ID) {
+    return Object.assign({}, state, {
+      storyNetworkId: action.storyNetworkId
     });
   }
 

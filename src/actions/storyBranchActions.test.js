@@ -8,6 +8,7 @@ import {
   STORYNETWORK_REQUEST, storyNetworkRequest,
   STORYNETWORK_SUCCESS, storyNetworkSuccess,
   STORYNETWORK_ERROR, storyNetworkError,
+  UPDATE_STORY_NETWORK_ID, updateStoryNetworkId,
   loadStoryNetwork
 } from './storyBranchActions';
 
@@ -58,8 +59,21 @@ describe('storyNetwork actions', () => {
       expect(action.storyNetworkError).toEqual(true);
     });
   });
+  
+  describe('updateStoryNetworkId', () => {
+    
+    it('Should return the action', () => {
+      const action = updateStoryNetworkId();
+      expect(action.type).toEqual(UPDATE_STORY_NETWORK_ID);
+    });
+    
+    it('Should return the expected value', () => {
+      const testId = faker.random.alphaNumeric(10);
+      const action = updateStoryNetworkId(testId);
+      expect(action.storyNetworkId).toEqual(testId);
+    });
+  });
 });
-
 
 describe('Story Branch Actions', () => {
   
