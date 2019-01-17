@@ -10,6 +10,7 @@ import {
   STORYNETWORK_ERROR, storyNetworkError,
   UPDATE_STORY_NETWORK_ID, updateStoryNetworkId,
   UPDATE_ENDPOINT_MOMENT, updateEndpointMoment,
+  UPDATE_CURRENT_BRANCH, updateCurrentBranch,
   loadStoryNetwork
 } from './storyBranchActions';
 
@@ -147,4 +148,22 @@ describe('Story Branch Actions', () => {
       expect(action.momentId).toEqual(testId);
     });
   });
+  
+  describe('updateCurrentBranch', () => {
+    
+    it('Should return the action', () => {
+      const action = updateCurrentBranch();
+      expect(action.type).toEqual(UPDATE_CURRENT_BRANCH);
+    });
+    
+    it('Should return the correct value', () => {
+      const testBranch = [
+        {foo: faker.random.alphaNumeric(10)},
+        {foo: faker.random.alphaNumeric(10)}
+      ];
+      const action = updateCurrentBranch(testBranch);
+      expect(action.branch).toEqual(testBranch);
+    });
+  });
+  
 });

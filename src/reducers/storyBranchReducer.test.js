@@ -10,7 +10,8 @@ import {
   STORYNETWORK_SUCCESS, storyNetworkSuccess,
   STORYNETWORK_ERROR, storyNetworkError,
   UPDATE_STORY_NETWORK_ID, updateStoryNetworkId,
-  UPDATE_ENDPOINT_MOMENT, updateEndpointMoment
+  UPDATE_ENDPOINT_MOMENT, updateEndpointMoment,
+  UPDATE_CURRENT_BRANCH, updateCurrentBranch
 } from '../actions';
 
 describe('storyBranchState', () => {
@@ -156,7 +157,23 @@ describe('Story Branch Reducer', () => {
       state = storyBranchReducer(state, updateEndpointMoment(testId));
       expect(state.endpointMoment).toEqual(testId);
     });
-    
   });
+  
+  describe('updateCurrentBranch', () => {
+    
+    it('Sets state.currentBranch as expected', () => {
+      let state = {
+        currentBranch: null
+      };
+      let testBranch = [
+        {foo: faker.random.alphaNumeric(10)},
+        {foo: faker.random.alphaNumeric(10)}
+      ];
+      state = storyBranchReducer(state, updateCurrentBranch(testBranch));
+      expect(state.currentBranch).toEqual(testBranch);
+    });
+  });
+  
+  
   
 });
