@@ -64,19 +64,12 @@ export default (state = initialState, action) => {
   }
   
   if (action.type === STORYNETWORK_REQUEST) {
-    
-    console.log('storyNetworkRequest was called');
-    
     return Object.assign({},state, {
       loadingStoryNetwork: action.loadingStoryNetwork
     });
   }
   
   if (action.type === STORYNETWORK_SUCCESS) {
-    
-    console.log('storyNetworkSuccess was called');
-    console.log(action);
-    
     return Object.assign({}, state, {
       loadingStoryNetwork: action.loadingStoryNetwork,
       storyNetwork: action.storyNetwork
@@ -84,9 +77,6 @@ export default (state = initialState, action) => {
   }
   
   if (action.type === STORYNETWORK_ERROR) {
-    
-    console.log('StoryNetworkError was called');
-    
     return Object.assign({}, state, {
       loadingStoryNetwork: false,
       storyNetworkError: true
