@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import requiresLogin from '../RequiresLogin';
+
+import {loadStoryNetwork} from '../../actions';
+
 
 import './PremiseArea.css';
 
@@ -12,27 +15,36 @@ import './PremiseArea.css';
 import ReaderPane from '../ReaderPane';
 import NetworkPane from '../NetworkPane';
 
-export function PremiseArea(props) {
+// DEV CODE:
+  const storyNetwork = '5c3f69ed0b2b900017fb69eb';
+
+export class PremiseArea extends Component{
   // Expected props:
   //  State elements:
   //    visiblePanes (array)
   
-  return (
-    <div className="premise-area">
-      {props.visiblePanes.includes('network')
-        ? (<div className="networkpane-wrapper rct-networkpane-wrapper">
-             <NetworkPane />
-           </div>)
-        : (null)
-      }
-      {props.visiblePanes.includes('reader')
-        ? (<div className="readerpane-wrapper rct-readerpane-wrapper">
-             <ReaderPane />
-           </div>)
-        : (null)
-      }
-    </div>
-  );
+  componentWillMount() {
+    this.props.loadStoryNetwork(storyNetwork);
+  }
+  
+  render() {
+    return (
+      <div className="premise-area">
+        {this.props.visiblePanes.includes('network')
+          ? (<div className="networkpane-wrapper rct-networkpane-wrapper">
+               <NetworkPane />
+             </div>)
+          : (null)
+        }
+        {this.props.visiblePanes.includes('reader')
+          ? (<div className="readerpane-wrapper rct-readerpane-wrapper">
+               <ReaderPane />
+             </div>)
+          : (null)
+        }
+      </div>
+    );
+  }
 
 }
 
@@ -40,7 +52,9 @@ const mapStateToProps = state => ({
   visiblePanes: state.navState.visiblePanes
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  loadStoryNetwork
+};
 
 export default requiresLogin()(
   connect(mapStateToProps, mapDispatchToProps)(PremiseArea));

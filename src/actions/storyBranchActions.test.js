@@ -4,8 +4,62 @@ import {
   LOAD_DEFAULT_BRANCH, loadDefaultBranch,
   UPDATE_FOCAL_MOMENT, updateFocalMoment,
   UPDATE_FOCAL_MOMENT_MODE,updateFocalMomentMode,
-  HANDLE_MOMENT_TEXT_CLICK, handleMomentTextClick
+  HANDLE_MOMENT_TEXT_CLICK, handleMomentTextClick,
+  STORYNETWORK_REQUEST, storyNetworkRequest,
+  STORYNETWORK_SUCCESS, storyNetworkSuccess,
+  STORYNETWORK_ERROR, storyNetworkError,
+  loadStoryNetwork
 } from './storyBranchActions';
+
+
+describe('storyNetwork actions', () => {
+  
+  describe('storyNetworkRequest', () => {
+    
+    it('Should return the action', () => {
+      const action = storyNetworkRequest();
+      expect(action.type).toEqual(STORYNETWORK_REQUEST);
+    });
+    
+    it('Should return the expected value', () => {
+      const action = storyNetworkRequest();
+      expect(action.loadingStoryNetwork).toEqual(true);
+    });
+  });
+  
+  describe('storyNetworkSuccess', () => {
+    
+    it('Should return the action', () => {
+      const action = storyNetworkSuccess();
+      expect(action.type).toEqual(STORYNETWORK_SUCCESS);
+    });
+    
+    it('Should return the expected values', () => {
+      const testNetwork= [
+        faker.random.alphaNumeric(10),
+        faker.random.alphaNumeric(10)
+      ];
+      const action = storyNetworkSuccess(testNetwork);
+      expect(action.loadingStoryNetwork).toEqual(false);
+      expect(action.storyNetwork).toEqual(testNetwork);
+    });
+  });
+  
+  describe('storyNetworkError', () => {
+
+    it('Should return the action', () => {
+      const action = storyNetworkError();
+      expect(action.type).toEqual(STORYNETWORK_ERROR);
+    });
+    
+    it('Should set loadingStoryNetwork and storyNetworkError to false', () => {
+      const action = storyNetworkError();
+      expect(action.loadingStoryNetwork).toEqual(false);
+      expect(action.storyNetworkError).toEqual(true);
+    });
+  });
+});
+
 
 describe('Story Branch Actions', () => {
   
