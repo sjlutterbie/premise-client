@@ -24,7 +24,6 @@ export class PremiseArea extends Component{
   //    visiblePanes (array)
   
   componentWillMount() {
-    this.props.loadStoryNetwork(storyNetwork);
     this.props.getMaxEndpoint(storyNetwork);
   }
   

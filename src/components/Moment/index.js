@@ -27,7 +27,7 @@ export function Moment(props){
       <div className="moment">
         <p className="moment-text"
            onClick={(momentId) => props.handleMomentTextClick(props.moment.id)}
-           >{props.moment.text}</p>
+           >{props.moment.content}</p>
 
         {props.mode === 'actions'
           ?

@@ -11,22 +11,6 @@ import LandingPage from './LandingPage';
 import {loadDefaultBranch, monitorResponsiveBracket,
         refreshAuthToken} from '../actions';
 
-// START DEV CODE
-  
-  // Generate a random storyBranch when initiating the app
-  import faker from 'faker';
-  
-  let DEV_BRANCH = [];
-  const momentCount = Math.floor(Math.random() * 50) + 1;
-  for (let i = 0; i < momentCount; i++) {
-    DEV_BRANCH.push({
-      id: faker.random.uuid(),
-      text: faker.lorem.sentences(3)
-    });
-  }
-  
-// END DEV CODE
-
 export class PremiseApp extends Component{
   // Expected props:
   //  Actions:
@@ -38,7 +22,6 @@ export class PremiseApp extends Component{
   
   
   componentWillMount() {
-    this.props.loadDefaultBranch(DEV_BRANCH);
     this.props.monitorResponsiveBracket(window.innerWidth);
     
     window.addEventListener('resize',
