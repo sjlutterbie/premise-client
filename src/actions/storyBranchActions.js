@@ -74,6 +74,7 @@ export const loadStoryNetwork = (storyNetworkId) => (dispatch, getState) => {
   .then(res => res.json())
   .then(res => {
     dispatch(storyNetworkSuccess(res));
+    dispatch(updateStoryNetworkId(storyNetworkId));
   })
   .catch(err => {
     dispatch(storyNetworkError());
