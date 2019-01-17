@@ -67,7 +67,7 @@ export const loadStoryNetwork = (storyNetworkId) => (dispatch, getState) => {
   )
 //  .then(res => normalizeResponseErrors(res))
   .then(res => res.json())
-  .then(res => dispatch(storyNetworkSuccess(res.storyNetwork)))
+  .then(res => dispatch(storyNetworkSuccess(res)))
   .catch(err => {
     dispatch(storyNetworkError());
   });
