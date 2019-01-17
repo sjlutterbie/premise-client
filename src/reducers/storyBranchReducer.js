@@ -23,7 +23,9 @@ export const initialState = {
   
   loadingStoryNetwork: false,
   
-  storyNetworkError: false
+  storyNetworkError: false,
+  
+  storyNetwork: null
 
 };
 

@@ -1,4 +1,5 @@
 import {REACT_APP_PREMISE_BASE_API_URL} from '../config';
+
 import {normalizeResponseErrors} from './utils';
 
 // STORY NETWORK ACTIONS
@@ -54,7 +55,7 @@ export const loadStoryNetwork = (storyNetworkId) => (dispatch, getState) => {
   
   // Signal start of loading process
   dispatch(storyNetworkRequest());
-  
+
   return fetch(
     `${REACT_APP_PREMISE_BASE_API_URL}/moment/storynetwork/${storyNetworkId}`,
     {
@@ -64,11 +65,11 @@ export const loadStoryNetwork = (storyNetworkId) => (dispatch, getState) => {
       }
     }
   )
-  .then(res => normalizeResponseErrors(res))
+//  .then(res => normalizeResponseErrors(res))
   .then(res => res.json())
-  .then(({storyNetwork}) => storyNetworkSuccess(storyNetwork))
+  .then(res => dispatch(storyNetworkSuccess(res.storyNetwork)))
   .catch(err => {
     dispatch(storyNetworkError());
   });
-  
+
 };

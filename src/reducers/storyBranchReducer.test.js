@@ -15,7 +15,8 @@ describe('storyBranchState', () => {
 
   it('Should contain the expected defaults', () => {
     const expectedKeys = ['currentBranch', 'focalMoment', 'focalMomentMode',
-                          'loadingStoryNetwork', 'storyNetworkError'];
+                          'loadingStoryNetwork', 'storyNetworkError',
+                          'storyNetwork'];
     expect(Object.keys(initialState)).toEqual(expectedKeys);
   });
 
