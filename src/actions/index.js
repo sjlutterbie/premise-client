@@ -26,6 +26,7 @@ export {
   AUTH_ERROR, authError,
   SET_AUTH_TOKEN, setAuthToken,
   CLEAR_AUTH, clearAuth,
+  SET_USER_INFO, setUserInfo,
   loginUser, registerUser,
   refreshAuthToken
 } from './userAuthActions';

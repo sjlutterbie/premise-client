@@ -14,7 +14,7 @@ describe('userAuthState', () => {
   
   it('Should contain the expected defaults', () => {
     const expectedKeys = ['authToken', 'currentUser',
-                          'authenticating', 'error'];
+                          'authenticating', 'error','user'];
     expect(Object.keys(initialState)).toEqual(expectedKeys);
   });
   

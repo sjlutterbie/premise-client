@@ -39,6 +39,12 @@ export const clearAuth = () => ({
   currentUser: null
 });
 
+export const SET_USER_INFO = 'SET_USER_INFO';
+export const setUserInfo = (user) => ({
+  type: SET_USER_INFO,
+  user
+});
+
 const storeAuthInfo = ((authToken, dispatch) => {
   const decodedToken = jwtDecode(authToken);
   dispatch(setAuthToken(authToken));

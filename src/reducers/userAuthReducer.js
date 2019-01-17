@@ -10,7 +10,8 @@ export const initialState = {
   authToken: null,
   currentUser: null,
   authenticating: false,
-  error: null
+  error: null,
+  user: null
 };
 
 export default (state = initialState, action) => {

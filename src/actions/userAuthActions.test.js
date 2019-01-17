@@ -6,6 +6,7 @@ import {
   AUTH_ERROR, authError,
   SET_AUTH_TOKEN, setAuthToken,
   CLEAR_AUTH, clearAuth,
+  SET_USER_INFO, setUserInfo
 } from './userAuthActions';
 
 describe('User Authentication Actions', () => {
@@ -74,6 +75,20 @@ describe('User Authentication Actions', () => {
       expect(action.authToken).toEqual(null);
       expect(action.currentUser).toEqual(null);
     });
+  });
+  
+  describe('setUserInfo', () => {
+    it('Should return the action', () => {
+      const action = setUserInfo();
+      expect(action.type).toEqual(SET_USER_INFO);
+    });
+    
+    it('Should return the correct values', () => {
+      const testUser = {username: faker.random.alphaNumeric(10)};
+      const action = setUserInfo(testUser);
+      expect(action.user).toEqual(testUser);
+    });
+    
   });
 
   // TODO:
