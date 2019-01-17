@@ -75,6 +75,7 @@ export default (state = initialState, action) => {
   if (action.type === STORYNETWORK_SUCCESS) {
     
     console.log('storyNetworkSuccess was called');
+    console.log(action);
     
     return Object.assign({}, state, {
       loadingStoryNetwork: action.loadingStoryNetwork,
