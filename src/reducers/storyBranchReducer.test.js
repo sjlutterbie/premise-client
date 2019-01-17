@@ -9,15 +9,16 @@ import {
   STORYNETWORK_REQUEST, storyNetworkRequest,
   STORYNETWORK_SUCCESS, storyNetworkSuccess,
   STORYNETWORK_ERROR, storyNetworkError,
-  UPDATE_STORY_NETWORK_ID, updateStoryNetworkId
+  UPDATE_STORY_NETWORK_ID, updateStoryNetworkId,
+  UPDATE_ENDPOINT_MOMENT, updateEndpointMoment
 } from '../actions';
 
 describe('storyBranchState', () => {
 
   it('Should contain the expected defaults', () => {
-    const expectedKeys = ['currentBranch', 'focalMoment', 'focalMomentMode',
-                          'loadingStoryNetwork', 'storyNetworkError',
-                          'storyNetworkId', 'storyNetwork'];
+    const expectedKeys = ['endpointMoment', 'currentBranch', 'focalMoment',
+                          'focalMomentMode', 'loadingStoryNetwork',
+                          'storyNetworkError', 'storyNetworkId', 'storyNetwork'];
     expect(Object.keys(initialState)).toEqual(expectedKeys);
   });
 
@@ -144,4 +145,18 @@ describe('Story Branch Reducer', () => {
       expect(state.storyNetworkId).toEqual(testId);
     });
   });
+  
+  describe('updateEndpointMoment', () => {
+    
+    it('Sets the endpointMoment as expected', () => {
+      let state = {
+        endpointMoment: null
+      };
+      let testId = faker.random.alphaNumeric(10);
+      state = storyBranchReducer(state, updateEndpointMoment(testId));
+      expect(state.endpointMoment).toEqual(testId);
+    });
+    
+  });
+  
 });

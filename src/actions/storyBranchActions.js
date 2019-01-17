@@ -1,7 +1,5 @@
 import {REACT_APP_PREMISE_BASE_API_URL} from '../config';
 
-import {normalizeResponseErrors} from './utils';
-
 // STORY NETWORK ACTIONS
 
 export const STORYNETWORK_REQUEST = 'STORYNETWORK_REQUEST';
@@ -56,6 +54,16 @@ export const handleMomentTextClick = (momentId) => ({
   momentId
 });
 
+export const UPDATE_ENDPOINT_MOMENT = 'UPDATE_ENDPOINT_MOMENT';
+export const updateEndpointMoment = (momentId) => ({
+  type: UPDATE_ENDPOINT_MOMENT,
+  momentId
+});
+
+
+
+// ASYNC ACTIONS
+
 export const loadStoryNetwork = (storyNetworkId) => (dispatch, getState) => {
   
   // Signal start of loading process
@@ -70,7 +78,6 @@ export const loadStoryNetwork = (storyNetworkId) => (dispatch, getState) => {
       }
     }
   )
-//  .then(res => normalizeResponseErrors(res))
   .then(res => res.json())
   .then(res => {
     dispatch(storyNetworkSuccess(res));
@@ -80,4 +87,28 @@ export const loadStoryNetwork = (storyNetworkId) => (dispatch, getState) => {
     dispatch(storyNetworkError());
   });
 
+};
+
+
+export const getMaxEndpoint = (storyNetworkId) => (dispatch, getState) => {
+  
+  const reqUrl = REACT_APP_PREMISE_BASE_API_URL
+    + `/moment/storynetwork/${storyNetworkId}/max-lineage`;
+  
+  return fetch(
+     reqUrl,
+     {
+       method: 'GET',
+       headers: {
+         'Authorization': `Bearer ${getState().userAuth.authToken}`
+       }
+     }
+  )
+  .then(res => res.json())
+  .then(res => {
+    dispatch(updateEndpointMoment(res.id));
+  })
+  .catch(err => {
+    console.log(err);
+  });
 };

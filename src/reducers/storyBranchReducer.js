@@ -6,11 +6,14 @@ import {
   STORYNETWORK_REQUEST,
   STORYNETWORK_SUCCESS,
   STORYNETWORK_ERROR,
-  UPDATE_STORY_NETWORK_ID
+  UPDATE_STORY_NETWORK_ID,
+  UPDATE_ENDPOINT_MOMENT
 } from '../actions';
 
 // Set initial state items for storyBranch elements
 export const initialState = {
+  
+  endpointMoment: null,
   
   // Current storyBranch
   currentBranch: [],
@@ -89,6 +92,12 @@ export default (state = initialState, action) => {
   if (action.type === UPDATE_STORY_NETWORK_ID) {
     return Object.assign({}, state, {
       storyNetworkId: action.storyNetworkId
+    });
+  }
+  
+  if (action.type === UPDATE_ENDPOINT_MOMENT) {
+    return Object.assign({}, state, {
+      endpointMoment: action.momentId
     });
   }
 

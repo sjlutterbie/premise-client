@@ -8,10 +8,12 @@ import {PremiseArea} from './index';
 // Create default testing environment
 
 let loadStoryNetwork_test = jest.fn();
+let getMaxEndpoint_test = jest.fn();
 
 let props = {
   visiblePanes: [],
-  loadStoryNetwork: loadStoryNetwork_test
+  loadStoryNetwork: loadStoryNetwork_test,
+  getMaxEndpoint: getMaxEndpoint_test
 };
 
 

@@ -9,6 +9,7 @@ import {
   STORYNETWORK_SUCCESS, storyNetworkSuccess,
   STORYNETWORK_ERROR, storyNetworkError,
   UPDATE_STORY_NETWORK_ID, updateStoryNetworkId,
+  UPDATE_ENDPOINT_MOMENT, updateEndpointMoment,
   loadStoryNetwork
 } from './storyBranchActions';
 
@@ -130,6 +131,20 @@ describe('Story Branch Actions', () => {
       const momentId = faker.random.uuid();
       const action = handleMomentTextClick(momentId);
       expect(action.momentId).toEqual(momentId);
+    });
+  });
+  
+  describe('updateEndpointMoment', () => {
+    
+    it('Should return the action', () => {
+      const action = updateEndpointMoment();
+      expect(action.type).toEqual(UPDATE_ENDPOINT_MOMENT);
+    });
+    
+    it('Should return the correct value', () => {
+      const testId = faker.random.alphaNumeric(10);
+      const action = updateEndpointMoment(testId);
+      expect(action.momentId).toEqual(testId);
     });
   });
 });

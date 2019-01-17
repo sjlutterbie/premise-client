@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import requiresLogin from '../RequiresLogin';
 
-import {loadStoryNetwork} from '../../actions';
+import {loadStoryNetwork, getMaxEndpoint} from '../../actions';
 
 
 import './PremiseArea.css';
@@ -25,6 +25,7 @@ export class PremiseArea extends Component{
   
   componentWillMount() {
     this.props.loadStoryNetwork(storyNetwork);
+    this.props.getMaxEndpoint(storyNetwork);
   }
   
   render() {
@@ -53,7 +54,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  loadStoryNetwork
+  loadStoryNetwork,
+  getMaxEndpoint
 };
 
 export default requiresLogin()(
