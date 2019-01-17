@@ -8,6 +8,9 @@ import {
   STORYNETWORK_REQUEST, storyNetworkRequest,
   STORYNETWORK_SUCCESS, storyNetworkSuccess,
   STORYNETWORK_ERROR, storyNetworkError,
+  UPDATE_STORY_NETWORK_ID, updateStoryNetworkId,
+  UPDATE_ENDPOINT_MOMENT, updateEndpointMoment,
+  UPDATE_CURRENT_BRANCH, updateCurrentBranch,
   loadStoryNetwork
 } from './storyBranchActions';
 
@@ -58,8 +61,21 @@ describe('storyNetwork actions', () => {
       expect(action.storyNetworkError).toEqual(true);
     });
   });
+  
+  describe('updateStoryNetworkId', () => {
+    
+    it('Should return the action', () => {
+      const action = updateStoryNetworkId();
+      expect(action.type).toEqual(UPDATE_STORY_NETWORK_ID);
+    });
+    
+    it('Should return the expected value', () => {
+      const testId = faker.random.alphaNumeric(10);
+      const action = updateStoryNetworkId(testId);
+      expect(action.storyNetworkId).toEqual(testId);
+    });
+  });
 });
-
 
 describe('Story Branch Actions', () => {
   
@@ -118,4 +134,36 @@ describe('Story Branch Actions', () => {
       expect(action.momentId).toEqual(momentId);
     });
   });
+  
+  describe('updateEndpointMoment', () => {
+    
+    it('Should return the action', () => {
+      const action = updateEndpointMoment();
+      expect(action.type).toEqual(UPDATE_ENDPOINT_MOMENT);
+    });
+    
+    it('Should return the correct value', () => {
+      const testId = faker.random.alphaNumeric(10);
+      const action = updateEndpointMoment(testId);
+      expect(action.momentId).toEqual(testId);
+    });
+  });
+  
+  describe('updateCurrentBranch', () => {
+    
+    it('Should return the action', () => {
+      const action = updateCurrentBranch();
+      expect(action.type).toEqual(UPDATE_CURRENT_BRANCH);
+    });
+    
+    it('Should return the correct value', () => {
+      const testBranch = [
+        {foo: faker.random.alphaNumeric(10)},
+        {foo: faker.random.alphaNumeric(10)}
+      ];
+      const action = updateCurrentBranch(testBranch);
+      expect(action.branch).toEqual(testBranch);
+    });
+  });
+  
 });

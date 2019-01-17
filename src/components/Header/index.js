@@ -21,7 +21,7 @@ export function Header(props) {
 }
 
 const mapStateToProps = state => ({
-  loggedIn: state.userAuth.currentUser !== null,
+  loggedIn: state.userAuth.user !== null,
 });
 
 const mapDispatchToProps = {};

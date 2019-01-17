@@ -7,14 +7,14 @@ import {
   authSuccess,
   authError,
   setAuthToken,
-  clearAuth
+  clearAuth,
+  setUserInfo
 } from '../actions';
 
 describe('userAuthState', () => {
   
   it('Should contain the expected defaults', () => {
-    const expectedKeys = ['authToken', 'currentUser',
-                          'authenticating', 'error','user'];
+    const expectedKeys = ['authToken', 'authenticating', 'error','user'];
     expect(Object.keys(initialState)).toEqual(expectedKeys);
   });
   
@@ -44,13 +44,11 @@ describe('userAuthState', () => {
     
     it('Should update the state as expected', () => {
       let state = {
-        username: null,
         authenticating: true,
         error: 'foo'
       };
       const testUsername = faker.random.alphaNumeric(10);
       state = userAuthReducer(state, authSuccess(testUsername));
-      expect(state.currentUser).toEqual(testUsername);
       expect(state.authenticating).toEqual(false);
       expect(state.error).toEqual(null);
     });
@@ -85,11 +83,25 @@ describe('userAuthState', () => {
     it('Should update the state as expected', () => {
       let state = {
         authToken: 'foo',
-        currentUser: 'bar'
+        user: 'bar'
       };
       state = userAuthReducer(state, clearAuth());
       expect(state.authToken).toEqual(null);
-      expect(state.currentUser).toEqual(null);
+      expect(state.user).toEqual(null);
+    });
+  });
+  
+  describe('setUserInfo', () => {
+    
+    it('Should update the state as expected', () => {
+     let state = {
+       user: null
+     };
+     const testUser = {
+       username: faker.random.alphaNumeric(10)
+     };
+     state = userAuthReducer(state, setUserInfo(testUser));
+     expect(state.user).toEqual(testUser);
     });
   });
 });

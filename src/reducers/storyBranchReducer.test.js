@@ -8,15 +8,18 @@ import {
   HANDLE_MOMENT_TEXT_CLICK, handleMomentTextClick,
   STORYNETWORK_REQUEST, storyNetworkRequest,
   STORYNETWORK_SUCCESS, storyNetworkSuccess,
-  STORYNETWORK_ERROR, storyNetworkError
+  STORYNETWORK_ERROR, storyNetworkError,
+  UPDATE_STORY_NETWORK_ID, updateStoryNetworkId,
+  UPDATE_ENDPOINT_MOMENT, updateEndpointMoment,
+  UPDATE_CURRENT_BRANCH, updateCurrentBranch
 } from '../actions';
 
 describe('storyBranchState', () => {
 
   it('Should contain the expected defaults', () => {
-    const expectedKeys = ['currentBranch', 'focalMoment', 'focalMomentMode',
-                          'loadingStoryNetwork', 'storyNetworkError',
-                          'storyNetwork'];
+    const expectedKeys = ['endpointMoment', 'currentBranch', 'focalMoment',
+                          'focalMomentMode', 'loadingStoryNetwork',
+                          'storyNetworkError', 'storyNetworkId', 'storyNetwork'];
     expect(Object.keys(initialState)).toEqual(expectedKeys);
   });
 
@@ -131,4 +134,46 @@ describe('Story Branch Reducer', () => {
       expect(state.storyNetworkError).toEqual(true);
     });
   });
+  
+  describe('updateStoryNetworkId', () => {
+    
+    it('Sets storyNetworkId as expected', () => {
+      let state = {
+        storyNetworkId: null
+      };
+      let testId = faker.random.alphaNumeric(10);
+      state = storyBranchReducer(state, updateStoryNetworkId(testId));
+      expect(state.storyNetworkId).toEqual(testId);
+    });
+  });
+  
+  describe('updateEndpointMoment', () => {
+    
+    it('Sets the endpointMoment as expected', () => {
+      let state = {
+        endpointMoment: null
+      };
+      let testId = faker.random.alphaNumeric(10);
+      state = storyBranchReducer(state, updateEndpointMoment(testId));
+      expect(state.endpointMoment).toEqual(testId);
+    });
+  });
+  
+  describe('updateCurrentBranch', () => {
+    
+    it('Sets state.currentBranch as expected', () => {
+      let state = {
+        currentBranch: null
+      };
+      let testBranch = [
+        {foo: faker.random.alphaNumeric(10)},
+        {foo: faker.random.alphaNumeric(10)}
+      ];
+      state = storyBranchReducer(state, updateCurrentBranch(testBranch));
+      expect(state.currentBranch).toEqual(testBranch);
+    });
+  });
+  
+  
+  
 });

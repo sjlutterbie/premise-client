@@ -3,12 +3,12 @@ import {
   AUTH_SUCCESS,
   AUTH_ERROR,
   SET_AUTH_TOKEN,
-  CLEAR_AUTH
+  CLEAR_AUTH,
+  SET_USER_INFO
 } from '../actions';
 
 export const initialState = {
   authToken: null,
-  currentUser: null,
   authenticating: false,
   error: null,
   user: null
@@ -26,8 +26,7 @@ export default (state = initialState, action) => {
   if(action.type === AUTH_SUCCESS) {
     return Object.assign({}, state, {
       authenticating: action.authenticating,
-      error: action.error,
-      currentUser: action.username
+      error: action.error
     });
   }
   
@@ -46,7 +45,13 @@ export default (state = initialState, action) => {
   if(action.type === CLEAR_AUTH) {
     return Object.assign({}, state, {
       authToken: action.authToken,
-      currentUser: action.currentUser
+      user: null
+    });
+  }
+  
+  if(action.type === SET_USER_INFO) {
+    return Object.assign({}, state, {
+      user: action.user
     });
   }
   

@@ -53,7 +53,7 @@ export function LandingPage(props) {
 }
 
 const mapStateToProps = state => ({
-  loggedIn: state.userAuth.currentUser !== null,
+  loggedIn: state.userAuth.user !== null,
   form: state.navState.landingPageForm
 });
 

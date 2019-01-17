@@ -27,7 +27,7 @@ export function ReaderPane(props) {
     <div className="reader-pane">
       { momentComps.length > 0
         ? momentComps
-        : <p>Whoops,something went wrong!</p>
+        : <p>Loading...</p>
       }
     </div>
   );

@@ -17,7 +17,11 @@ export {
   STORYNETWORK_REQUEST, storyNetworkRequest,
   STORYNETWORK_SUCCESS, storyNetworkSuccess,
   STORYNETWORK_ERROR, storyNetworkError,
-  loadStoryNetwork
+  UPDATE_STORY_NETWORK_ID, updateStoryNetworkId,
+  UPDATE_ENDPOINT_MOMENT, updateEndpointMoment,
+  UPDATE_CURRENT_BRANCH, updateCurrentBranch,
+  loadStoryNetwork,
+  getMaxEndpoint
 } from './storyBranchActions';
 
 export {

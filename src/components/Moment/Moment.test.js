@@ -9,7 +9,7 @@ import {Moment, handleMomentTextClick} from './index';
 const testMomentText = faker.random.alphaNumeric(50);
   
 const testMoment = {
-  text: testMomentText,
+  content: testMomentText,
   id: faker.random.alphaNumeric(10)
 };
 
@@ -46,7 +46,7 @@ describe('<Moment />', () => {
       
       it('Contains the moment text in every mode', () => {
         const textArea = wrapper.find('.moment-text');
-        expect(textArea.text()).toEqual(testProps.moment.text);
+        expect(textArea.text()).toEqual(testProps.moment.content);
       });
     });
   });

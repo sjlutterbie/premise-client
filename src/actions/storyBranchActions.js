@@ -1,7 +1,5 @@
 import {REACT_APP_PREMISE_BASE_API_URL} from '../config';
 
-import {normalizeResponseErrors} from './utils';
-
 // STORY NETWORK ACTIONS
 
 export const STORYNETWORK_REQUEST = 'STORYNETWORK_REQUEST';
@@ -24,6 +22,11 @@ export const storyNetworkError = () => ({
   storyNetworkError: true
 });
 
+export const UPDATE_STORY_NETWORK_ID = 'UPDATE_STORY_NETWORK_ID';
+export const updateStoryNetworkId = (storyNetworkId) => ({
+  type: UPDATE_STORY_NETWORK_ID,
+  storyNetworkId
+});
 
 // STORY BRANCH ACTIONS
 
@@ -51,6 +54,20 @@ export const handleMomentTextClick = (momentId) => ({
   momentId
 });
 
+export const UPDATE_ENDPOINT_MOMENT = 'UPDATE_ENDPOINT_MOMENT';
+export const updateEndpointMoment = (momentId) => ({
+  type: UPDATE_ENDPOINT_MOMENT,
+  momentId
+});
+
+export const UPDATE_CURRENT_BRANCH = 'UPDATE_CURRENT_BRANCH';
+export const updateCurrentBranch = (branch) => ({
+  type: UPDATE_CURRENT_BRANCH,
+  branch
+});
+
+// ASYNC ACTIONS
+
 export const loadStoryNetwork = (storyNetworkId) => (dispatch, getState) => {
   
   // Signal start of loading process
@@ -65,11 +82,64 @@ export const loadStoryNetwork = (storyNetworkId) => (dispatch, getState) => {
       }
     }
   )
-//  .then(res => normalizeResponseErrors(res))
   .then(res => res.json())
-  .then(res => dispatch(storyNetworkSuccess(res)))
+  .then(res => {
+    dispatch(storyNetworkSuccess(res));
+    dispatch(updateStoryNetworkId(storyNetworkId));
+  })
   .catch(err => {
     dispatch(storyNetworkError());
   });
 
+};
+
+
+export const getMaxEndpoint = (storyNetworkId) => (dispatch, getState) => {
+  
+  const reqUrl = REACT_APP_PREMISE_BASE_API_URL
+    + `/moment/storynetwork/${storyNetworkId}/max-lineage`;
+  
+  return fetch(
+     reqUrl,
+     {
+       method: 'GET',
+       headers: {
+         'Authorization': `Bearer ${getState().userAuth.authToken}`
+       }
+     }
+  )
+  .then(res => res.json())
+  .then(res => {
+    dispatch(updateEndpointMoment(res));
+    dispatch(getStoryBranch(res));
+  })
+  .catch(err => {
+  });
+};
+
+export const getStoryBranch = (endMoment) => (dispatch, getState) => {
+  
+  const endMomentId = endMoment.id;
+  // The id of the first moment in the endMoment's lineage
+  const startMomentId = endMoment.lineage[0];
+  
+  const reqUrl = REACT_APP_PREMISE_BASE_API_URL
+    + `/moment/storychain?start=${startMomentId}&end=${endMomentId}`;
+  
+  return fetch(
+    reqUrl,
+    {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${getState().userAuth.authToken}`
+      }
+    }
+  )
+  .then(res => res.json())
+  .then(res => {
+    dispatch(updateCurrentBranch(res));
+  })
+  .catch(err => {
+    console.log(err);
+  });
 };
