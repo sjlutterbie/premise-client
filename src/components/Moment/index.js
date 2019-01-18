@@ -27,8 +27,17 @@ export class Moment extends Component{
     super(props);
     
     this.state = {
-      formValue: null
+      formValue: ''
     };
+  }
+  
+  handleFormChange(event) {
+    this.setState({formValue: event.target.value});
+  }
+  
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log(`Creating moment with content: ${this.state.formValue}`);
   }
   
   render() {
@@ -59,26 +68,22 @@ export class Moment extends Component{
         {this.props.mode === 'create'
           ?
             <form className="create-moment-form"
-                  // DEV CODE TO PREVENT APP-RELOAD
-                  onSubmit={(event) => {event.preventDefault()}}>
+                  onSubmit={(event) => this.handleSubmit(event)}>
               <div className="fieldset-wrapper">
                 <fieldset>
                   <div className="fieldset-contents">
                     <legend>Add to the story</legend>
                     <textarea
                       value={this.state.formValue}
-                      onChange={(e) =>
-                        this.setState({formValue:e.target.value})}>
+                      onChange={(event) => this.handleFormChange(event)}>
                     </textarea>
                     <button className="cancel-create-moment"
                             onClick={() => 
                               this.props.updateFocalMomentMode('actions')}
                     >Cancel</button>
-                    <button className="create-moment"
-                            // DEV CODE
-                            onClick={() => alert(
-                              'That tickles... but I don\'t work yet!')}
-                    >Create</button>
+                    <button className="create-moment" type="submit">
+                      Create
+                    </button>
                   </div>
                 </fieldset>
               </div>
