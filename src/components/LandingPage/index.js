@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Link, Redirect} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 
 import {updateLandingPageForm} from '../../actions';
 
@@ -31,14 +31,14 @@ export function LandingPage(props) {
   let formToggleLink;
   if (props.form === 'login') {
     formToggleLink =
-      <a className="rct-form-toggle-link" href="#"
+      <button className="rct-form-toggle-link" href="#"
          onClick={() => props.updateLandingPageForm('registration')}>
-      Register</a>;
+      Register</button>;
   } else {
     formToggleLink =
-      <a className="rct-form-toggle-link" href="#"
+      <button className="rct-form-toggle-link" href="#"
          onClick={() => props.updateLandingPageForm('login')}>
-      Login</a>;
+      Login</button>;
   }
   return (
     <div className="landing-page">

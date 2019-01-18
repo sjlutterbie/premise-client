@@ -174,7 +174,7 @@ export const createMoment = (parentMoment, content) => (dispatch, getState) => {
   )
   .then(res => res.json())
   .then(res => {
-    dispatch(updateEndpointMoment(res.id));
+    dispatch(updateEndpointMoment(res));
     dispatch(getStoryBranch(res));
   })
   .catch(err => {
