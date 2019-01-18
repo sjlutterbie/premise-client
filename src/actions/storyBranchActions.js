@@ -188,3 +188,9 @@ export const createMoment = (parentMoment, content) => (dispatch, getState) => {
     console.log(err);
   });
 };
+
+export const switchBranch = (moment, nextMoment) => (dispatch, getState) => {
+  
+  alert('You tried to switch branch!');
+  
+};

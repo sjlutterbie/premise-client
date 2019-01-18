@@ -10,7 +10,11 @@ const testMomentText = faker.random.alphaNumeric(50);
   
 const testMoment = {
   content: testMomentText,
-  id: faker.random.alphaNumeric(10)
+  id: faker.random.alphaNumeric(10),
+  children: [
+    {foo: 'bar1'},
+    {foo: 'bar2'}
+  ]
 };
 
 const handleMomentTextClick_test = jest.fn();

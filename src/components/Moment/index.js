@@ -6,7 +6,8 @@ import './Moment.css';
 import {
   handleMomentTextClick,
   updateFocalMomentMode,
-  createMoment
+  createMoment,
+  switchBranch
 } from '../../actions';
 
 // Every <Moment/> has three modes: 'read', 'actions', and 'create'.
@@ -61,11 +62,15 @@ export class Moment extends Component{
                         this.props.updateFocalMomentMode('create')}>
                 Create
               </button>
-              <button className="switch-story-branch"
-                      //DEV CODE
-                      onClick={() => alert(
-                        'That tickles... but I don\'t work yet!')}
-              >Switch branch</button>
+              <button
+                className="switch-story-branch"
+                disabled={this.props.moment.children.length > 1 ? false : true }
+                //DEV CODE
+                onClick={() => this.props.switchBranch()}>
+                {this.props.moment.children.length > 1
+                  ? 'Switch branches'
+                  : 'On only branch'}
+              </button>
             </div>
           : null
         }
@@ -106,7 +111,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   handleMomentTextClick,
   updateFocalMomentMode,
-  createMoment
+  createMoment,
+  switchBranch
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Moment);
