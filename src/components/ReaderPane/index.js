@@ -13,15 +13,19 @@ export function ReaderPane(props) {
   // Expected props:
   //  moments: Array of moment objects
   
-  const momentComps = props.moments.map((moment, index) => {
-    
-    return (
-        <Moment key={index}
-                mode={moment.id === props.focalMoment
-                      ? props.focalMomentMode : 'read'}
-                moment={moment}/>
-    );
-  });
+  
+  let momentComps = [];
+  if (props.endpointMoment != null) {
+    momentComps = props.endpointMoment.lineage.map((moment, index) => {
+      
+      return (
+          <Moment key={index}
+                  mode={moment._id === props.focalMoment
+                        ? props.focalMomentMode : 'read'}
+                  moment={moment}/>
+      );
+    });
+  }
   
   return (
     <div className="reader-pane">
@@ -35,6 +39,7 @@ export function ReaderPane(props) {
 }
 
 const mapStateToProps = state => ({
+  endpointMoment: state.storyBranch.endpointMoment,
   moments: state.storyBranch.currentBranch,
   focalMoment: state.storyBranch.focalMoment,
   focalMomentMode: state.storyBranch.focalMomentMode

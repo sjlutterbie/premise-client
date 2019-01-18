@@ -68,7 +68,7 @@ describe('<Moment />', () => {
         wrapper = shallow(<Moment {...testProps}/>);
         wrapper.find('.moment-text').simulate('click');
         expect(handleMomentTextClick_test)
-          .toHaveBeenCalledWith(testProps.moment.id);
+          .toHaveBeenCalledWith(testProps.moment._id);
       });
     });
   });
