@@ -21,7 +21,8 @@ export {
   UPDATE_ENDPOINT_MOMENT, updateEndpointMoment,
   UPDATE_CURRENT_BRANCH, updateCurrentBranch,
   loadStoryNetwork,
-  getMaxEndpoint
+  getMaxEndpoint,
+  createMoment
 } from './storyBranchActions';
 
 export {

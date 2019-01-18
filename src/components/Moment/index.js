@@ -3,7 +3,11 @@ import {connect} from 'react-redux';
 
 import './Moment.css';
 
-import {handleMomentTextClick, updateFocalMomentMode} from '../../actions';
+import {
+  handleMomentTextClick,
+  updateFocalMomentMode,
+  createMoment
+} from '../../actions';
 
 // Every <Moment/> has three modes: 'read', 'actions', and 'create'.
 //  'read' mode is default, and just displays the moment text.
@@ -37,7 +41,7 @@ export class Moment extends Component{
   
   handleSubmit(event) {
     event.preventDefault();
-    console.log(`Creating moment with content: ${this.state.formValue}`);
+    this.props.createMoment(this.props.moment, this.state.formValue);
   }
   
   render() {
@@ -101,7 +105,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   handleMomentTextClick,
-  updateFocalMomentMode
+  updateFocalMomentMode,
+  createMoment
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Moment);
