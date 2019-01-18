@@ -158,7 +158,7 @@ export const createMoment = (parentMoment, content) => (dispatch, getState) => {
     storyNetwork: parentMoment.storyNetwork,
     content: content,
     isPremiseMoment: false,
-    premise: parentMoment.premise || parentMoment.id,
+    premise: parentMoment.premise || parentMoment._id,
     children: [],
     lineage: parentMoment.lineage
   };
