@@ -110,6 +110,8 @@ export const getMaxEndpoint = (storyNetworkId) => (dispatch, getState) => {
   )
   .then(res => res.json())
   .then(res => {
+    console.log('getMaxEndpoint res:');
+    console.log(res);
     dispatch(updateEndpointMoment(res));
     dispatch(getStoryBranch(res));
   })
@@ -121,7 +123,7 @@ export const getStoryBranch = (endMoment) => (dispatch, getState) => {
   
   const endMomentId = endMoment.id;
   // The id of the first moment in the endMoment's lineage
-  const startMomentId = endMoment.lineage[0];
+  const startMomentId = endMoment.lineage[0]._id;
   
   const reqUrl = REACT_APP_PREMISE_BASE_API_URL
     + `/moment/storychain?start=${startMomentId}&end=${endMomentId}`;
@@ -137,6 +139,8 @@ export const getStoryBranch = (endMoment) => (dispatch, getState) => {
   )
   .then(res => res.json())
   .then(res => {
+    console.log('getStoryBranch res:');
+    console.log(res);
     dispatch(updateCurrentBranch(res));
   })
   .catch(err => {
