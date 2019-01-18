@@ -143,3 +143,41 @@ export const getStoryBranch = (endMoment) => (dispatch, getState) => {
     console.log(err);
   });
 };
+
+export const createMoment = (parentMoment, content) => (dispatch, getState) => {
+  
+  const reqUrl = REACT_APP_PREMISE_BASE_API_URL
+    + `/moment`;
+    
+  const momentData = {
+    creator: getState().userAuth.user.id,
+    storyNetwork: parentMoment.storyNetwork,
+    content: content,
+    isPremiseMoment: false,
+    premise: parentMoment.premise || parentMoment.id,
+    children: [],
+    lineage: parentMoment.lineage
+  };
+  
+  console.log(momentData);
+    
+  return fetch(
+    reqUrl,
+    {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${getState().userAuth.authToken}`,
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(momentData)
+    }
+  )
+  .then(res => res.json())
+  .then(res => {
+    dispatch(updateEndpointMoment(res.id));
+    dispatch(getStoryBranch(res));
+  })
+  .catch(err => {
+    console.log(err);
+  });
+};

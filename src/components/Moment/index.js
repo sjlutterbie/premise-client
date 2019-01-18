@@ -1,9 +1,13 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import './Moment.css';
 
-import {handleMomentTextClick, updateFocalMomentMode} from '../../actions';
+import {
+  handleMomentTextClick,
+  updateFocalMomentMode,
+  createMoment
+} from '../../actions';
 
 // Every <Moment/> has three modes: 'read', 'actions', and 'create'.
 //  'read' mode is default, and just displays the moment text.
@@ -16,25 +20,45 @@ import {handleMomentTextClick, updateFocalMomentMode} from '../../actions';
 //  default mode for the last <Moment/> in a story branch, and therefore needs
 //  to be triggered above the component level.
 
-export function Moment(props){
+export class Moment extends Component{
   // Expected Props:
   //  mode: 'read', 'actions', or 'create'
   //  moment: Object
   //    id: Unique identifier
   //    text: Moment content
   
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+      formValue: ''
+    };
+  }
+  
+  handleFormChange(event) {
+    this.setState({formValue: event.target.value});
+  }
+  
+  handleSubmit(event) {
+    event.preventDefault();
+    this.props.createMoment(this.props.moment, this.state.formValue);
+  }
+  
+  render() {
+  
     return (
       <div className="moment">
         <p className="moment-text"
-           onClick={(momentId) => props.handleMomentTextClick(props.moment.id)}
-           >{props.moment.content}</p>
+           onClick={(momentId) =>
+            this.props.handleMomentTextClick(this.props.moment.id)}>
+              {this.props.moment.content}</p>
 
-        {props.mode === 'actions'
+        {this.props.mode === 'actions'
           ?
             <div className="action-buttons">
               <button className="open-create-mode"
                       onClick={(momentId) =>
-                        props.updateFocalMomentMode('create')}>
+                        this.props.updateFocalMomentMode('create')}>
                 Create
               </button>
               <button className="switch-story-branch"
@@ -45,25 +69,25 @@ export function Moment(props){
             </div>
           : null
         }
-        {props.mode === 'create'
+        {this.props.mode === 'create'
           ?
             <form className="create-moment-form"
-                  // DEV CODE TO PREVENT APP-RELOAD
-                  onSubmit={(event) => {event.preventDefault()}}>
+                  onSubmit={(event) => this.handleSubmit(event)}>
               <div className="fieldset-wrapper">
                 <fieldset>
                   <div className="fieldset-contents">
                     <legend>Add to the story</legend>
-                    <textarea></textarea>
+                    <textarea
+                      value={this.state.formValue}
+                      onChange={(event) => this.handleFormChange(event)}>
+                    </textarea>
                     <button className="cancel-create-moment"
                             onClick={() => 
-                              props.updateFocalMomentMode('actions')}
+                              this.props.updateFocalMomentMode('actions')}
                     >Cancel</button>
-                    <button className="create-moment"
-                            // DEV CODE
-                            onClick={() => alert(
-                              'That tickles... but I don\'t work yet!')}
-                    >Create</button>
+                    <button className="create-moment" type="submit">
+                      Create
+                    </button>
                   </div>
                 </fieldset>
               </div>
@@ -72,7 +96,7 @@ export function Moment(props){
         }
       </div>
     );
-  
+  }
 }
 
 const mapStateToProps = state => ({
@@ -81,7 +105,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   handleMomentTextClick,
-  updateFocalMomentMode
+  updateFocalMomentMode,
+  createMoment
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Moment);
