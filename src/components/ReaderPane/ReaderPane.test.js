@@ -9,9 +9,11 @@ describe('<ReaderPane />', () => {
   
   let wrapper;
   let testProps = {
-    moments: []
+    moments: [],
+    endpointMoment: {
+      lineage: []
+    }
   };
-  
   
   beforeEach(() => {
     wrapper = shallow(<ReaderPane {...testProps}/>);
@@ -32,14 +34,15 @@ describe('<ReaderPane />', () => {
     const momentCount = Math.floor((Math.random() * 10) + 1);
     for (let i = 0; i < momentCount; i++) {
       moments.push({
-        id: faker.random.uuid(),
+        _id: faker.random.uuid(),
         text: faker.lorem.sentences(4)
       });
     }
-    testProps.moments = moments;
+    testProps.endpointMoment.lineage = moments;
     wrapper = shallow(<ReaderPane {...testProps}/>);
     const momentArea = wrapper.find('.reader-pane');
-    expect(momentArea.children().length).toEqual(testProps.moments.length);
+    expect(momentArea.children().length)
+      .toEqual(testProps.endpointMoment.lineage.length);
     
   });
 
