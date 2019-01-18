@@ -163,6 +163,7 @@ export const createMoment = (parentMoment, content) => (dispatch, getState) => {
     lineage: parentMoment.lineage
   };
   
+  console.log('createMoment data: ');
   console.log(momentData);
     
   return fetch(
@@ -180,6 +181,8 @@ export const createMoment = (parentMoment, content) => (dispatch, getState) => {
   .then(res => {
     dispatch(updateEndpointMoment(res));
     dispatch(getStoryBranch(res));
+    dispatch(updateFocalMoment(res.id));
+    dispatch(updateFocalMomentMode('read'));
   })
   .catch(err => {
     console.log(err);

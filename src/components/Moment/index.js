@@ -50,7 +50,7 @@ export class Moment extends Component{
       <div className="moment">
         <p className="moment-text"
            onClick={(momentId) =>
-            this.props.handleMomentTextClick(this.props.moment.id)}>
+            this.props.handleMomentTextClick(this.props.moment._id)}>
               {this.props.moment.content}</p>
 
         {this.props.mode === 'actions'
