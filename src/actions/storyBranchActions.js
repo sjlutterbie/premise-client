@@ -110,8 +110,6 @@ export const getMaxEndpoint = (storyNetworkId) => (dispatch, getState) => {
   )
   .then(res => res.json())
   .then(res => {
-    console.log('getMaxEndpoint res:');
-    console.log(res);
     dispatch(updateEndpointMoment(res));
     dispatch(getStoryBranch(res));
   })
@@ -121,9 +119,9 @@ export const getMaxEndpoint = (storyNetworkId) => (dispatch, getState) => {
 
 export const getStoryBranch = (endMoment) => (dispatch, getState) => {
   
-  const endMomentId = endMoment.id;
+  const endMomentId = endMoment.id || endMoment._id;
   // The id of the first moment in the endMoment's lineage
-  const startMomentId = endMoment.lineage[0]._id;
+  const startMomentId = endMoment.lineage[0]._id || endMoment.lineage[0];
   
   const reqUrl = REACT_APP_PREMISE_BASE_API_URL
     + `/moment/storychain?start=${startMomentId}&end=${endMomentId}`;
@@ -139,8 +137,6 @@ export const getStoryBranch = (endMoment) => (dispatch, getState) => {
   )
   .then(res => res.json())
   .then(res => {
-    console.log('getStoryBranch res:');
-    console.log(res);
     dispatch(updateCurrentBranch(res));
   })
   .catch(err => {
@@ -162,10 +158,7 @@ export const createMoment = (parentMoment, content) => (dispatch, getState) => {
     children: [],
     lineage: parentMoment.lineage
   };
-  
-  console.log('createMoment data: ');
-  console.log(momentData);
-    
+
   return fetch(
     reqUrl,
     {
@@ -189,8 +182,26 @@ export const createMoment = (parentMoment, content) => (dispatch, getState) => {
   });
 };
 
-export const switchBranch = (moment, nextMoment) => (dispatch, getState) => {
+export const switchBranch = (moment) => (dispatch, getState) => {
   
-  alert('You tried to switch branch!');
-  
+  const reqUrl = REACT_APP_PREMISE_BASE_API_URL
+    + `/moment/switchbranch/${moment._id}`;
+    
+  return fetch(
+    reqUrl,
+    {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${getState().userAuth.authToken}`
+      }
+    }
+  )
+  .then(res => res.json())
+  .then(res => {
+    dispatch(updateEndpointMoment(res));
+    dispatch(getStoryBranch(res));
+  })
+  .catch(err => {
+    console.log(err);
+  });
 };

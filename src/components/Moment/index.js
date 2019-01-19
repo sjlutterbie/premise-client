@@ -66,7 +66,7 @@ export class Moment extends Component{
                 className="switch-story-branch"
                 disabled={this.props.moment.children.length > 1 ? false : true }
                 //DEV CODE
-                onClick={() => this.props.switchBranch()}>
+                onClick={() => this.props.switchBranch(this.props.moment)}>
                 {this.props.moment.children.length > 1
                   ? 'Switch branches'
                   : 'On only branch'}
